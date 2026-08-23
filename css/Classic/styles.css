@@ -1,0 +1,2083 @@
+/* Custom CSS to override or enhance Tailwind */
+/* Classic theme */
+/* Color Variables for Light Theme */
+:root {
+    --background-color-light: #fefefe; /* Light background color for the body */
+    --text-color-light: #333; /* Dark text color for light theme */
+    --logo-color-light: #000; /* Color for the logo in light theme */
+    --about-link-color-light: #555; /* Color for 'About' link and some paragraph text */
+    --accent-color-light: #2b647b; /* Accent color for links, buttons in light theme */
+    --hover-accent-color-light: #1a4a58; /* Hover state accent color */
+    --button-bg-light: #2b647b; /* Button background color */
+    --button-text-light: #fff; /* Button text color */
+    --button-hover-bg-light: #1a4a58; /* Button hover background */
+    --overlay-bg-light: rgba(255, 255, 255, 0.95); /* Background for overlays (e.g., About) */
+    --overlay-inner-bg-light: #fff; /* Inner background of overlays */
+    --box-shadow-light: rgba(0, 0, 0, 0.1); /* Box shadows for light theme */
+    --image-shadow-light: rgba(0, 0, 0, 0.05); /* Image shadows for light theme */
+    --back-to-top-bg-light: rgba(255, 255, 255, 0.5); /* Background for back-to-top button */
+    --menu-bg-light: #fefefe; /* Background for main navigation menu */
+    --menu-border-light: #eee; /* Border color for menu items */
+    --header-bg-light: rgba(255, 255, 255, 0.8); /* Background for mobile header */
+    --header-shadow-light: rgba(0,0,0,0.1); /* Shadow for mobile header */
+    --text-font-size: 1rem; /* Default text font size */
+    --sidebar-width: 300px; /* Default sidebar width */
+    --h1-font-size: 2.25rem; /* Default font size for H1 */
+    --h2-font-size: 1.6rem; /* Default font size for H2 */
+    --h3-font-size: 1.3rem; /* Default font size for H3 */
+    --heading-margin-bottom: 1rem; /* Default margin below all headings */
+    --menu-item-spacing: 1rem; /* Default spacing between menu items */
+    --paragraph-line-height: 1.6; /* Default line height for paragraphs */
+    --paragraph-margin-bottom: 1em; /* Default margin-bottom for paragraphs */
+    --prose-link-text-decoration: underline; /* Default text decoration for links in prose */
+    --standalone-image-max-width: 800px; /* Max width for standalone images in text content */
+    --video-max-width: 800px; /* Max width for videos in text content */
+    --content-area-padding-top: 0rem; /* Default padding-top for content area */
+    --horizontal-gallery-max-height: 70vh; /* Default max-height for horizontal gallery images */
+    --content-max-width: 80rem; /* Default for max-w-7xl (1280px) */
+    --logo-font-size-desktop: 1.5rem; /* Default for desktop logo */
+    --logo-font-size-mobile: 1.25rem; /* Default for mobile logo */
+    /* Lightbox Nav Colors */
+    --lightbox-nav-color-light-theme-dark-overlay: white;
+    --lightbox-nav-color-light-theme-light-overlay: black;
+    --lightbox-nav-color-dark-theme-dark-overlay: white;
+    --lightbox-nav-color-dark-theme-light-overlay: black;
+    --lightbox-nav-bg-color-light: rgba(255, 255, 255, 0.1);
+    --lightbox-nav-bg-color-dark: rgba(0, 0, 0, 0.1);
+
+    /* Showcase Specific Variables (from config.js) */
+    --showcase-title-font-size: 2.5rem;
+    --showcase-bullets-color-light: rgba(255, 255, 255, 0.7);
+    --showcase-active-bullet-color-light: white;
+    --showcase-bullets-color-dark: rgba(0, 0, 0, 0.5);
+    --showcase-active-bullet-color-dark: black;
+    /* NEW: Default showcase title/link colors for light theme */
+    --showcase-title-color-light: white; /* Default to white for light theme */
+    --showcase-link-color-light: #ADD8E6; /* Default light blue for link */
+    /* NEW: Vars for hidden sidebar desktop header */
+    --desktop-header-height: 4rem; /* Высота десктопного хедера при скрытом сайдбаре */
+    --desktop-header-padding-top: 1rem; /* Отступ сверху для контента при скрытом сайдбаре */
+
+    /* NEW: Carousel specific variables */
+    --mobile-header-height: 4rem; /* Высота мобильного хедера */
+    --carousel-section-padding-y: 2rem; /* Vertical padding of .gallery-section.single-image-carousel-parent */
+    --carousel-caption-h: 0px; /* Placeholder for dynamic caption height */
+    --carousel-nav-gutter-w: 3rem; /* Width of the gutter for nav arrows and fullscreen button */
+}
+
+/* Color Variables for Dark Theme: Adjust these to customize the dark mode appearance. */
+body.dark-theme {
+    --background-color-dark: #191919; /* Dark background color for the body */
+    --text-color-dark: #e0e0e0; /* Light text color for dark theme */
+    --logo-color-dark: #fff; /* Color for the logo in dark theme */
+    --about-link-color-dark: #bbb; /* Color for 'About' link and some paragraph text in dark theme */
+    --accent-color-dark: #6fa8dc; /* Accent color for links, buttons in dark theme */
+    --hover-accent-color-dark: #a0c9e8; /* Hover state accent color for dark theme */
+    --button-bg-dark: #6fa8dc; /* Button background color for dark theme */
+    --button-text-dark: #1a1a1a; /* Button text color for dark theme */
+    --button-hover-bg-dark: #a0c9e8; /* Button hover background for dark theme */
+    /* NEW: Overlay background for dark theme - same as light for showcase consistency */
+    --overlay-bg-dark: rgb(54 54 54 / 95%); /* Adjusted for 'About' overlay */
+    --overlay-inner-bg-dark: #2a2a2a; /* Inner background of overlays in dark theme */
+    --box-shadow-dark: rgba(255, 255, 255, 0.1); /* Box shadows for dark theme */
+    --image-shadow-dark: rgba(255, 255, 255, 0.05); /* Image shadows for dark theme */
+    --back-to-top-bg-dark: rgba(0, 0, 0, 0.5); /* Background for back-to-top button in dark theme */
+    --menu-bg-dark: rgba(26, 26, 26, 0.9); /* Background for main navigation menu in dark theme */
+    --menu-border-dark: #333; /* Border color for menu items in dark theme */
+    --header-bg-dark: rgba(26, 26, 26, 0.8); /* Background for mobile header in dark theme */
+    --header-shadow-dark: rgba(255,255,255,0.1); /* Shadow for mobile header in dark theme */
+    /* --logo-font-family: 'Inter', sans-serif; */ /* This variable is now set by JS from config.js */
+    /* NEW: Showcase title/link colors for dark theme - same as light for consistency */
+    --showcase-title-color-dark: white; /* Default to white for dark theme */
+    --showcase-link-color-dark: #ADD8E6; /* Default light blue for link */
+}
+
+/* General Body Styles: Adjust font-family, default background, and text colors. */
+html {
+    height: 100%; /* Ensure html takes full viewport height */
+}
+
+body {
+    font-family: var(--text-font-family); /* This will be overridden by JS if 'styles.fontFamily' is set */
+    background-color: var(--background-color-light);
+    color: var(--text-color-light);
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden; /* Prevent horizontal scroll for the body */
+    overflow-y: auto; /* Ensure vertical scroll is allowed */
+    transition: background-color 0.3s ease, color 0.3s ease;
+    display: flex;
+    min-height: 100vh; /* Ensure body can extend beyond viewport height */
+    scrollbar-width: none; /* Hide scrollbar for Firefox */
+    -ms-overflow-style: none; /* Hide scrollbar for IE and Edge */
+}
+
+/* WebKit scrollbar styles for the body */
+body::-webkit-scrollbar {
+    width: 2px;
+    height: 2px;
+    background: transparent; /* Ensure the scrollbar area itself is transparent */
+    transition: background 0.3s ease; /* Add transition for fade in/out of scrollbar area */
+}
+
+body::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+body::-webkit-scrollbar-thumb {
+    background-color: rgba(0, 0, 0, 0); /* Start fully transparent */
+    border-radius: 1px;
+    transition: background-color 0.3s ease; /* Smooth transition for thumb visibility */
+}
+
+/* Show on hover for body scrollbar thumb */
+body:hover::-webkit-scrollbar-thumb {
+    background-color: rgba(0, 0, 0, 0.5); /* Make it visible on hover */
+}
+
+/* Dark theme specific for body scrollbar thumb on hover */
+body.dark-theme:hover::-webkit-scrollbar-thumb {
+    background-color: rgba(255, 255, 255, 0.5); /* Lighter thumb for dark theme */
+}
+
+body::-webkit-scrollbar-button {
+    display: none; /* Remove default scrollbar arrows if present */
+}
+
+
+/* Dark theme styles (activated by adding 'dark-theme' class to body) */
+body.dark-theme {
+    background-color: var(--background-color-dark);
+    color: var(--text-color-dark);
+}
+
+/* Specific element color adjustments for dark theme */
+body.dark-theme #logo_main_header { color: var(--logo-color-dark); }
+body.dark-theme #logo_main_header a { color: var(--logo-color-dark); }
+body.dark-theme .main-nav {
+    background-color: var(--menu-bg-dark);
+    border-right: 0px solid var(--menu-border-dark);
+    box-shadow: none; /* Removed shadow */
+}
+body.dark-theme .main-nav a { color: var(--text-color-dark); }
+body.dark-theme .main-nav a:hover, body.dark-theme .main-nav a.active { color: var(--accent-color-dark); }
+body.dark-theme .menu-toggle { color: var(--text-color-dark); }
+body.dark-theme .dark-mode-toggle { color: var(--text-color-dark); }
+/* Adjusted for footer menu in sidebar */
+body.dark-theme #footerMenu a { color: var(--about-link-color-dark); }
+body.dark-theme #footerMenu a:hover { color: var(--accent-color-dark); }
+body.dark-theme .back_to_top a {
+    background-color: var(--back-to-top-bg-dark);
+    box-shadow: none; /* Removed shadow */
+    color: var(--text-color-dark);
+}
+body.dark-theme .back_to_top a:hover {
+    background-color: rgba(0, 0, 0, 1);
+    box-shadow: none; /* Removed shadow */
+}
+/* IMPORTANT: About Overlay background adjustment for dark theme */
+/* This now uses --overlay-bg-dark from :root */
+body.dark-theme .description_overlay_wrapper { background-color: var(--overlay-bg-dark); }
+body.dark-theme .description_overlay_inner {
+    background-color: var(--overlay-inner-bg-dark);
+    box-shadow: none; /* Removed shadow */
+}
+body.dark-theme .description_overlay_inner h2 { color: var(--text-color-dark); }
+body.dark-theme .description_overlay_inner p { color: var(--about-link-color-dark); }
+body.dark-theme .description_overlay_inner a { color: var(--accent-color-dark); }
+body.dark-icons-container .social-icons-container .fab, body.dark-icons-container .social-icons-container .fas { color: var(--accent-color-dark); }
+body.dark-icons-container a:hover .fab, body.dark-icons-container a:hover .fas { color: var(--hover-accent-color-dark); }
+body.dark-theme #closeAbout {
+    background-color: var(--button-bg-dark);
+    color: var(--button-text-dark);
+}
+body.dark-theme #closeAbout:hover { background-color: var(--button-hover-bg-dark); }
+body.dark-theme .post img { box-shadow: none; /* Removed shadow */ }
+body.dark-theme .text-content-section .prose { color: var(--text-color-dark); }
+
+/* Custom logo font styles */
+body:not(.dark-theme) #sidebarLogo,
+body:not(.dark-theme) #desktopHeaderLogo,
+body:not(.dark-theme) #mobileHeaderLogo {
+    font-family: var(--logo-font-family); /* Apply logo font for light theme */
+}
+body.dark-theme #sidebarLogo,
+body.dark-theme #desktopHeaderLogo,
+body.dark-theme #mobileHeaderLogo {
+    font-family: var(--logo-font-family); /* Apply logo font for dark theme */
+}
+
+/* Main layout structure: Sidebar + Content Area */
+.page-wrapper {
+    display: flex;
+    width: 100%;
+}
+
+/* Left Navigation Sidebar (Desktop) */
+.main-nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: var(--sidebar-width); /* Adjust sidebar width as needed */
+    height: 100vh;
+    background-color: var(--menu-bg-light);
+    backdrop-filter: blur(5px);
+    box-shadow: none; /* Removed shadow */
+    z-index: 1001;
+    padding: 2rem 1.5rem; /* Adjust padding inside sidebar */
+    flex-direction: column; /* This is key for sticky footer */
+    align-items: flex-start; /* Aligned to left */
+    transition: transform 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
+    box-sizing: border-box;
+    display: flex; /* Ensure it's always flex on desktop */
+}
+
+.main-nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 1rem 0 0 0; /* Reduced top margin */
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1; /* Pushes subsequent elements (footer, theme toggle) to the bottom */
+}
+
+.main-nav li { margin-bottom: var(--menu-item-spacing); width: 100%; text-align: left; /* Left align on desktop */ }
+
+.main-nav a {
+    text-decoration: none;
+    color: var(--text-color-light);
+    font-weight: 600;
+    transition: color 0.3s ease;
+    display: block;
+    padding: 0.3rem 0; /* Reduced padding */
+    width: 100%;
+}
+
+.main-nav a:hover,
+.main-nav a.active { color: var(--accent-color-light); }
+
+/* Logo in Sidebar */
+#logo_main_header {
+    color: var(--logo-color-light);
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: var(--logo-font-size-desktop); /* Dynamic desktop logo font size */
+    line-height: 1.2;
+    font-family: var(--logo-font-family); /* Apply logo font */
+}
+
+#logo_main_header a { text-decoration: none; color: inherit; }
+#logo_main_header img { max-width: 100%; height: auto; display: block; }
+
+
+/* Main Content Area */
+.content-area {
+    margin-left: var(--sidebar-width); /* Must match sidebar width */
+    flex-grow: 1;
+    padding-top: var(--content-area-padding-top); /* Dynamic padding top */
+    display: flex; /* Added flex to content-area */
+    flex-direction: column; /* Stack children vertically */
+    min-height: 100%; /* NEW: Ensure content area is at least 100% of its parent's height */
+    overflow-y: auto; /* NEW: Enable scrolling for the content area itself */
+    overflow-x: hidden; /* Prevent horizontal scrolling */
+}
+/* Ensure dynamic content container stretches to fill content-area */
+#dynamicContentContainer {
+    flex-grow: 1;
+    display: flex; /* Make it a flex container for its children (sections) */
+    flex-direction: column; /* Stack sections vertically */
+    position: relative; /* For absolutely positioned children like showcase */
+    overflow-x: hidden; /* Prevent horizontal scroll within this container */
+    overflow-y: visible; /* Allow content to push height, rely on parent for scroll */
+}
+/* Prevent content sections from shrinking below content */
+.content-section {
+    flex-shrink: 0;
+}
+
+
+/* NEW STYLES FOR HEADER WITH HIDDEN SIDEBAR ON DESKTOP */
+.desktop-header-hidden-sidebar {
+    display: none; /* Hidden by default */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 1rem 1.4rem;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 1002;
+    background-color: var(--header-bg-light);
+    backdrop-filter: blur(5px);
+    box-shadow: none; /* Shadow removed */
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    min-height: var(--desktop-header-height); /* Using new variable */
+    pointer-events: auto;
+}
+
+body.dark-theme .desktop-header-hidden-sidebar {
+    background-color: var(--header-bg-dark);
+    box-shadow: none;
+}
+
+/* Styles for logo in new desktop header */
+#desktop_header_logo {
+    color: var(--logo-color-light);
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: var(--logo-font-size-desktop);
+    line-height: 1.2;
+    font-family: var(--logo-font-family);
+}
+#desktop_header_logo a { text-decoration: none; color: inherit; }
+#desktop_header_logo img { max-width: 100px; height: auto; }
+
+body.dark-theme #desktop_header_logo { color: var(--logo-color-dark); }
+body.dark-theme #desktop_header_logo a { color: var(--logo-color-dark); }
+
+/* Styles for controls in new desktop header */
+.desktop-header-controls { display: flex; align-items: center; gap: 1rem; }
+
+
+/* Header for Mobile (hamburger + dark mode toggle) */
+.mobile-header { display: none; } /* Hidden on desktop by default */
+
+/* Mobile Menu Toggle button */
+.menu-toggle {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 1.5rem; /* Adjust size as needed */
+    color: var(--text-color-light); /* Inherit text color */
+    transition: color 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.5rem; /* Add padding for touch target */
+    pointer-events: auto; /* Ensure it's always clickable */
+}
+body.dark-theme .menu-toggle {
+    color: var(--text-color-dark);
+}
+.menu-toggle:hover {
+    opacity: 0.8;
+    background-color: rgba(0,0,0,0.1); /* Added for visual feedback */
+}
+body.dark-theme .menu-toggle:hover {
+    background-color: rgba(255,255,255,0.1); /* Added for visual feedback */
+}
+
+/* Cursor pointer for dark mode toggles */
+.dark-mode-toggle, .dark-mode-toggle i {
+    cursor: pointer;
+}
+
+
+/* Only show mobile header on screens <= 768px */
+@media (max-width: 768px) {
+    .mobile-header {
+        display: flex; /* Show on mobile */
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        padding: 1rem 1rem;
+        justify-content: space-between;
+        align-items: center;
+        z-index: 1002;
+        background-color: var(--header-bg-light);
+        backdrop-filter: blur(5px);
+        box-shadow: none; /* Removed shadow */
+        transition: background-color 0.3s ease, box-shadow 0.3s ease;
+        min-height: var(--mobile-header-height); /* Use new mobile header height variable */
+        pointer-events: auto;
+    }
+    body.dark-theme .mobile-header {
+        background-color: var(--header-bg-dark);
+        box-shadow: none; /* Removed shadow in dark theme too */
+    }
+
+    .mobile-header #mobile_logo {
+        color: var(--logo-color-light);
+        font-weight: 600;
+        text-transform: uppercase;
+        font-size: var(--logo-font-size-mobile); /* Dynamic mobile logo font size */
+        line-height: 1.2;
+        font-family: var(--logo-font-family); /* Apply logo font */
+    }
+    .mobile-header #mobile_logo a { text-decoration: none; color: inherit; }
+    .mobile-header #mobile_logo img { max-width: 100px; height: auto; } /* Smaller logo on mobile */
+
+    body.dark-theme .mobile-header #mobile_logo { color: var(--logo-color-dark); }
+    body.dark-theme .mobile-header #mobile_logo a { color: var(--logo-color-dark); }
+
+    .mobile-controls { display: flex; align-items: center; gap: 1rem; }
+
+    /* Mobile Menu Specific Styles */
+    .main-nav {
+        position: fixed;
+        top: var(--mobile-header-height); /* Start below the mobile header */
+        left: 0;
+        width: 100%;
+        height: calc(100vh - var(--mobile-header-height)); /* Adjust height to fill remaining viewport */
+        padding: 1rem;
+        box-shadow: none;
+        border-right: none;
+        transform: translateX(-100%); /* Hidden initially */
+        transition: transform 0.3s ease-out;
+        background-color: var(--menu-bg-light);
+        z-index: 1001;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start; /* Align left on mobile */
+        justify-content: flex-start; /* Align top on mobile */
+        overflow-y: auto; /* Make menu scrollable */
+    }
+
+    .main-nav.active { transform: translateX(0); } /* Slides in */
+    #logo_main_header { display: none; } /* Hide sidebar logo on small screens */
+
+    .main-nav ul {
+        list-style: none; /* Ensure no bullets */
+        flex-direction: column;
+        margin: 0;
+        padding: 0rem 0; /* Adjusted padding */
+        border-top: none;
+        flex-grow: 0; /* No grow on mobile */
+    }
+
+    .main-nav li {
+        margin-bottom: 0.1rem; /* Further reduced spacing */
+        text-align: left; /* Left align on mobile */
+    }
+
+    .main-nav a {
+        padding: 0.2rem 0; /* Further reduced padding */
+        font-size: 1rem; /* Further reduced font size */
+    }
+    .content-area { margin-left: 0; padding-top: var(--mobile-header-height); width: 100%; } /* Adjust padding-top for mobile header */
+    /* Adjusted padding for all gallery sections and text sections on mobile */
+    .gallery-section,
+    .text-content-section {
+        padding: 1rem; /* Consistent 1rem padding on all sides for mobile */
+    }
+    #pagination_index { bottom: 0.5rem; right: 1rem; }
+
+    .carousel-caption {
+        font-size: 0.7rem; /* Smaller font size for mobile carousel caption */
+        bottom: 0.25rem; /* Reduced bottom margin */
+    }
+    /* Collapsible Description Styles for Mobile */
+    .gallery-description-container {
+        text-align: left; /* Align description left */
+        align-items: flex-start; /* Align children left in flex column */
+    }
+    .gallery-description-container .toggle-description-button {
+        margin: 0; /* No auto margin to center */
+        display: inline-flex;
+    }
+
+    /* Mobile menu submenu adjustments */
+    .main-nav .submenu {
+        padding-left: 1rem; /* Indent submenu on mobile */
+        text-align: left; /* Left align submenu items on mobile */
+        max-height: 0; /* Ensure it stays collapsed */
+        overflow: hidden;
+    }
+    .main-nav .submenu.expanded {
+        max-height: 500px; /* Expand on mobile as well */
+    }
+    .main-nav .submenu li {
+        margin-bottom: 0.25rem;
+    }
+    .main-nav .submenu a {
+        padding: 0.2rem 0; /* Inherit padding from parent a */
+    }
+
+    /* Footer on mobile - left align and stack */
+    #footerMenu {
+        justify-content: flex-start;
+        gap: 0.5rem; /* Smaller gap on mobile */
+        padding: 1rem 0; /* Padding inside the mobile menu */
+        flex-direction: column; /* Stack vertically on mobile */
+        flex-wrap: nowrap; /* No wrapping on mobile */
+        margin-top: 1rem; /* Small margin from last nav item */
+        width: 100%;
+    }
+    #footerMenu a {
+        padding: 0.2rem 0; /* Adjust padding for mobile footer links */
+    }
+
+    /* Hide the desktop theme toggle within the active mobile menu */
+    #darkModeToggle {
+        display: none;
+    }
+    
+    /* NEW: Hide carousel navigation arrows on mobile */
+    .carousel-nav-arrow {
+        display: none !important;
+    }
+    /* NEW: Hide lightbox navigation arrows on mobile */
+    .lightbox-nav-arrow {
+        display: none !important;
+    }
+    /* NEW: Hide carousel fullscreen icon on mobile */
+    .carousel-fullscreen-icon {
+        display: none !important;
+    }
+
+    .showcase-content {
+        padding: 1rem;
+    }
+    .showcase-title {
+        font-size: 1.8rem; /* Smaller title on mobile */
+    }
+    .showcase-link {
+        display: none; /* Ensure hidden on mobile too */
+    }
+    .showcase-bullets {
+        bottom: 0.5rem;
+    }
+}
+
+/* NEW: Styles for hidden sidebar on desktop */
+@media (min-width: 769px) { /* Applies only to screens wider than 768px */
+    body.sidebar-hidden .main-nav {
+        transform: translateX(-100%); /* Completely hides the sidebar */
+        box-shadow: none; /* Ensure no shadow when hidden */
+    }
+
+    body.sidebar-hidden .content-area {
+        margin-left: 0; /* Shifts content to the left */
+        padding-top: 0; /* Remove padding-top from content-area */
+        height: 100vh; /* Make content area fill viewport when sidebar is hidden */
+        min-height: 100vh; /* Ensure it takes full viewport height */
+        overflow-y: auto; /* Allow content area to scroll when sidebar hidden */
+        box-sizing: border-box; /* Include padding/border in height */
+    }
+
+    /* Apply top margin to the first content element */
+    body.sidebar-hidden .gallery-section:not(.showcase-gallery-parent) > .container,
+    body.sidebar-hidden .text-content-section > .container {
+        margin-top: var(--desktop-header-height); /* Shifts content down by header height */
+    }
+
+    /* Correction for horizontal gallery header with hidden sidebar */
+    body.sidebar-hidden .horizontal-gallery-header-container {
+        max-width: var(--content-max-width); /* Constrain max-width for readability */
+        margin-left: auto; /* Center the container */
+        margin-right: auto; /* Center the container */
+        padding-top: calc(var(--desktop-header-height) + 2rem); /* Отступ сверху: высота хедера + оригинальный padding-top */
+        padding-left: 1rem; /* Restore inner padding */
+        padding-right: 1rem; /* Restore inner padding */
+        box-sizing: border-box;
+        text-align: center; /* Keep text centered within the container */
+        margin-top: 0; /* Reset margin-top to avoid double padding */
+    }
+
+
+    body.sidebar-hidden .desktop-header-hidden-sidebar {
+        display: flex; /* Show new header */
+    }
+
+    body.sidebar-theme #mobileHeader {
+        display: none; /* Ensure mobile header is hidden */
+    }
+
+    /* When sidebar is hidden, main-nav acts as a mobile menu */
+    body.sidebar-hidden .main-nav {
+        position: fixed;
+        top: 0; /* Aligns to top of screen */
+        left: 0;
+        width: var(--sidebar-width); /* Retains sidebar width as slide-out menu width */
+        height: 100vh;
+        padding-top: var(--desktop-header-height); /* Top padding for menu to slide out below header */
+        /* rest inherited from .main-nav */
+    }
+
+    body.sidebar-hidden .main-nav.active {
+        transform: translateX(0); /* Slides out from left */
+    }
+
+    /* Hide logo and theme toggle in slide-out sidebar (mobile menu on desktop) */
+    body.sidebar-hidden .main-nav #logo_main_header,
+    body.sidebar-hidden .main-nav .dark-mode-toggle {
+        display: none;
+    }
+
+    /* Correction for horizontal gallery with hidden sidebar */
+    body.sidebar-hidden .posts-wrap.gallery-horizontal-scroll {
+        width: 100vw; /* Take full viewport width */
+        margin-left: 0; /* Remove sidebar offset */
+        box-sizing: border-box;
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }
+
+    /* Correction for Showcase gallery with hidden sidebar */
+    body.sidebar-hidden .gallery-section.showcase-gallery-parent {
+        height: 100vh; /* Make showcase take full viewport height */
+        padding: 0; /* Remove excess padding to prevent scroll */
+        margin: 0;
+        /* Ensure its own overflow is handled internally for the showcase images */
+        overflow: hidden; /* This is intentional for the showcase */
+    }
+    body.sidebar-hidden .gallery-section.showcase-gallery-parent .posts-wrap.gallery-showcase {
+        height: 100%; /* Force inner posts-wrap to fill 100% height */
+        overflow: hidden; /* Ensure inner part also doesn't scroll */
+    }
+}
+
+
+/* Back to Top button styling */
+#pagination_index {
+    position: fixed;
+    z-index: 1000;
+    bottom: 2rem;
+    right: 2rem;
+}
+
+.back_to_top a {
+    padding: 0.5rem 1rem;
+    background-color: var(--back-to-top-bg-light);
+    backdrop-filter: blur(5px);
+    box-shadow: none; /* Removed shadow */
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    text-decoration: none;
+    color: var(--text-color-light);
+    display: inline-block;
+    border-radius: 0; /* NO ROUNDED CORNERS! */
+}
+
+.back_to_top a:hover {
+    background-color: rgba(255, 255, 255, 1);
+    box-shadow: none; /* Removed shadow */
+}
+
+/* About overlay */
+.description_overlay_wrapper {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--overlay-bg-light); /* Ensure light theme background is set here */
+    z-index: 2000;
+    display: flex; /* Always flex, control visibility with opacity/visibility */
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    opacity: 0; /* Start hidden for transition */
+    visibility: hidden; /* Start hidden for transition */
+    transition: opacity 0.5s ease-in-out, visibility 0.5s ease-in-out; /* Changed to 0.5s ease-in-out */
+}
+
+.description_overlay_wrapper.active { opacity: 1; visibility: visible; }
+
+.description_overlay_inner {
+    background-color: var(--overlay-inner-bg-light);
+    padding: 2rem;
+    box-shadow: none; /* Removed shadow */
+    max-width: 90%;
+    width: 680px; /* Max width of the 'About' dialog */
+    text-align: center;
+    border-radius: 0; /* NO ROUNDED CORNERS! */
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    max-height: 90vh; /* Ensure it doesn't overflow viewport on small screens */
+    overflow-y: auto; /* Allow scrolling if content is too long */
+}
+
+.description_overlay_inner h2 { color: var(--logo-color-light); transition: color 0.3s ease; }
+.description_overlay_inner p {
+    margin-bottom: 1rem;
+    color: var(--about-link-color-light);
+    line-height: 1.6;
+    transition: color 0.3s ease;
+}
+
+.description_overlay_inner a {
+    color: var(--accent-color-light);
+    text-decoration: none;
+    font-weight: 600;
+    margin: 0 0.5rem;
+    transition: color 0.3s ease;
+}
+
+/* Social media icons styling */
+.social-icons-container {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 1.5rem; /* Increased margin-top for social icons */
+}
+
+.social-icons-container a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2rem;
+    height: 2rem;
+    border-radius: 0; /* NO ROUNDED CORNERS! */
+    text-decoration: none !important;
+}
+
+.social-icons-container .fab,
+.social-icons-container .fas {
+    font-size: 1.5rem;
+    color: var(--accent-color-light);
+    transition: color 0.3s ease, opacity 0.3s ease;
+}
+
+.social-icons-container a:hover .fab,
+.social-icons-container a:hover .fas {
+    color: var(--hover-accent-color-light);
+    opacity: 0.8;
+}
+
+#closeAbout {
+    background-color: var(--button-bg-light);
+    color: var(--button-text-light);
+    border-radius: 0; /* NO ROUNDED CORNERS! */
+}
+
+#closeAbout:hover {
+    background-color: var(--button-hover-bg-light);
+    color: var(--button-text-dark); /* NEW: Change text color to dark for contrast */
+}
+
+/* Image Gallery Base Styles */
+.gallery-section {
+    display: none; /* All gallery sections hidden by default */
+    padding: var(--carousel-section-padding-y) 1rem; /* Default padding for all galleries */
+    margin: 0 auto;
+}
+/* When a gallery section is active, show it */
+.gallery-section.active {
+    display: block; /* Default display for active galleries */
+}
+
+/* Inner container for galleries and text pages to apply max-width */
+/* Exclude horizontal and carousel parents, as they have custom max-width logic */
+.gallery-section:not(.horizontal-gallery-parent):not(.single-image-carousel-parent):not(.showcase-gallery-parent) > .container,
+.text-content-section > .container {
+    max-width: var(--content-max-width); /* Dynamic max-width for content */
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.posts-wrap {
+    display: grid;
+    gap: 1rem; /* Space between images in a grid */
+    width: 100%;
+    margin: 0 auto;
+    box-sizing: border-box;
+}
+
+.post {
+    width: 100%;
+    box-sizing: border-box;
+    position: relative; /* For spinner positioning */
+    background-color: transparent; /* Light grey placeholder */
+    display: flex; /* To center the spinner */
+    justify-content: center;
+    align-items: center;
+    min-height: 150px; /* Minimum height for placeholder */
+    overflow: hidden; /* Hide overflowing alt text if any */
+}
+
+body.dark-theme .post {
+    background-color: transparent; /* Dark grey placeholder for dark theme */
+}
+
+/* Hide spinner when image is loaded */
+.post.loaded::before {
+    display: none;
+}
+
+.post img {
+    width: 100%;
+    height: auto;
+    display: block;
+    box-shadow: none; /* Removed shadow */
+    transition: opacity 0.5s ease-in-out, transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out; /* opacity to 0.5s ease-in-out, others to 0.3s ease-in-out */
+    border-radius: 0; /* NO ROUNDED CORNERS! */
+    cursor: pointer;
+    opacity: 0; /* Hidden by default for lazy loading */
+    transition: opacity 0.5s ease-in-out; /* Keep fade transition */
+}
+
+.post img:hover { transform: scale(1.005); }
+
+.post.loaded img {
+    opacity: 1; /* Show image when loaded */
+}
+
+.post::before {
+    content: '';
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    border: 4px solid rgba(0, 0, 0, 0.1);
+    border-top: 4px solid var(--accent-color-light); /* Spinner color */
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    z-index: 1;
+}
+
+body.dark-theme .post::before {
+    border-top: 4px solid var(--accent-color-dark);
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Hide alt text visually while loading */
+.post img:not(.loaded) {
+    font-size: 0; /* Hide alt text */
+    line-height: 0;
+    color: transparent;
+}
+
+
+/* Gallery Layouts: Adjust minmax values to control image size in columns */
+.posts-wrap.gallery-single-column { grid-template-columns: 1fr; align-items: center; padding-top: 0.7rem;}
+.posts-wrap.gallery-single-column .post { max-width: 1024px; justify-self: center; padding-top: 0.7rem; }
+
+.posts-wrap.gallery-two-columns { grid-template-columns: repeat(2, minmax(350px, 1fr)); padding-top: 0.7rem; }
+@media (min-width: 1600px) { .posts-wrap.gallery-two-columns { grid-template-columns: repeat(2, minmax(400px, 1fr)); padding-top: 0.7rem; } }
+
+.posts-wrap.gallery-three-columns { grid-template-columns: repeat(3, minmax(280px, 1fr)); padding-top: 0.7rem;}
+@media (min-width: 1600px) { .posts-wrap.gallery-three-columns { grid-template-columns: repeat(3, minmax(300px, 1fr)); padding-top: 0.7rem;} }
+
+/* Masonry Gallery Layouts */
+.posts-wrap.gallery-masonry-two-columns {
+    column-count: 2;
+    column-gap: 1rem;
+    display: block; /* Override grid display */
+    padding-top: 0.7rem;
+}
+.posts-wrap.gallery-masonry-three-columns {
+    column-count: 3;
+    column-gap: 1rem;
+    display: block; /* Override grid display */
+    padding-top: 0.7rem;
+}
+
+.posts-wrap.gallery-masonry-two-columns .post,
+.posts-wrap.gallery-masonry-three-columns .post {
+    display: inline-block; /* Essential for column-count */
+    width: 100%; /* Take full width of its column */
+    margin-bottom: 1rem; /* Gap between items in columns */
+    break-inside: avoid; /* Prevent breaking image across columns */
+}
+
+/* Horizontal Scroll Gallery (responsive behavior) */
+/* This section (gallery-section.horizontal-gallery-parent) now spans full viewport width */
+.gallery-section.horizontal-gallery-parent {
+    width: 100vw; /* Take full viewport width */
+    margin-left: calc(-1 * (100vw - 100%)); /* Shift left from normal content-area position */
+    position: relative;
+    overflow: hidden; /* Hide anything overflowing this section itself */
+    box-sizing: border-box;
+    padding: 0; /* No padding on the section itself */
+}
+
+/* Container for title and description inside horizontal gallery, which should be centered */
+.horizontal-gallery-header-container {
+    max-width: var(--content-max-width); /* Constrain max-width for readability */
+    margin-left: var(--sidebar-width); /* Push it to the right of the sidebar */
+    margin-right: auto; /* Auto margin on the right to center it within the remaining space */
+    padding: 1rem 1rem 0rem 1rem; /* Padding for title/description, 0rem bottom */
+    box-sizing: border-box;
+    text-align: center; /* Center the content inside this container */
+    margin-top: 1rem;
+}
+
+
+/* Specific margin for gallery titles without a description below them in horizontal gallery */
+.gallery-section.horizontal-gallery-parent h2.title-no-description-margin {
+    margin-bottom: 2rem; /* Add more space before the scrollable gallery starts */
+}
+
+/* The actual scrollable image wrapper, offset by sidebar width */
+.posts-wrap.gallery-horizontal-scroll {
+    display: flex;
+    flex-direction: row; /* Always horizontal on desktop */
+    overflow-x: scroll; /* Always allow horizontal scroll */
+    overflow-y: hidden; /* Prevent vertical scroll on the wrapper itself */
+    white-space: nowrap; /* Keep items in one line */
+    padding: 1rem 1rem 2rem 1rem; /* Padding for images and scrollbar */
+    height: calc(var(--horizontal-gallery-max-height) + 4rem); /* Set height for scrollable area, increased for captions */
+    align-items: flex-start; /* Aligned to start to accommodate caption below */
+    gap: 1rem; /* Space between images */
+    scrollbar-width: none; /* Hide scrollbar for Firefox */
+    -ms-overflow-style: none; /* Hide scrollbar for IE and Edge */
+    width: calc(100% - var(--sidebar-width)); /* Occupy remaining width */
+    margin-left: var(--sidebar-width); /* Push to align with content area */
+    box-sizing: border-box; /* Include padding/border in element's total width/height */
+}
+
+/* Hide scrollbar for WebKit browsers */
+.posts-wrap.gallery-horizontal-scroll::-webkit-scrollbar {
+    width: 2px;
+    height: 2px;
+    background: transparent; /* Ensure the scrollbar area itself is transparent */
+    transition: background 0.3s ease; /* Add transition for fade in/out of scrollbar area */
+}
+
+.posts-wrap.gallery-horizontal-scroll::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.posts-wrap.gallery-horizontal-scroll::-webkit-scrollbar-thumb {
+    background-color: rgba(0, 0, 0, 0); /* Start fully transparent */
+    border-radius: 1px;
+    transition: background-color 0.3s ease; /* Smooth transition for thumb visibility */
+}
+
+/* Show on hover of the scrollable area, make thumb visible */
+.posts-wrap.gallery-horizontal-scroll:hover::-webkit-scrollbar-thumb {
+    background-color: rgba(0, 0, 0, 0.5); /* Make it visible on hover */
+}
+
+/* Dark theme specific for horizontal gallery scrollbar thumb on hover */
+body.dark-theme .posts-wrap.gallery-horizontal-scroll:hover::-webkit-scrollbar-thumb {
+    background-color: rgba(255, 255, 255, 0.5); /* Lighter thumb for dark theme */
+}
+
+.posts-wrap.gallery-horizontal-scroll::-webkit-scrollbar-button {
+    display: none; /* Remove default scrollbar arrows if present */
+}
+
+
+.posts-wrap.gallery-horizontal-scroll .post {
+    flex: 0 0 auto; /* Don't grow/shrink, size based on content */
+    height: auto; /* Height determined by content (image + caption) */
+    width: auto; /* Allow width to be determined by image aspect ratio */
+    margin-bottom: 0; /* No vertical margin on desktop */
+    display: flex;
+    flex-direction: column; /* Stack image and caption vertically */
+    align-items: center; /* Horizontally center */
+    justify-content: flex-start; /* Align image to top, caption below */
+    background-color: transparent; /* Make placeholder transparent for cleaner look */
+    min-height: unset; /* Override general min-height for posts if it causes issues */
+    overflow: visible; /* IMPORTANT: Allow captions to extend beyond the image's height */
+}
+body.dark-theme .posts-wrap.gallery-horizontal-scroll .post {
+    background-color: transparent; /* Ensure transparent in dark mode too */
+}
+
+
+.posts-wrap.gallery-horizontal-scroll .post img {
+    width: auto; /* Allow image to scale width automatically */
+    max-height: var(--horizontal-gallery-max-height); /* Ensure image respects max height */
+    height: auto; /* Allow image to size itself, not fixed to 100% of parent's height */
+    object-fit: contain; /* Ensure image is fully visible, may add empty space (letterboxing) */
+    max-width: none; /* Remove any overriding max-width */
+    border-radius: 0; /* No rounded corners */
+    box-shadow: none; /* Removed shadow */
+    transition: opacity 0.5s ease-in-out; /* Keep fade transition */
+}
+/* Explicit max-height for images on desktop, as per user request */
+@media (min-width: 1024px) {
+    .posts-wrap.gallery-horizontal-scroll .post img {
+        max-height: var(--horizontal-gallery-max-height);
+    }
+}
+body.dark-theme .posts-wrap.gallery-horizontal-scroll .post img {
+    box-shadow: none; /* Removed shadow */
+}
+
+/* Mobile adjustments for the horizontal gallery section's inner container */
+@media (max-width: 768px) {
+    .gallery-section.horizontal-gallery-parent {
+        margin-left: 0; /* No offset on mobile */
+        width: 100%; /* Full width of content area */
+        padding: 1rem; /* Consistent 1rem padding for mobile sections */
+    }
+    .horizontal-gallery-header-container { /* Reset for mobile */
+        max-width: 100%; /* Full width of the content area */
+        margin-left: auto; /* Center title/desc */
+        margin-right: auto;
+        padding: 0; /* Removed padding from here, handled by .gallery-section */
+    }
+
+    .posts-wrap.gallery-horizontal-scroll {
+        flex-direction: column; /* Vertical on mobile */
+        overflow-x: hidden;
+        overflow-y: auto; /* Allow vertical scroll if content is too long */
+        white-space: normal;
+        padding: 0; /* Removed padding, handled by .gallery-section */
+        align-items: center; /* Center images in a column */
+        max-width: 1024px; /* Default max-width for content */
+        margin-left: auto; /* Center posts-wrap on mobile */
+        margin-right: auto;
+        width: 100%; /* Take full width */
+        height: auto; /* Auto height for vertical stacking */
+        gap: 1rem; /* Gap between images in column */
+    }
+    .posts-wrap.gallery-horizontal-scroll .post {
+        width: 100%;
+        margin-bottom: 0; /* Gap is handled by flex container now */
+        height: auto; /* Allow height to be determined by content */
+    }
+    .posts-wrap.gallery-horizontal-scroll .post img {
+        width: 100%;
+        height: auto;
+        object-fit: contain; /* Still contain on mobile */
+        max-height: none; /* Remove max-height constraint for vertical stack */
+    }
+}
+
+/* Single Image Carousel Gallery */
+.gallery-section.single-image-carousel-parent {
+    padding-left: 1rem;
+    padding-right: 1rem;
+    padding-top: var(--carousel-section-padding-y); /* Dynamic padding */
+    padding-bottom: var(--carousel-section-padding-y); /* Dynamic padding */
+    margin: 0 auto; /* Center the section */
+    max-width: 100%; /* Allow it to take full width */
+    position: relative; /* Needed for absolute positioning of nav arrows and fullscreen button */
+    display: flex; /* Make it a flex container for centering .posts-wrap */
+    flex-direction: column;
+    justify-content: center;
+    align-items: center; /* Center .posts-wrap horizontally */
+    box-sizing: border-box; /* Include padding in height calculation */
+    height: auto; /* Auto height for content if it expands, handled by parent's min-height and dynamic calculations */
+}
+
+.gallery-section.single-image-carousel-parent.active {
+    display: flex; /* Override default display: none for active state, and ensure flex for centering */
+}
+
+/* Default height for carousel (with sidebar, with title/desc) */
+.posts-wrap.gallery-single-image-carousel {
+    display: grid; /* Changed to grid */
+    grid-template-columns: var(--carousel-nav-gutter-w) 1fr var(--carousel-nav-gutter-w); /* Arrow | Image+Caption | Arrow */
+    align-items: stretch; /* Stretch content vertically */
+    justify-content: center; /* Center the grid horizontally */
+    width: 100%; /* Take full width of parent section */
+    height: calc(100vh - var(--desktop-header-height, 0px) - var(--mobile-header-height, 0px) - (var(--carousel-section-padding-y) * 2) - var(--carousel-caption-h));
+    overflow: hidden;
+    position: relative; /* Crucial for absolute positioning of fullscreen icon */
+    padding: 0;
+    margin: 0;
+    gap: 0; /* No gap between grid cells */
+    opacity: 1; /* Ensure container is visible */
+    transition: none; /* Remove transition from container if it had one for opacity */
+}
+
+/* Wrapper for the image and caption to allow flex-grow */
+.carousel-image-and-caption-wrapper {
+    grid-column: 2 / 3; /* This takes the middle 1fr column */
+    display: flex;
+    flex-direction: column; /* Stack image and caption */
+    align-items: center; /* Center contents horizontally */
+    justify-content: center; /* Center contents vertically */
+    height: 100%; /* Fill grid cell height */
+    width: 100%; /* Fill grid cell width */
+    position: relative; /* For caption to be relative to this wrapper */
+    overflow: hidden;
+}
+
+/* Ensure the .post within the carousel takes full width */
+.posts-wrap.gallery-single-image-carousel .post {
+    width: 100%; /* Force post to take full width of carousel-image-and-caption-wrapper */
+    height: auto; /* Allow image to define height, but flexible */
+    max-height: calc(100% + var(--carousel-caption-h)); /* Max height adjusted for caption */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    flex-grow: 1; /* Allow post to grow and take available space */
+    min-height: unset; /* Override general min-height for posts */
+    background-color: transparent; /* No background for this wrapper */
+    position: relative; /* Caption will be relative to this */  
+}
+
+
+/* Default image max-height (with sidebar, with title/desc) */
+.posts-wrap.gallery-single-image-carousel .post img {
+    max-width: 100%; /* Take full width of its parent (.post) */
+    max-height: calc(100% - var(--carousel-caption-h)); /* Take full height of its parent (.post) minus caption height */
+    width: auto; /* Allow image to size itself */
+    height: auto; /* Allow image to size itself */
+    object-fit: contain; /* Ensure image fits without cropping */
+    box-shadow: none; /* Removed shadow */
+    opacity: 0; /* Start hidden for fade-in */
+    transition: opacity 0.5s ease-in-out; /* Apply fade transition here */
+    border-radius: 0; /* NO ROUNDED CORNERS! */
+}
+
+/* Case 1: With sidebar, without title and description (.no-header-height) */
+/* This class will be applied to .gallery-section.single-image-carousel-parent */
+.gallery-section.single-image-carousel-parent.no-header-height {
+    /* Adjust top padding if there's no page title/description */
+    padding-top: calc(var(--carousel-section-padding-y) + var(--desktop-header-height));
+}
+
+.posts-wrap.gallery-single-image-carousel .post img.image-visible {
+    opacity: 1; /* Show image when this class is added */
+}
+
+.posts-wrap.gallery-single-image-carousel .post::before {
+    display: none; /* Hide spinner for carousel images, as they are loaded one by one */
+}
+
+/* NEW: Carousel Navigation Arrows for Single Image Carousel */
+.carousel-nav-arrow {
+    grid-row: 1 / 2; /* Span the whole row */
+    align-self: center; /* Vertically center in its grid cell */
+    justify-self: center; /* Horizontally center in its grid cell */
+    font-size: 1.5rem;
+    color: var(--text-color-light); /* Use theme text color for arrows */
+    cursor: pointer;
+    z-index: 20;
+    padding: 0 0.5rem; /* Only horizontal padding for a larger click target */
+    user-select: none;
+    opacity: 0; /* Hidden by default */
+    transition: opacity 0.3s ease, color 0.3s ease;
+    background-color: transparent; /* No background */
+    pointer-events: none;
+    width: var(--carousel-nav-gutter-w); /* Use gutter width for arrow area */
+    display: flex; /* Flex to center icon inside this area */
+    align-items: center;
+    justify-content: center;
+    height: 100%; /* Fill height of grid row */
+}
+
+.carousel-nav-arrow.show-arrow {
+    opacity: 1;
+    pointer-events: auto; /* Enable clicks when visible */
+}
+
+.carousel-nav-arrow:hover {
+    color: var(--accent-color-light); /* Subtle accent on hover */
+}
+body.dark-theme .carousel-nav-arrow {
+    color: var(--text-color-dark);
+}
+body.dark-theme .carousel-nav-arrow:hover {
+    color: var(--accent-color-dark);
+}
+
+#carousel-arrow-left {
+    grid-column: 1 / 2;
+}
+
+#carousel-arrow-right {
+    grid-column: 3 / 4;
+}
+
+
+
+/* NEW: Styles for carousel fullscreen icon */
+.carousel-fullscreen-icon {
+    position: absolute;
+    top: 0rem; /* Relative to .posts-wrap.gallery-single-image-carousel */
+    right: 0.5rem;
+    font-size: 1.5rem;
+    color: var(--text-color-light); /* Use theme text color */
+    cursor: pointer;
+    z-index: 20;
+    opacity: 0; /* Hidden by default */
+    transition: opacity 0.3s ease, transform 0.2s ease, color 0.3s ease;
+    padding: 0.1rem;
+    background-color: transparent; /* No background */
+    border-radius: 50%; /* Make it circular on hover */
+    pointer-events: none;
+}
+
+/* On hover/focus */
+.carousel-fullscreen-icon:hover {
+    transform: scale(1.1);
+    color: var(--accent-color-light); /* Subtle accent on hover */
+}
+
+/* Class to show the icon */
+.carousel-fullscreen-icon.show-icon {
+    opacity: 1;
+    pointer-events: auto; /* Enable clicks when visible */
+}
+
+/* Dark theme adjustments for carousel fullscreen icon */
+body.dark-theme .carousel-fullscreen-icon {
+    color: var(--text-color-dark);
+    background-color: transparent; /* No background */
+}
+
+body.dark-theme .carousel-fullscreen-icon:hover {
+    color: var(--accent-color-dark);
+}
+
+
+/* Carousel Caption */
+.carousel-caption {
+    background-color: transparent; /* NO BACKGROUND */
+    color: var(--text-color-light); /* Dark text color for light theme */
+    padding: 1rem; /* ADDED PADDING FOR INDENTATION */
+    border-radius: 0; /* NO ROUNDED CORNERS! */
+    font-size: 0.9rem;
+    text-align: center; /* Ensure text is centered */
+    max-width: 100%; /* Limit width */
+    width: 100%; /* Force caption to take full width of its parent */
+    z-index: 10;
+    opacity: 0; /* Hidden by default */
+    transition: opacity 0.5s ease-in-out; /* Changed to 0.5s ease-in-out */
+    position: relative !important; /* Force relative position */
+    display: flex; /* Added flex properties for content centering */
+    align-items: center;
+    justify-content: center;
+    min-height: 2rem; /* Reserve minimum height for the caption */
+    margin-top: 0rem; /* Explicit margin from the image */
+    box-sizing: border-box; /* Include padding in width */
+}
+
+.carousel-caption.active {
+    opacity: 1;
+}
+
+body.dark-theme .carousel-caption {
+    background-color: transparent; /* No background in dark mode either */
+    color: var(--text-color-dark);
+}
+
+/* General Image Caption Styling */
+.image-caption {
+    margin-top: 0.5rem; /* Small margin above caption */
+    margin-bottom: 0.5rem;
+    font-size: 0.85rem; /* Slightly smaller font for captions */
+    color: var(--text-color-light); /* Inherit text color */
+    text-align: center; /* Center the caption */
+    max-width: 100%; /* Limit width */
+    word-wrap: break-word; /* Ensure long captions wrap */
+    padding-left: 1rem;
+    padding-right: 1rem;
+    overflow: visible; /* Ensure caption is not cut off */
+}
+body.dark-theme .image-caption {
+    color: var(--text-color-dark);
+}
+
+
+/* Lightbox styling (for full-screen image viewing) */
+#lightbox {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    /* background-color will be set by JS */
+    z-index: 3000;
+    display: flex; /* Always flex, control visibility with opacity/visibility */
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    opacity: 0; /* Start hidden for transition */
+    visibility: hidden; /* Start hidden for transition */
+    transition: opacity 0.5s ease-in-out, visibility 0.5s ease-in-out; /* Changed to 0.5s ease-in-out */
+}
+
+#lightbox.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+#lightbox_image {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    position: relative; /* For fullscreen icon positioning */
+}
+
+#lightbox_image img {
+    max-width: 90%;
+    max-height: 90vh;
+    box-shadow: none; /* Removed shadow */
+    opacity: 0; /* Start hidden for transition */
+    transition: opacity 0.5s ease-in-out; /* Changed to 0.5s ease-in-out */
+    border-radius: 0; /* NO ROUNDED CORNERS! */
+}
+#lightbox_image img.visible {
+    opacity: 1;
+}
+
+/* Fullscreen icon for lightbox */
+#lightbox_fullscreen_icon {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    /* color will be set by JS */
+    font-size: 1.5rem;
+    cursor: pointer;
+    z-index: 3001; /* Above image */
+    opacity: 0; /* Hidden by default */
+    transition: opacity 0.5s ease-in-out; /* Changed to 0.5s ease-in-out */
+    text-shadow: none; /* Removed text shadow */
+}
+
+#lightbox_fullscreen_icon.show-icon { /* New class to control visibility */
+    opacity: 1;
+}
+
+/* Lightbox Navigation Arrows */
+.lightbox-nav-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 2rem; /* Changed to 2rem */
+    cursor: pointer;
+    z-index: 3001;
+    padding: 1rem 0.5rem; /* Add padding for easier clicking */
+    user-select: none; /* Prevent text selection on double-click */
+    opacity: 0; /* Hidden by default */
+    transition: opacity 0.3s ease, background-color 0.3s ease; /* Smooth transition */
+    border-radius: 0.25rem;
+    background-color: transparent; /* Removed background */
+    text-shadow: none; /* Removed text shadow */
+}
+
+.lightbox-nav-arrow.show-arrow {
+    opacity: 1;
+}
+
+.lightbox-nav-arrow:hover {
+    background-color: transparent; /* Removed background */
+}
+body.dark-theme .lightbox-nav-arrow {
+    color: rgba(0, 0, 0, 0.5); /* Darker color for light background */
+    background-color: transparent; /* Removed background */
+}
+body.dark-theme .lightbox-nav-arrow:hover {
+     background-color: transparent; /* Removed background */
+}
+
+#lightbox-arrow-left {
+    left: 2rem; /* Position further from edge */
+    color: var(--lightbox-nav-color-light-theme-dark-overlay); /* Default to white for dark overlay */
+}
+#lightbox-arrow-right {
+    right: 2rem; /* Position further from edge */
+    color: var(--lightbox-nav-color-light-theme-dark-overlay); /* Default to white for dark overlay */
+}
+
+/* Responsive adjustments for mobile */
+@media (max-width: 1024px) { /* Tablet and smaller */
+    .posts-wrap.gallery-two-columns,
+    .posts-wrap.gallery-three-columns,
+    .posts-wrap.gallery-masonry-two-columns,
+    .posts-wrap.gallery-masonry-three-columns {
+        grid-template-columns: 1fr; /* Force single column on tablets and smaller */
+        column-count: 1; /* Force single column for masonry on tablets and smaller */
+    }
+}
+
+@media (max-width: 768px) { /* Mobile */
+    /* Mobile styles for single-image-carousel-parent and its children */
+    .gallery-section.single-image-carousel-parent {
+        /* On mobile, remove specific top padding as header is always present */
+        padding-top: var(--carousel-section-padding-y);
+        /* Ensure it occupies available height */
+        height: auto; /* Allow content to dictate height */
+        min-height: calc(100vh - var(--mobile-header-height) - (var(--carousel-section-padding-y) * 2));
+    }
+
+    .posts-wrap.gallery-single-image-carousel {
+        grid-template-columns: 1fr; /* Single column on mobile */
+        width: 100%; /* Take full width on mobile */
+        margin: 0; /* Remove side gutters on mobile */
+        /* Dynamic height for carousel on mobile */
+        height: calc(100vh - var(--mobile-header-height) - (var(--carousel-section-padding-y) * 2) - var(--carousel-caption-h));
+    }
+	.posts-wrap.gallery-single-image-carousel .post img {
+        max-width: 100%;
+        max-height: 100%;
+	}
+    /* NEW: Hide carousel navigation arrows on mobile */
+    .carousel-nav-arrow {
+        display: none !important;
+    }
+    /* NEW: Hide lightbox navigation arrows on mobile */
+    .lightbox-nav-arrow {
+        display: none !important;
+    }
+    /* NEW: Hide carousel fullscreen icon on mobile */
+    .carousel-fullscreen-icon {
+        display: none !important;
+    }
+
+    .showcase-content {
+        padding: 1rem;
+    }
+    .showcase-title {
+        font-size: 1.8rem; /* Smaller title on mobile */
+    }
+    .showcase-link {
+        display: none; /* Ensure hidden on mobile too */
+    }
+    .showcase-bullets {
+        bottom: 0.5rem;
+    }
+
+    /* Mobile adjustments for the horizontal gallery section's inner container */
+    .gallery-section.horizontal-gallery-parent {
+        margin-left: 0; /* No offset on mobile */
+        width: 100%; /* Full width of content area */
+        padding: 1rem; /* Consistent 1rem padding for mobile sections */
+    }
+    .horizontal-gallery-header-container { /* Reset for mobile */
+        max-width: 100%; /* Full width of the content area */
+        margin-left: auto; /* Center title/desc */
+        margin-right: auto;
+        padding: 0; /* Removed padding from here, handled by .gallery-section */
+    }
+
+    .posts-wrap.gallery-horizontal-scroll {
+        flex-direction: column; /* Vertical on mobile */
+        overflow-x: hidden;
+        overflow-y: auto; /* Allow vertical scroll if content is too long */
+        white-space: normal;
+        padding: 0; /* Removed padding, handled by .gallery-section */
+        align-items: center; /* Center images in a column */
+        max-width: 1024px; /* Default max-width for content */
+        margin-left: auto; /* Center posts-wrap on mobile */
+        margin-right: auto;
+        width: 100%; /* Take full width */
+        height: auto; /* Auto height for vertical stacking */
+        gap: 1rem; /* Gap between images in column */
+    }
+    .posts-wrap.gallery-horizontal-scroll .post {
+        width: 100%;
+        margin-bottom: 0; /* Gap is handled by flex container now */
+        height: auto; /* Allow height to be determined by content */
+    }
+    .posts-wrap.gallery-horizontal-scroll .post img {
+        width: 100%;
+        height: auto;
+        object-fit: contain; /* Still contain on mobile */
+        max-height: none; /* Remove max-height constraint for vertical stack */
+    }
+}
+
+@media (max-width: 640px) {
+    .posts-wrap.gallery-two-columns,
+    .posts-wrap.gallery-three-columns,
+    .posts-wrap.gallery-masonry-two-columns,
+    .posts-wrap.gallery-masonry-three-columns {
+        grid-template-columns: 1fr;
+        column-count: 1;
+    }
+}
+
+/* Collapsible Description Styles */
+.gallery-description-container {
+    max-width: 800px;
+    margin: 0 auto 1rem auto; /* Центрирование и отступ снизу */
+    padding: 0 1rem;
+    text-align: justify;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* CSS for collapsible description text */
+.gallery-description-text {
+    max-height: 0; /* Изначально скрыто */
+    overflow: hidden;
+    transition: max-height 0.5s ease-out; /* Плавное открытие/закрытие */
+    line-height: var(--paragraph-line-height);
+    margin-bottom: 1rem;
+    width: 100%;
+    text-align: justify;
+    margin-top: 0.5rem;
+}
+
+.gallery-description-text.expanded {
+    max-height: unset; /* Достаточно большое значение, чтобы показать весь контент */
+}
+.gallery-description-text p {
+    margin-bottom: var(--paragraph-margin-bottom);
+}
+.gallery-description-text p:last-child {
+    margin-bottom: 0;
+}
+
+/* Toggle Button for Description */
+.toggle-description-button {
+    background-color: transparent;
+    border: none; /* Удалена граница */
+    color: var(--accent-color-light);
+    font-weight: bold;
+    font-style: normal;
+    box-shadow: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease;
+    width: 2rem;
+    height: 2rem;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    line-height: 1;
+    /* Optional: Add a subtle outline on hover/focus if border is removed for accessibility/feedback */
+    outline: 2px solid transparent;
+}
+
+.toggle-description-button:hover {
+    background-color: var(--accent-color-light);
+    color: var(--button-text-light);
+    transform: scale(1.1);
+    outline-color: var(--accent-color-light); /* Обводка при наведении */
+}
+
+/* Dark theme specific styles for the toggle button */
+body.dark-theme .toggle-description-button {
+    background-color: transparent;
+    border: none; /* Удалена граница */
+    color: var(--accent-color-dark);
+    outline-color: transparent; /* Убедиться, что в темной теме нет границы */
+}
+
+body.dark-theme .toggle-description-button:hover {
+    background-color: var(--accent-color-dark);
+    color: var(--background-color-dark); /* Обеспечить контраст */
+    outline-color: var(--accent-color-dark); /* Обводка при наведении в темной теме */
+}
+
+/* Text Content Section Styles */
+.text-content-section {
+    display: none; /* Hidden by default */
+    padding: 2rem 1rem; /* Default padding for all text sections */
+    margin: 0 auto;
+}
+.text-content-section.active { display: block; }
+
+/* General heading styles within content sections */
+.gallery-section h2,
+.text-content-section h2,
+.text-content-section .prose h1,
+.text-content-section .prose h2,
+.text-content-section .prose h3 {
+    font-weight: 700;
+    margin-bottom: var(--heading-margin-bottom); /* Default 1rem */
+}
+
+/* Specific margin for gallery titles without a description below them */
+.gallery-section h2.title-no-description-margin {
+    margin-bottom: 1.5rem; /* 1.5rem */
+}
+
+.text-content-section .prose h1 { font-size: var(--h1-font-size); }
+.gallery-section h2,
+.text-content-section h2 { font-size: var(--h2-font-size); }
+.text-content-section .prose h3 { font-size: var(--h3-font-size); }
+
+.text-content-section .prose {
+    font-size: var(--text-font-size); /* Dynamic font size */
+    line-height: var(--paragraph-line-height); /* Dynamic line height */
+    margin-top: 1rem;
+}
+.text-content-section .prose p { margin-bottom: var(--paragraph-margin-bottom); }
+.text-content-section .prose a {
+    color: var(--accent-color-light);
+    text-decoration: var(--prose-link-text-decoration); /* Dynamic text decoration */
+    transition: color 0.3s ease;
+}
+.text-content-section .prose a:hover { color: var(--hover-accent-color-light); }
+body.dark-theme .text-content-section .prose a { color: var(--accent-color-dark); }
+body.dark-theme .text-content-section .prose a:hover { color: var(--hover-accent-color-dark); }
+
+/* Styles for standalone images and videos within text content */
+.text-content-section .prose img {
+    max-width: var(--standalone-image-max-width);
+    height: auto;
+    display: block; /* Center image */
+    margin: 1.5rem auto; /* Add vertical spacing and center */
+    box-shadow: none; /* Removed shadow */
+    cursor: pointer; /* Make text images clickable */
+    border-radius: 0; /* NO ROUNDED CORNERS! */
+}
+body.dark-theme .text-content-section .prose img {
+    box-shadow: none; /* Removed shadow */
+}
+
+.text-content-section .prose video {
+    max-width: var(--video-max-width);
+    height: auto;
+    display: block; /* Center video */
+    margin: 1.5rem auto; /* Add vertical spacing and center */
+    background-color: #000; /* Dark background for video container */
+}
+
+/* List styles */
+.text-content-section .prose ul,
+.text-content-section .prose ol {
+    margin-left: 1.5em; /* Indent lists */
+    padding-left: 0;
+    margin-bottom: var(--paragraph-margin-bottom); /* Spacing below the list */
+}
+
+.text-content-section .prose ul { list-style-type: disc; }
+.text-content-section .prose ol { list-style-type: decimal; }
+
+.text-content-section .prose li {
+    margin-bottom: 0.5em; /* Spacing between list items */
+    line-height: var(--paragraph-line-height);
+}
+.text-content-section .prose li:last-child { margin-bottom: 0; }
+
+/* Submenu styles */
+.main-nav .parent-item {
+    position: relative;
+}
+.main-nav .parent-item > a { /* The clickable label for the parent */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+}
+.main-nav .parent-item .toggle-icon {
+    margin-left: 0.5rem;
+    transition: transform 0.3s ease;
+    display: none;
+}
+.main-nav .parent-item.expanded .toggle-icon {
+    transform: rotate(180deg);
+}
+.main-nav .submenu {
+    list-style: none;
+    padding-left: 1rem; /* Indent submenu items */
+    margin-top: 0.5rem;
+    max-height: 0; /* Hidden by default */
+    overflow: hidden;
+    transition: max-height 0.5s ease-out;
+}
+.main-nav .submenu.expanded {
+    max-height: 500px; /* Sufficiently large value to show content */
+}
+.main-nav .submenu li {
+    margin-bottom: 0.25rem; /* Smaller spacing for submenu items */
+}
+.main-nav .submenu a {
+    font-weight: 400; /* Lighter font for submenu items */
+    font-size: 0.95rem; /* Slightly smaller font for submenu */
+    padding-left: 0.5rem; /* Additional indent for text links within submenu */
+}
+
+/* Footer Menu Styling (now inside sidebar, pushed to bottom) */
+#footerMenu {
+    margin-top: auto; /* Pushes it and subsequent elements to the bottom */
+    padding-top: 0;
+    padding-bottom: 0;
+    text-align: left; /* Align left within sidebar */
+    display: flex;
+    flex-direction: column; /* Stack items vertically */
+    justify-content: flex-start; /* Align items to start */
+    align-items: flex-start; /* Align items to start */
+    gap: 0.5rem; /* Space between footer items */
+    font-size: 0.9rem;
+    color: var(--text-color-light);
+    transition: color 0.3s ease;
+    width: 100%; /* Take full width of parent */
+}
+
+#footerMenu a {
+    color: var(--about-link-color-light); /* Use about link color for footer links */
+    text-decoration: none;
+    transition: color 0.3s ease;
+    display: block; /* Make links block to take full width */
+    padding: 0.2rem 0; /* Padding for click area */
+    width: 100%; /* Ensure link takes full width */
+}
+
+#footerMenu a:hover {
+    color: var(--accent-color-light);
+}
+
+body.dark-theme #footerMenu {
+    color: var(--text-color-dark);
+}
+body.dark-theme #footerMenu a {
+    color: var(--about-link-color-dark);
+}
+body.dark-theme #footerMenu a:hover {
+    color: var(--accent-color-dark);
+}
+
+/* Ensure dark mode toggle is immediately below footer menu with a small margin */
+#darkModeToggle {
+    margin-top: 1rem; /* Small margin from footer menu */
+    margin-bottom: 0; /* Ensure it's at the very bottom */
+    width: 100%; /* Take full width */
+    text-align: left; /* Align left with other menu items */
+    /* cursor: pointer; ALREADY ADDED GLOBALLY */
+}
+#darkModeToggle i {
+    padding-left: 0; /* Align icon with other menu items */
+    padding-right: 0.5rem; /* Add some spacing if needed */
+}
+
+/* Fallback 'pseudo-fullscreen' for browsers that block Fullscreen API. */
+#lightbox.pseudo-fullscreen {
+    position: fixed !important;
+    inset: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    z-index: 2147483647 !important;
+    background: #000 !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+#lightbox.pseudo-fullscreen #lightbox_image {
+    max-width: 100%;
+    max-height: 100%;
+    overflow: hidden;
+}
+
+/* NEW: Showcase Gallery Styles */
+.gallery-section.showcase-gallery-parent {
+    position: relative;
+    width: 100%;
+    /* Default height for mobile or desktop with sidebar (no top header) */
+    height: calc(100vh - var(--mobile-header-height, 0px));
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0;
+    margin: 0;
+    flex-grow: 1; /* Allow it to take up remaining space in dynamicContentContainer */
+}
+
+/* No padding for showcase gallery parent container, as it needs to span full width */
+.gallery-section.showcase-gallery-parent .container {
+    padding-left: 0;
+    padding-right: 0;
+}
+
+
+.posts-wrap.gallery-showcase {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0; /* No padding for full cover */
+    margin: 0; /* No margin */
+    grid-template-columns: 1fr; /* Override grid display from .posts-wrap */
+    gap: 0; /* No gap */
+}
+
+.gallery-showcase .post.photopost {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    border-radius: 0; /* No rounded corners for full cover */
+    box-shadow: none; /* No shadow */
+    opacity: 0; /* Start hidden for transition */
+    transition: opacity 0.7s ease; /* Slower fade for showcase */
+    display: flex; /* Inherited from .post, but ensure for clarity */
+    justify-content: center; /* Inherited from .post, but ensure for clarity */
+    align-items: center; /* Inherited from .post, but ensure for clarity */
+    background-color: transparent; /* Ensure no placeholder background */
+    min-height: unset; /* Override default min-height for posts */
+}
+
+.gallery-showcase .post.photopost.active {
+    opacity: 1; /* Show active image */
+    z-index: 1; /* Ensure active image is on top */
+}
+
+.gallery-showcase .post.photopost img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Stretch to cover the container */
+    object-position: center; /* Center the image */
+    border-radius: 0; /* No rounded corners */
+    opacity: 0; /* Hidden by default for loading animation */
+    transition: opacity 0.7s ease; /* Fade in effect */
+    box-shadow: none; /* No shadow */
+}
+
+.gallery-showcase .post.photopost.loaded img {
+    opacity: 1; /* Show image when loaded */
+}
+
+/* Hide spinner for showcase images, as they load with a fade */
+.gallery-showcase .post.photopost::before {
+    display: none;
+}
+
+/* Overlay for darkening effect */
+.showcase-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.4); /* Consistent dark overlay for both themes */
+    opacity: 0; /* Start hidden */
+    transition: background-color 0.7s ease, opacity 0.7s ease;
+    z-index: 2; /* Above image, below text */
+    display: flex;
+    flex-direction: column; /* Allow stacking of title and link if both present */
+    justify-content: center;
+    align-items: center;
+}
+
+.showcase-overlay.active {
+    opacity: 1;
+}
+
+/* No specific dark theme overlay background-color, use the default from above */
+body.dark-theme .showcase-overlay {
+    /* background-color: rgba(0, 0, 0, 0.4); // This will now be the same as light theme */
+}
+
+/* Content (title and link) inside overlay */
+.showcase-content {
+    text-align: center;
+    color: white; /* Always white text on dark overlay */
+    padding: 2rem;
+    max-width: 90%;
+    z-index: 3; /* Above overlay */
+    opacity: 0; /* Start hidden for transition */
+    transition: opacity 0.7s ease 0.3s; /* Fade in after overlay */
+    cursor: pointer; /* Add pointer for the entire content area, implying the title within it is clickable */
+}
+
+.showcase-overlay.active .showcase-content {
+    opacity: 1;
+}
+
+.showcase-title {
+    font-size: var(--showcase-title-font-size); /* From config.js */
+    font-weight: bold;
+    margin-bottom: 0; /* Removed margin-bottom as the link will be directly attached or the content wraps */
+    line-height: 1.2;
+    text-shadow: 0 2px 5px rgba(0, 0, 0, 0.5); /* Text shadow for readability */
+    opacity: 0; /* Start hidden for transition */
+    transition: opacity 0.7s ease 0.3s; /* Fade in after overlay */
+    color: var(--showcase-title-color-light); /* Uses dynamic variable, default to white */
+}
+
+.showcase-title.active {
+    opacity: 1;
+}
+
+/* No specific dark theme for showcase title color, it will use the --showcase-title-color-dark from :root */
+body.dark-theme .showcase-title {
+    color: var(--showcase-title-color-dark); /* Default to white */
+}
+
+
+.showcase-title a { /* Styling for the actual link *inside* the title (if HTML is adjusted) */
+    color: var(--showcase-link-color-light); /* Uses dynamic variable, default to light blue */
+    text-decoration: none; /* No underline by default */
+    transition: text-decoration 0.3s ease, color 0.3s ease;
+    cursor: pointer; /* Ensure pointer on link */
+}
+
+.showcase-title a:hover {
+    text-decoration: underline; /* Underline on hover */
+    color: var(--accent-color-light); /* Change color on hover (light theme) */
+}
+
+body.dark-theme .showcase-title a {
+    color: var(--showcase-link-color-dark); /* Uses dynamic variable, default to light blue */
+}
+body.dark-theme .showcase-title a:hover {
+    color: var(--accent-color-dark); /* Change color on hover (dark theme) */
+}
+
+.showcase-link { /* This element will now be hidden */
+    display: none; /* Hide any additional link/button */
+}
+
+/* Ensures showcase posts-wrap does not take up space when its parent is hidden */
+.content-section.showcase-gallery-parent.hidden .posts-wrap.gallery-showcase {
+    min-height: 0 !important;
+    height: 0 !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    overflow: hidden !important;
+}
+.hidden {
+    display: none !important;
+}
+
+/* Showcase Bullets Navigation */
+.showcase-bullets {
+    position: absolute;
+    bottom: 1.5rem;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 0.5rem;
+    z-index: 10; /* Above images and overlay */
+    padding: 0.5rem; /* Add padding for larger tap/click area */
+    border-radius: 1rem; /* Rounded background for bullets */
+    background-color: rgba(0, 0, 0, 0.2); /* Slight background for bullet container */
+    transition: background-color 0.5s ease;
+}
+
+body.dark-theme .showcase-bullets {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+
+.showcase-bullet {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: var(--showcase-bullets-color-light); /* Default color from config */
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.showcase-bullet:hover {
+    transform: scale(1.2);
+}
+
+.showcase-bullet.active {
+    background-color: var(--showcase-active-bullet-color-light); /* Active color from config */
+    transform: scale(1.2);
+}
+
+body.dark-theme .showcase-bullet {
+    background-color: var(--showcase-bullets-color-dark);
+}
+
+body.dark-theme .showcase-bullet.active {
+    background-color: var(--showcase-active-bullet-color-dark);
+}
+
+
+/* Media Queries for Responsiveness */
+@media (min-width: 769px) { /* Applies only to screens wider than 768px (desktop) */
+    .posts-wrap.gallery-horizontal-scroll .image-caption {
+        font-size: 0.85rem; /* Specific font size for horizontal gallery captions on large screens */
+    }
+
+    /* Desktop styles for single-image-carousel-parent and its children */
+    .gallery-section.single-image-carousel-parent {
+        /* On desktop, adjust top padding based on sidebar hidden/shown */
+        padding-top: var(--carousel-section-padding-y);
+        height: calc(100vh - var(--desktop-header-height, 0px)); /* Full viewport height minus desktop header when active */
+    }
+    body.sidebar-hidden .gallery-section.single-image-carousel-parent {
+        padding-top: var(--carousel-section-padding-y);
+    }
+}
+
+@media (max-width: 1024px) { /* Tablet and smaller */
+    .posts-wrap.gallery-two-columns,
+    .posts-wrap.gallery-three-columns,
+    .posts-wrap.gallery-masonry-two-columns,
+    .posts-wrap.gallery-masonry-three-columns {
+        grid-template-columns: 1fr; /* Force single column on tablets and smaller */
+        column-count: 1; /* Force single column for masonry on tablets and smaller */
+    }
+}
+
+@media (max-width: 768px) { /* Mobile */
+    .posts-wrap.gallery-two-columns,
+    .posts-wrap.gallery-three-columns,
+    .posts-wrap.gallery-masonry-two-columns,
+    .posts-wrap.gallery-masonry-three-columns {
+        grid-template-columns: 1fr;
+        column-count: 1;
+    }
+	#lightbox_image img {
+		max-width: 100%;
+	}
+    /* NEW: Hide carousel navigation arrows on mobile */
+    .carousel-nav-arrow {
+        display: none !important;
+    }
+    /* NEW: Hide lightbox navigation arrows on mobile */
+    .lightbox-nav-arrow {
+        display: none !important;
+    }
+    /* NEW: Hide carousel fullscreen icon on mobile */
+    .carousel-fullscreen-icon {
+        display: none !important;
+    }
+
+    .showcase-content {
+        padding: 1rem;
+    }
+    .showcase-title {
+        font-size: 1.8rem; /* Smaller title on mobile */
+    }
+    .showcase-link {
+        display: none; /* Ensure hidden on mobile too */
+    }
+    .showcase-bullets {
+        bottom: 0.5rem;
+    }
+
+    /* Mobile adjustments for the horizontal gallery section's inner container */
+    .gallery-section.horizontal-gallery-parent {
+        margin-left: 0; /* No offset on mobile */
+        width: 100%; /* Full width of content area */
+        padding: 1rem; /* Consistent 1rem padding for mobile sections */
+    }
+    .horizontal-gallery-header-container { /* Reset for mobile */
+        max-width: 100%; /* Full width of the content area */
+        margin-left: auto; /* Center title/desc */
+        margin-right: auto;
+        padding: 0; /* Removed padding from here, handled by .gallery-section */
+    }
+
+    .posts-wrap.gallery-horizontal-scroll {
+        flex-direction: column; /* Vertical on mobile */
+        overflow-x: hidden;
+        overflow-y: auto; /* Allow vertical scroll if content is too long */
+        white-space: normal;
+        padding: 0; /* Removed padding, handled by .gallery-section */
+        align-items: center; /* Center images in a column */
+        max-width: 1024px; /* Default max-width for content */
+        margin-left: auto; /* Center posts-wrap on mobile */
+        margin-right: auto;
+        width: 100%; /* Take full width */
+        height: auto; /* Auto height for vertical stacking */
+        gap: 1rem; /* Gap between images in column */
+    }
+    .posts-wrap.gallery-horizontal-scroll .post {
+        width: 100%;
+        margin-bottom: 0; /* Gap is handled by flex container now */
+        height: auto; /* Allow height to be determined by content */
+    }
+    .posts-wrap.gallery-horizontal-scroll .post img {
+        width: 100%;
+        height: auto;
+        object-fit: contain; /* Still contain on mobile */
+        max-height: none; /* Remove max-height constraint for vertical stack */
+    }
+}
+
+@media (max-width: 640px) {
+    .posts-wrap.gallery-two-columns,
+    .posts-wrap.gallery-three-columns,
+    .posts-wrap.gallery-masonry-two-columns,
+    .posts-wrap.gallery-masonry-three-columns {
+        grid-template-columns: 1fr;
+        column-count: 1;
+    }
+}
+
+.container.mx-auto.p-4 {
+    padding: 0rem;
+}
+

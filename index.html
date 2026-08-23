@@ -1,0 +1,4322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ilia Pilipenko Portfolio</title>
+
+  <meta name="description" content="Portfolio of Ilia Pilipenko, documentary photographer.">
+  <meta name="keywords" content="Ilia Pilipenko, documentary photographer, portfolio, photography, photojournalism, art, photographer">
+  <meta name="author" content="Ilia Pilipenko">
+
+  <meta property="og:title" content="Ilia Pilipenko Portfolio">
+  <meta property="og:description" content="Portfolio of Ilia Pilipenko, documentary photographer.">
+  <meta property="og:image" content="./files/seo/main/1785006553125_cover.jpg">
+  <meta property="og:url" content="https://yourwebsite.com">
+  <meta property="og:type" content="website">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Ilia Pilipenko Portfolio">
+  <meta name="twitter:description" content="Portfolio of Ilia Pilipenko, documentary photographer.">
+  <meta name="twitter:image" content="./files/preview.jpg">
+
+  <link rel="icon" href="./files/seo/main/1785006669825_favicon.png" type="image/png">
+
+  <!-- ========== FONT PRELOAD ========== -->
+  <link rel="preload" href="./src/fontawesome/webfonts/fa-solid-900.woff2" as="font" type="font/woff2" crossorigin>
+
+  <!-- ========== STYLES (ASYNC LOAD) ========== -->
+  <link rel="preload" href="./src/fontawesome/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <link rel="preload" href="./css/styles.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript>
+    <link rel="stylesheet" href="./src/fontawesome/css/all.min.css">
+    <link rel="stylesheet" href="./css/styles.css">
+  </noscript>
+
+  <!-- ========== FONTS CONFIG ========== -->
+  <script src="utils/fonts.js" defer></script>
+
+  <!-- ========== TAILWIND (LOCAL + CDN FALLBACK) ========== -->
+  <script src="./src/tailwind.min.js" defer></script>
+  <script>
+  (function(){
+      const tw = document.querySelector('script[src="./src/tailwind.min.js"]');
+      if (tw) {
+          tw.onerror = function() {
+              const cdnScript = document.createElement('script');
+              cdnScript.src = 'https://cdn.tailwindcss.com';
+              document.head.appendChild(cdnScript);
+          };
+      } else {
+          const cdnScript = document.createElement('script');
+          cdnScript.src = 'https://cdn.tailwindcss.com';
+          document.head.appendChild(cdnScript);
+      }
+  })();
+  </script>
+
+  <!-- ========== FONT AWESOME FALLBACK ========== -->
+  <script>
+  (function(){
+      const fa = document.querySelector('link[href="./src/fontawesome/css/all.min.css"]');
+      if (fa) {
+          fa.onerror = function() {
+              const cdnLink = document.createElement('link');
+              cdnLink.rel = 'stylesheet';
+              cdnLink.href = 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css';
+              document.head.appendChild(cdnLink);
+          };
+      } else {
+          const cdnLink = document.createElement('link');
+          cdnLink.rel = 'stylesheet';
+          cdnLink.href = 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css';
+          document.head.appendChild(cdnLink);
+      }
+  })();
+  </script>
+</head>
+
+<body class="infscroll index" id="top">
+    <div id="lightbox">
+        <i class="fas fa-chevron-left lightbox-nav-arrow" id="lightbox-arrow-left"></i>
+        <div id="lightbox_image"></div>
+        <i class="fas fa-chevron-right lightbox-nav-arrow" id="lightbox-arrow-right"></i>
+        <i class="fas fa-expand" id="lightbox_fullscreen_icon"></i>
+    </div>
+
+    <div class="page-wrapper">
+        <nav class="main-nav" id="mainNav">
+            <div id="logo_main_header">
+                <a href="index.html" class="no-underline" id="sidebarLogo"></a>
+            </div>
+            <ul id="mainNavList"></ul>
+            <div id="footerMenu"></div>
+            <div class="nav-controls">
+                <div class="dark-mode-toggle" id="darkModeToggle">
+                    <i class="fas fa-moon" id="darkModeIcon"></i>
+                </div>
+                <div class="lang-toggle" id="langToggleMain">
+                    <span id="currentLangMain">EN</span>
+                </div>
+            </div>
+        </nav>
+
+        <div class="content-area">
+            <header class="desktop-header-hidden-sidebar" id="desktopHeaderHiddenSidebar">
+                <div id="desktop_header_logo">
+                    <a href="index.html" class="no-underline" id="desktopHeaderLogo"></a>
+                </div>
+                <div class="desktop-header-controls">
+                    <div class="control-group">
+                        <div class="dark-mode-toggle" id="darkModeToggleDesktopHeader">
+                            <i class="fas fa-moon" id="darkModeIconDesktopHeader"></i>
+                        </div>
+                        <div class="lang-toggle" id="langToggleDesktop">
+                            <span id="currentLangDesktop">EN</span>
+                        </div>
+                    </div>
+                    <button class="menu-toggle" id="menuToggleDesktop" aria-label="Меню">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                </div>
+            </header>
+
+            <header class="mobile-header" id="mobileHeader">
+                <div id="mobile_logo">
+                    <a href="index.html" class="no-underline" id="mobileHeaderLogo"></a>
+                </div>
+                <div class="mobile-controls">
+                    <div class="control-group">
+                        <div class="dark-mode-toggle" id="darkModeToggleMobile">
+                            <i class="fas fa-moon" id="darkModeIconMobile"></i>
+                        </div>
+                        <div class="lang-toggle" id="langToggleMobile">
+                            <span id="currentLangMobile">EN</span>
+                        </div>
+                    </div>
+                    <button class="menu-toggle" id="menuToggle" aria-label="Меню">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                </div>
+            </header>
+
+            <div id="dynamicContentContainer"></div>
+
+            <div id="pagination_index">
+                <div id="back_to_top_wrapper">
+                    <div class="back_to_top"><a href="#" id="backToTopLink">▲</a></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+  window.siteConfig = {
+  configId: "d6dd0152-76a3-4b85-a00e-dfdd63422846",
+  site: {
+    title: "Ilia Pilipenko",
+    email: "ilpilipenko@gmail.com",
+    homepageId: "showcaseGallery",
+    imageRootPath: "./pictures/",
+    logoType: "text",
+    logoImagePath: "./files/seo/main/1785011627853_ca_nav_logo300.png",
+    socialLinks: [
+      {
+        platform: "Instagram",
+        url: "https://www.instagram.com/iliya.pilipenko/",
+        iconClass: "fab fa-instagram"
+      },
+      {
+        platform: "Telegram",
+        url: "https://t.me/Ilpilipenko",
+        iconClass: "fab fa-telegram-plane"
+      }
+    ],
+    sidebar: {
+      enabledDesktop: true,
+      hideOnHomepage: true
+    },
+    colorTheme: {
+      default: "dark",
+      manualToggle: true
+    },
+    protectImages: false,
+    robotsTxtGlobal: "index, follow",
+    noaiGlobal: false
+  },
+  seo: {
+    title: "Ilia Pilipenko Portfolio",
+    description: "Portfolio of Ilia Pilipenko, documentary photographer.",
+    keywords: "Ilia Pilipenko, documentary photographer, portfolio, photography, photojournalism, art, photographer",
+    author: "Ilia Pilipenko",
+    ogTitle: "Ilia Pilipenko Portfolio",
+    ogDescription: "Portfolio of Ilia Pilipenko, documentary photographer.",
+    ogImage: "./files/seo/main/1785006553125_cover.jpg",
+    ogUrl: "https://yourwebsite.com",
+    ogType: "website",
+    twitterCard: "summary_large_image",
+    twitterTitle: "Ilia Pilipenko Portfolio",
+    twitterDescription: "Portfolio of Ilia Pilipenko, documentary photographer.",
+    twitterImage: "./files/preview.jpg",
+    favicon: "./files/seo/main/1785006669825_favicon.png",
+    noindex: false,
+    noai: false
+  },
+  navigation: [
+    {
+      internalId: "nav_child_1777116344918_hmh8s",
+      id: "zine_1772129484355",
+      label: "Вебзин",
+      type: "zine"
+    },
+    {
+      id: "galleries_menu",
+      label: "Galleries",
+      type: "parent",
+      children: [
+        {
+          id: "gallery1",
+          label: "Gallery 1 (1 Column)",
+          type: "gallery",
+          internalId: "gallery1"
+        },
+        {
+          id: "gallery2",
+          label: "Gallery 2 (2 Columns)",
+          type: "gallery",
+          internalId: "gallery2"
+        },
+        {
+          id: "gallery3",
+          label: "Gallery 3 (3 Columns)",
+          type: "gallery",
+          internalId: "gallery3"
+        },
+        {
+          id: "gallery4",
+          label: "Gallery 4 (Horizontal)",
+          type: "gallery",
+          internalId: "gallery4"
+        },
+        {
+          id: "gallery5",
+          label: "Gallery 5 (Masonry 2 Columns)",
+          type: "gallery",
+          internalId: "gallery5"
+        },
+        {
+          id: "gallery6",
+          label: "Gallery 6 (Masonry 3 Columns)",
+          type: "gallery",
+          internalId: "gallery6"
+        },
+        {
+          id: "singleImageGallery",
+          label: "Gallery (Single Image)",
+          type: "gallery",
+          internalId: "singleImageGallery"
+        },
+        {
+          id: "showcaseGallery",
+          label: "Showcase (Full-Screen Carousel)",
+          type: "gallery",
+          internalId: "showcaseGallery"
+        }
+      ],
+      internalId: "galleries_menu"
+    },
+    {
+      id: "text_pages_menu",
+      label: "Pages",
+      type: "parent",
+      children: [
+        {
+          internalId: "nav_child_1784725665613_gmptu",
+          id: "bio",
+          label: "Bio",
+          type: "text",
+          url: ""
+        },
+        {
+          id: "my_text_page",
+          label: "My Text Page",
+          type: "text",
+          internalId: "my_text_page"
+        }
+      ],
+      internalId: "text_pages_menu"
+    },
+    {
+      internalId: "nav_1784798259489_5jcin",
+      id: "",
+      label: "Новый родительский пункт",
+      type: "parent",
+      children: [
+        {
+          internalId: "nav_child_1784905498397_peqn2",
+          id: "nav_child_1784905498397_peqn2",
+          label: "Новый подпункт",
+          type: "parent",
+          children: [
+            {
+              internalId: "nav_gc_1784905505157_038jt",
+              id: "gallery6",
+              label: "Gallery 6 (Masonry 3 Columns)",
+              type: "gallery"
+            }
+          ]
+        },
+        {
+          internalId: "nav_child_1784799339004_h73j9",
+          id: "zine_1772129484355",
+          label: "Новый вебзин",
+          type: "zine",
+          url: ""
+        }
+      ]
+    },
+    {
+      internalId: "nav_1784798202127_sgld0",
+      id: "zine_1772129484355",
+      label: "Новый вебзин",
+      type: "zine"
+    },
+    {
+      internalId: "nav_child_1784798304618_jphla",
+      id: "nav_child_1784798304618_jphla",
+      label: "Новый подпункт",
+      type: "parent",
+      children: [
+        {
+          internalId: "nav_gc_1784798323625_cn1j8",
+          id: "zine_1772129484355",
+          label: "Новый вебзин",
+          type: "zine"
+        },
+        {
+          internalId: "nav_1784798237889_7qk7d",
+          id: "gallery4",
+          label: "Gallery 4 (Horizontal Scroll)",
+          type: "gallery"
+        }
+      ]
+    },
+    {
+      internalId: "nav_1784801088353_skids",
+      id: "",
+      label: "Новый родительский пункт 2",
+      type: "parent",
+      children: [
+        {
+          internalId: "nav_1784931851669_i6knq",
+          id: "",
+          label: "Новый родительский пункт",
+          type: "parent",
+          children: [
+            {
+              internalId: "nav_1784930774877_svvxz",
+              id: "new_gallery_1784930294663",
+              label: "Omsk",
+              type: "gallery"
+            }
+          ]
+        },
+        {
+          internalId: "nav_1784799301789_eh9rx",
+          id: "zine_1772129484355",
+          label: "Новый вебзин",
+          type: "zine"
+        },
+        {
+          internalId: "nav_child_1784905900122_4pi83",
+          id: "nav_child_1784905900122_4pi83",
+          label: "Новый подпункт",
+          type: "parent",
+          children: [
+            {
+              internalId: "nav_gc_1784905906752_sjp58",
+              id: "gallery5",
+              label: "Gallery 5 (Masonry 2 Columns)",
+              type: "gallery"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  footerNavigation: [
+    {
+      id: "contact",
+      label: "Contacts",
+      type: "text",
+      internalId: "contact"
+    },
+    {
+      id: "external_site",
+      label: "Google",
+      type: "link",
+      url: "https://www.google.com",
+      internalId: "external_site"
+    }
+  ],
+  galleriesData: [
+    {
+      id: "gallery1",
+      title: "Gallery 1 (1 Column)",
+      folder: "gallery1_images",
+      description: {
+        text: "<p>This is a detailed description for <strong>Gallery 1</strong>. Here you can tell about the project, techniques used, ideas that formed the basis of this series of photographs. <br><br>Further follows additional text that is initially hidden. It may contain details, links, or additional context that enhances the understanding of the presented works. This is a great way to share deeper information without overloading the page immediately.</p>",
+        displayMode: "toggle"
+      },
+      imageCount: 15,
+      layoutClass: "gallery-single-column",
+      hideTitle: false,
+      hideCaption: true,
+      hideSidebar: false,
+      isProjectGallery: true,
+      projectData: [
+        {
+          title: "",
+          url: "",
+          description: ""
+        },
+        {
+          title: "",
+          url: "",
+          description: ""
+        },
+        {
+          title: "",
+          url: "",
+          description: ""
+        },
+        {
+          title: "",
+          url: "",
+          description: ""
+        },
+        {
+          title: "",
+          url: "",
+          description: ""
+        },
+        {
+          title: "",
+          url: "",
+          description: ""
+        },
+        {
+          title: "",
+          url: "",
+          description: ""
+        },
+        {
+          title: "",
+          url: "",
+          description: ""
+        },
+        {
+          title: "",
+          url: "",
+          description: ""
+        },
+        {
+          title: "",
+          url: "",
+          description: ""
+        },
+        {
+          title: "",
+          url: "",
+          description: ""
+        },
+        {
+          title: "",
+          url: "",
+          description: ""
+        },
+        {
+          title: "",
+          url: "",
+          description: ""
+        },
+        {
+          title: "",
+          url: "",
+          description: ""
+        },
+        {
+          title: "",
+          url: "",
+          description: ""
+        }
+      ],
+      seo: {
+        title: "Gallery 1: Single-Column Layout",
+        description: "Portfolio of documentary photographs in a single-column layout.",
+        keywords: "photography, gallery, single-column, portfolio"
+      },
+      folderCreated: true,
+      isSorted: false,
+      showcaseData: [],
+      captions: [
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        ""
+      ]
+    },
+    {
+      id: "gallery2",
+      title: "Gallery 2 (2 Columns)",
+      folder: "gallery2_images",
+      description: {
+        text: "<p>Brief description for Gallery 2. Here we have collected a series of works dedicated to urban landscapes and the daily life of a metropolis. You will find unique perspectives and moments captured with attention to detail and atmosphere. Enjoy the viewing!</p>",
+        displayMode: "open"
+      },
+      imageCount: 15,
+      layoutClass: "gallery-two-columns",
+      hideTitle: false,
+      hideCaption: false,
+      hideSidebar: false,
+      seo: {
+        title: "Gallery 2: Two-Column Layout",
+        description: "Collection of urban landscapes and moments in a two-column portfolio.",
+        keywords: "city, landscape, two-column, photography"
+      },
+      isProjectGallery: false,
+      projectData: [],
+      folderCreated: true,
+      isSorted: false,
+      showcaseData: [],
+      captions: [
+        "",
+        "Test me",
+        "",
+        "Caption",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        ""
+      ]
+    },
+    {
+      id: "gallery3",
+      title: "Gallery 3 (3 Columns)",
+      folder: "gallery3_images",
+      description: {
+        text: "<p>This is the description for Gallery 3. <br>Here can be <strong>any HTML</strong> content, for example,</p>\n<ul>\n<li>lists</li>\n<li>or <em>emphasized text</em></li>\n</ul>",
+        displayMode: "toggle"
+      },
+      imageCount: 32,
+      layoutClass: "gallery-three-columns",
+      hideTitle: false,
+      hideCaption: false,
+      hideSidebar: true,
+      seo: {
+        title: "Gallery 3: Three-Column Layout",
+        description: "Extensive collection of photographs presented in a three-column layout.",
+        keywords: "photo, gallery, three-column, art"
+      },
+      isProjectGallery: false,
+      projectData: [],
+      folderCreated: true,
+      showcaseData: [],
+      captions: [
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        ""
+      ]
+    },
+    {
+      id: "gallery4",
+      title: "Gallery 4 (Horizontal Scroll)",
+      folder: "gallery4_images",
+      description: {
+        text: "<p>This gallery showcases works in a horizontal scroll format, ideal for viewing on wide screens. It features panoramic shots and series that are best experienced by scrolling sequentially from left to right. Try scrolling with your mouse or swipes!</p>",
+        displayMode: "toggle"
+      },
+      imageCount: 26,
+      layoutClass: "gallery-horizontal-scroll",
+      hideTitle: false,
+      hideCaption: false,
+      hideSidebar: false,
+      captions: [
+        "Pica",
+        "тест",
+        "",
+        "",
+        "",
+        "",
+        "Majestic mountains at sunset.",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        ""
+      ],
+      seo: {
+        title: "Gallery 4: Horizontal Scroll",
+        description: "Panoramic and serial photographs for horizontal scrolling.",
+        keywords: "panorama, horizontal, scroll, photo series"
+      },
+      isProjectGallery: false,
+      projectData: [],
+      folderCreated: true,
+      showcaseData: [],
+      isSorted: false
+    },
+    {
+      id: "gallery5",
+      title: "Gallery 5 (Masonry 2 Columns)",
+      folder: "gallery5_masonry2col",
+      description: {
+        text: "<p>This gallery uses a two-column Masonry layout, allowing images of different heights to be arranged optimally, minimizing empty space. Ideal for mixed-format photographs.</p>",
+        displayMode: "hidden"
+      },
+      imageCount: 3,
+      layoutClass: "gallery-masonry-two-columns",
+      hideTitle: false,
+      hideCaption: false,
+      hideSidebar: false,
+      captions: [
+        "Majestic mountains at sunset.",
+        "",
+        ""
+      ],
+      seo: {
+        title: "Gallery 5: Masonry 2 Columns",
+        description: "Photographs in a Masonry layout with two columns for optimal display.",
+        keywords: "masonry, two columns, adaptive, photo"
+      },
+      isProjectGallery: false,
+      projectData: [],
+      folderCreated: true,
+      isSorted: false,
+      showcaseData: []
+    },
+    {
+      id: "gallery6",
+      title: "Gallery 6 (Masonry 3 Columns)",
+      folder: "gallery6_masonry3col",
+      description: {
+        text: "<p>Three-column Masonry layout for denser image placement. Perfect for large collections and creating visually rich pages.</p>",
+        displayMode: "hidden"
+      },
+      imageCount: 16,
+      layoutClass: "gallery-masonry-three-columns",
+      hideTitle: true,
+      hideCaption: false,
+      hideSidebar: false,
+      seo: {
+        title: "Gallery 6: Masonry 3 Columns",
+        description: "Dense Masonry layout with three columns for extensive photo collections.",
+        keywords: "masonry, three columns, gallery, portfolio"
+      },
+      isProjectGallery: false,
+      projectData: [],
+      folderCreated: true,
+      isSorted: false,
+      showcaseData: [],
+      captions: [
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        ""
+      ]
+    },
+    {
+      id: "singleImageGallery",
+      title: "Gallery (Single Image)",
+      folder: "gallery_single_images",
+      description: {
+        text: "<p>This gallery displays images one at a time, ideal for detailed viewing. Use navigation arrows or 'left'/'right' keys to switch.</p>",
+        displayMode: "hidden"
+      },
+      imageCount: 24,
+      layoutClass: "gallery-single-image-carousel",
+      hideTitle: true,
+      hideCaption: false,
+      hideSidebar: false,
+      captions: [
+        "Ancient forest full of mysteries.",
+        "Majestic mountains at sunset.",
+        "Calm lake reflecting the sky.",
+        "Blooming fields under the summer sun.",
+        "Cityscape at night.",
+        "Sea sunset with a sailboat.",
+        "Streets of the old town.",
+        "Portrait of a stranger.",
+        "Architectural forms.",
+        "Modified for better readability on light images or letterbox. Added z-index: 10 to prevent captions from being overlapped by other elements (e.g., navigation arrows).",
+        "",
+        "",
+        "",
+        "",
+        "Test me",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        ""
+      ],
+      carouselConfig: {
+        randomOrder: false,
+        autoPlay: false,
+        autoPlayInterval: 5000,
+        showArrows: true,
+        showFullscreenButton: true
+      },
+      seo: {
+        title: "Gallery: Single Image",
+        description: "Gallery with sequential display of images and captions.",
+        keywords: "single image, gallery, captions, carousel"
+      },
+      isProjectGallery: false,
+      projectData: [],
+      folderCreated: true,
+      isSorted: false,
+      showcaseData: []
+    },
+    {
+      id: "showcaseGallery",
+      title: "Showcase (Full-Screen Carousel)",
+      folder: "showcase_images",
+      description: {
+        text: "<p>This is a showcase gallery with full-screen images and interactive titles.</p>",
+        displayMode: "hidden"
+      },
+      imageCount: 22,
+      layoutClass: "gallery-showcase",
+      hideTitle: true,
+      hideCaption: true,
+      hideSidebar: false,
+      showcaseData: [
+        {
+          title: "Project: Street Sketches",
+          link: {
+            url: "#gallery1",
+            label: "View Gallery",
+            external: false
+          }
+        },
+        {
+          title: "Project: Urban Landscapes",
+          link: {
+            url: "https://example.com/urban-landscapes",
+            label: "Learn More",
+            external: true
+          }
+        },
+        {
+          title: "Metropolis Story",
+          link: {
+            url: "",
+            label: "",
+            external: false
+          }
+        },
+        {
+          title: "Quiet Streets",
+          link: {
+            url: "#gallery2",
+            label: "Open",
+            external: false
+          }
+        },
+        {
+          title: "Reflections",
+          link: {
+            url: "",
+            label: "",
+            external: false
+          }
+        },
+        {
+          title: "Under the Sky",
+          link: {
+            url: "",
+            label: "",
+            external: false
+          }
+        },
+        {
+          title: "Echoes of the Past",
+          link: {
+            url: "",
+            label: "",
+            external: false
+          }
+        },
+        {
+          title: "Light Dialogues",
+          link: {
+            url: "",
+            label: "",
+            external: false
+          }
+        },
+        {
+          title: "City Shadows",
+          link: {
+            url: "",
+            label: "",
+            external: false
+          }
+        },
+        {
+          title: "In Motion",
+          link: {
+            url: "",
+            label: "",
+            external: false
+          }
+        },
+        {
+          title: "Moments",
+          link: {
+            url: "",
+            label: "",
+            external: false
+          }
+        },
+        {
+          title: "City Rhythms",
+          link: {
+            url: "",
+            label: "",
+            external: false
+          }
+        },
+        {
+          title: "Crossroads",
+          link: {
+            url: "",
+            label: "",
+            external: false
+          }
+        }
+      ],
+      carouselConfig: {
+        randomOrder: false,
+        autoPlay: false,
+        autoPlayInterval: 7000,
+        showBullets: true,
+        showTitles: true,
+        showArrows: false
+      },
+      seo: {
+        title: "Showcase: Full-Screen Images",
+        description: "Full-screen images with interactive titles and links.",
+        keywords: "showcase, full-screen, carousel, titles"
+      },
+      isProjectGallery: false,
+      projectData: [],
+      folderCreated: true,
+      isSorted: false,
+      captions: [
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        ""
+      ]
+    },
+    {
+      internalId: "gallery_1784930294663_095he",
+      id: "new_gallery_1784930294663",
+      title: "Omsk",
+      folder: "Omsk",
+      description: {
+        text: "<p>test me</p>",
+        displayMode: "toggle"
+      },
+      imageCount: 4,
+      captions: [
+        "",
+        "Test",
+        "",
+        ""
+      ],
+      layoutClass: "gallery-horizontal-scroll",
+      hideTitle: false,
+      hideCaption: false,
+      hideSidebar: false,
+      isProjectGallery: true,
+      projectData: [
+        {
+          title: "TEST ME",
+          url: "https://github.com/polmal22?tab=stars",
+          description: "ojvoifjvjfvj ovkdokopkv dvodskk"
+        },
+        {
+          title: "",
+          url: "",
+          description: ""
+        },
+        {
+          title: "",
+          url: "",
+          description: ""
+        },
+        {
+          title: "",
+          url: "",
+          description: ""
+        }
+      ],
+      carouselConfig: {
+        randomOrder: false,
+        autoPlay: false,
+        autoPlayInterval: 5000,
+        showArrows: true,
+        showBullets: true,
+        showTitles: true,
+        showFullscreenButton: true
+      },
+      showcaseData: [],
+      seo: {
+        title: "",
+        description: "",
+        keywords: "",
+        noindex: false,
+        noai: false
+      },
+      folderCreated: true,
+      isSorted: false
+    }
+  ],
+  textPagesData: [
+    {
+      id: "bio",
+      title: "Bio",
+      contentMaxWidth: "1200px",
+      hideTitle: false,
+      hideSidebar: false,
+      seo: {
+        title: "Ilia Pilipenko Biography",
+        description: "Detailed biography and creative journey of documentary photographer Ilia Pilipenko.",
+        keywords: "biography, photographer, curator, Ilia Pilipenko"
+      },
+      contentHtml: "<h1>Heading H1</h1>\n<h2>Heading H2</h2>\n<h3>Heading H3</h3>\n<p><strong>Ilia Pilipenko</strong> – photographer and curator whose works explore the interaction of humans with their environment and the transformation of urban landscapes. Born in 1985 in Kyiv, Ilia showed an early interest in visual arts and photography as a means of documenting and interpreting reality.</p>\n<p>His early projects focused on abandoned industrial zones and their hidden beauty. Over time, his approach evolved to include a deeper reflection on social dynamics and everyday life.</p>\n<p><strong>Bullet List:</strong></p>\n<ul>\n<li>List item one</li>\n<li>List item two</li>\n<li>List item three, which is very long and should wrap to multiple lines to test formatting and line spacing.</li>\n</ul>\n<p><strong>Numbered List:</strong></p>\n<ol>\n<li>First item</li>\n<li>Second item</li>\n<li>Third item, also long for testing.<br><br>\n<div class=\"video-container\"><iframe src=\"https://www.youtube.com/embed/JyOWiLBVFWg\" frameborder=\"0\" allowfullscreen=\"allowfullscreen\" loading=\"lazy\"></iframe>Ilia is a co-founder and former editor-in-chief of the project <a href=\"https://monogoroda.closeuprussia.com/en/\" target=\"_blank\" rel=\"noopener noreferrer\">“Invisible Cities”</a>, aimed at documenting life in small and medium-sized cities of the post-Soviet space. This project gained recognition for its unique perspective on provincial Russia and its inhabitants.</div>\n</li>\n</ol>\n<p>In parallel with his photography practice, Ilia is actively engaged in curatorial activities. He is the author of the popular Telegram channel <a href=\"https://t.me/photoexperience\" target=\"_blank\" rel=\"noopener noreferrer\">“Photography Experience”</a>, where he shares analytical articles, reviews, and photography tips, as well as curates exhibitions of young talents.</p>\n<p>In 2022, Ilia co-founded the online gallery <a href=\"https://galleryf11.com/en/\" target=\"_blank\" rel=\"noopener noreferrer\">F11</a>, a platform for showcasing and selling works by contemporary photographers.</p>\n<p>Ilia Pilipenko’s works have been exhibited in various galleries and museums and published in international publications. He continues his creative and research activities, constantly seeking new forms of expression and ways to engage with the audience.</p>\n<p>For collaboration proposals or inquiries about works, please contact via email:&nbsp;<a href=\"mailto:ilpilipenko@gmail.com\">ilpilipenko@gmail.com</a></p>\n<p><video width=\"300\" height=\"150\" controls=\"controls\" src=\"pictures/text_content_images/example_text_video_1.mp4\" alt=\"Example video in text content\"></video></p>\n<p>-- New formatting examples --</p>\n<blockquote>This is my favorite quote that inspires me every day. It looks great in this new style.</blockquote>\n<p>Here I can showcase two of my works side by side.</p>\n[gallery:gallery2]\n<p>And here’s how a gallery of three images looks.</p>\n[gallery:gallery6]\n<p>Finally, here you can watch one of my videos.</p>\n<div class=\"video-container\"><iframe width=\"560\" height=\"315\" title=\"Calamity Cat\" src=\"https://video.lono.space/videos/embed/tLJbQKHsVx5aUHBRz63pdu\" frameborder=\"0\" allowfullscreen=\"allowfullscreen\" sandbox=\"allow-same-origin allow-scripts allow-popups allow-forms\"></iframe></div>\n"
+    },
+    {
+      id: "my_text_page",
+      title: "Additional Text Page",
+      contentMaxWidth: "1200px",
+      hideTitle: false,
+      hideSidebar: false,
+      seo: {
+        title: "Additional Information",
+        description: "Additional text page for CV, contacts, or publications.",
+        keywords: "contacts, CV, publications, information",
+        ogImage: ""
+      },
+      contentHtml: "<p>Это <strong>дополнительная текстовая страница</strong>, которую можно использовать для размещения резюме, контактов, списка публикаций или любой другой информации.</p>\n<p>Как и в разделе «Биография», здесь можно использовать <em>HTML-теги</em> для форматирования текста, добавления <strong>ссылок</strong> и так далее.</p>\n<p>Экспериментируйте с контентом, чтобы максимально эффективно использовать этот функционал для вашего портфолио!</p>\n<p style=\"text-align: left;\"><a href=\"https://collection.closeuprussia.com/index.php/Detail/objects/cur-202504122209-496\" class=\"button\" target=\"_blank\" rel=\"noopener noreferrer\">Купить на Авито</a></p>\n[gallery:gallery6]\n<p style=\"text-align: left;\"><a href=\"https://collection.closeuprussia.com/index.php/Detail/objects/cur-202504122209-496\" class=\"button_secondary\" target=\"_blank\" rel=\"noopener noreferrer\">ТЕСТ&nbsp;</a></p>\n[gallery:gallery1]\n<p style=\"text-align: left;\"></p>\n<p style=\"text-align: right;\"></p>"
+    }
+  ],
+  zinePagesData: [
+    {
+      internalId: "zine_1772129484355",
+      id: "zine_1772129484355",
+      title: "Новый вебзин",
+      contentMaxWidth: "1200px",
+      blocks: [
+        {
+          id: "block_1772641234973_ispwc",
+          type: "image",
+          editorX: 0,
+          editorY: 2040,
+          editorWidth: 1200,
+          editorHeight: 800,
+          frontendX: 0,
+          frontendY: 170,
+          frontendWidth: 100,
+          frontendHeight: 66.6667,
+          rotation: 0,
+          zIndex: 1,
+          data: "./files/zine/zine_1772129484355/1772641248331.webp",
+          locked: false,
+          transform: "rotate(0deg)",
+          grouped: null
+        },
+        {
+          id: "block_1772644860641_pyqfd",
+          type: "paragraph",
+          editorX: 66.5,
+          editorY: 97.23128000000001,
+          editorWidth: 1061,
+          editorHeight: 1653,
+          frontendX: 5.5417,
+          frontendY: 8.1026,
+          frontendWidth: 88.4167,
+          frontendHeight: 137.75,
+          rotation: 0.0151202,
+          zIndex: 2,
+          data: "<p style=\"text-align: left;\"><b>Tuva, a republic <font color=\"#2b647b\"><span style=\"text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial; font-weight: 500;\">in Siberia</span></font>, is a land without railways and, until recently, without mobile phones. A place that seems almost mythical, it came into existence due to a geographical error.</b></p><p style=\"text-align: left;\"></p><ol><li style=\"text-align: left;\"><span style=\"background-color: transparent; font-family: inherit;\"><strike>This error</strike> occurred in <b>1727 </b>during the <font color=\"#cc2424\">signing</font> of the Treaty of Bura (Burinsky Border Treaty). Russia marked its boundary along the Sayan Mountains, while China claimed territory up to the Tannu-Ola range.&nbsp;</span></li><li><span style=\"font-family: inherit; background-color: transparent;\">As a result, a neutral zone spanning several hundred square kilometers was unintentionally created.</span></li></ol><p></p><p><b><i></i></b><a href=\"https://www.youtube.com/watch?v=Dz8r1W6vB9A\" target=\"_blank\" rel=\"noopener noreferrer\">It was only</a><b style=\"\"><i> in 1921, under Soviet auspices, that Red Army troops entered Tuva—then known as a “no man’s land.” This led to the proclamation of a people’s republic in the heart of Asia, </i></b><i>marking the bir</i>th of the first independent Tuvan state — the Land of the Red Shamans.</p><p>Today, this enigmatic republic is often mentioned in connection with Russia’s Minister of Emergency Situations — a distinguished native of Tuva — whose appointment is sometimes seen as a way to tame the destructive forces of nature and spirits alike. After all, who could be better suited for such a role than someone from a land where shamanism still holds official recognition?</p><p>Shaman Saylyk-ool, religious adviser to the president of Tuva, mutters cryptic phrases as he waves burning juniper branches around my head. The pungent smell of smoldering grass mixes with the sour scent of fermented dairy — the base for Arak, the local alcoholic drink used both for pleasure and ritual. The combination produces a mild dizziness, making conversation feel strangely revelatory.</p><p>The shaman’s home — his “reception room” — is an experience in itself. A massive painting by a local artist,&nbsp;<i>The Shaman’s Ritual, or the Rite of Fire</i>, dominates one wall. Nearby hangs a portrait of the Dalai Lama, seemingly torn from a Chinese calendar. Along the walls, mounted on wooden brackets, is an “exhibit” of animal skulls — familiar and unfamiliar — their jaws open, their teeth unnervingly intact.</p><p>At the center of the room stands a grand wooden chair covered in deerskin, its armrests carved into snarling wolf heads. From this throne-like seat, the shaman receives visitors. He speaks in Russian.</p><p>Now it is my turn.</p><p>“The absence of faith is your faith,” Saylyk-ool begins, feeding incense into the burner. “That is not atheism. Atheism is also faith — faith in godlessness, faith against God. I speak of something else. There was a time when God was present in your churches and the spirit lived in every person. Now you believe in nothing.</p><p>You don’t believe the plane you fly will land safely, that the train won’t derail, that the car won’t fall into the abyss. You don’t believe in the spirits of things. And because you don’t believe, you are afraid. Fear is the absence of faith. Disaster will come when the last of you stops believing that the Moon and the Sun will rise.”</p><p>He rolls his eyes upward, waving the incense as if addressing not me but some lost soul.</p><p>“The plane I flew in and the car I drove hardly inspire confidence — let alone faith,” I reply. “The mountains Roerich admired are beautiful, yes — but not divine. The forces of nature are more often destructive than sacred. Your words may hold truth, but only within this room, surrounded by skulls and smoke. Isn’t there something else people believe in — something more tangible?”</p><p>“Human principles are always the same: soul, birth, and death,” he answers.</p><p>“A person can lose his shadow — the ‘gray soul’ that connects him to other spirits. When that happens, the spirits take away the ‘main soul’ — the essence. A man who has lost his essence may continue living, but not for long.</p><p>A person must live where he was born. That is where he must die. This cycle is determined by Nature. Homeland gives strength. Every two years I return to the Mountain of the Yellow Lion — the place of my birth. It is sacred. There I speak with the spirits and ask for strength. Then I pass that strength on to others.”</p><p>Saylyk-ool was born<font color=\"#d31d1d\"> in 1947 into the family of the heredit</font>ary shaman Sadu Pasha. Not every descendant becomes a shaman. One may be chosen by the community, or recognized by an elder through signs.</p><p>Saylyk-ool bore such a sign: as a child, his skull was covered with strange lumps and sores, which remain to this day. They were said to have appeared after his grandfather — also a shaman — touched his head and declared:</p>",
+          locked: false,
+          grouped: null,
+          transform: "rotate(0.0151202deg)"
+        },
+        {
+          id: "block_1772804621290_yopsq",
+          type: "image",
+          editorX: 337,
+          editorY: 2920,
+          editorWidth: 420,
+          editorHeight: 280,
+          frontendX: 28.0833,
+          frontendY: 243.3333,
+          frontendWidth: 35,
+          frontendHeight: 23.3333,
+          rotation: 0,
+          zIndex: 3,
+          data: "./files/zine/zine_1772129484355/1772804638675.webp",
+          locked: false,
+          transform: "rotate(0deg)"
+        },
+        {
+          id: "block_1772811952631_pmolr",
+          type: "text",
+          editorX: 540,
+          editorY: 1831,
+          editorWidth: 370,
+          editorHeight: 149,
+          frontendX: 45,
+          frontendY: 152.5833,
+          frontendWidth: 30.8333,
+          frontendHeight: 12.4167,
+          rotation: 0,
+          zIndex: 4,
+          data: "<p style=\"text-align: center;\"><b>Hi Dude!</b></p>",
+          locked: false,
+          grouped: null,
+          baseFontSize: 39.18,
+          originalWidth: 600,
+          originalHeight: 200,
+          transform: "rotate(0deg)"
+        },
+        {
+          id: "block_1772129498067_lcnac",
+          type: "image",
+          editorX: 0,
+          editorY: 3245,
+          editorWidth: 860,
+          editorHeight: 573,
+          frontendX: 0,
+          frontendY: 270.4167,
+          frontendWidth: 71.6667,
+          frontendHeight: 47.75,
+          rotation: 0,
+          zIndex: 5,
+          data: "./files/zine/zine_1772129484355/1772129508991.webp",
+          locked: false,
+          transform: "rotate(0deg)",
+          grouped: null
+        },
+        {
+          id: "block_1784500400831_s3t0l",
+          type: "image",
+          editorX: 630,
+          editorY: 3767,
+          editorWidth: 480,
+          editorHeight: 313,
+          frontendX: 52.5,
+          frontendY: 313.9167,
+          frontendWidth: 40,
+          frontendHeight: 26.0833,
+          rotation: 0,
+          zIndex: 6,
+          data: "./files/zine/zine_1772129484355/1784500404439.webp",
+          locked: false,
+          transform: "rotate(0deg)"
+        },
+        {
+          id: "block_1775404370625_qbhet",
+          type: "button",
+          editorX: 159.5,
+          editorY: 1893,
+          editorWidth: 247,
+          editorHeight: 58,
+          frontendX: 13.2917,
+          frontendY: 157.75,
+          frontendWidth: 20.5833,
+          frontendHeight: 4.8333,
+          rotation: 0,
+          zIndex: 7,
+          data: {
+            text: "Press me",
+            url: "https://www.youtube.com/watch?v=Q7ImK0_AXQs",
+            style: "button_secondary",
+            target: "_blank"
+          },
+          locked: false,
+          grouped: null,
+          transform: "rotate(0deg)"
+        },
+        {
+          id: "block_1777057790453_wdoce",
+          type: "image",
+          editorX: 394,
+          editorY: 4040,
+          editorWidth: 466,
+          editorHeight: 611,
+          frontendX: 32.8333,
+          frontendY: 336.6667,
+          frontendWidth: 38.8333,
+          frontendHeight: 50.9167,
+          rotation: 0,
+          zIndex: 8,
+          data: "./files/zine/zine_1772129484355/1777057800472.webp",
+          locked: false,
+          transform: "rotate(0deg)"
+        },
+        {
+          id: "block_1784754789311_rgkkj",
+          type: "text",
+          editorX: 392,
+          editorY: 4647,
+          editorWidth: 600,
+          editorHeight: 200,
+          frontendX: 32.6667,
+          frontendY: 387.25,
+          frontendWidth: 50,
+          frontendHeight: 16.6667,
+          rotation: 0,
+          zIndex: 9,
+          data: "<p style=\"font-size: 16px;\">Начните вводить текст...</p>",
+          locked: false,
+          grouped: null,
+          baseFontSize: 16,
+          originalWidth: 600,
+          originalHeight: 200,
+          transform: "rotate(0deg)"
+        },
+        {
+          id: "block_1785020247250_7olnw",
+          type: "image",
+          editorX: 40,
+          editorY: 4809,
+          editorWidth: 860,
+          editorHeight: 645,
+          frontendX: 3.3333,
+          frontendY: 400.75,
+          frontendWidth: 71.6667,
+          frontendHeight: 53.75,
+          rotation: 0,
+          zIndex: 9,
+          data: "./files/zine/zine_1772129484355/1785020263700.webp",
+          locked: false,
+          transform: "rotate(0deg)"
+        },
+        {
+          id: "block_1785095913716_cfee4",
+          type: "image",
+          editorX: 100,
+          editorY: 5600,
+          editorWidth: 720,
+          editorHeight: 480,
+          frontendX: 8.3333,
+          frontendY: 466.6667,
+          frontendWidth: 60,
+          frontendHeight: 40,
+          rotation: 0,
+          zIndex: 10,
+          data: "./files/zine/zine_1772129484355/1785095925162.webp",
+          locked: false,
+          transform: "rotate(0deg)"
+        },
+        {
+          id: "block_1785236511705_3snxx",
+          type: "image",
+          editorX: 828,
+          editorY: 5647,
+          editorWidth: 212,
+          editorHeight: 159,
+          frontendX: 69,
+          frontendY: 470.5833,
+          frontendWidth: 17.6667,
+          frontendHeight: 13.25,
+          rotation: 0,
+          zIndex: 11,
+          data: "./files/zine/zine_1772129484355/1785236517025.webp",
+          locked: false,
+          transform: "rotate(0deg)"
+        },
+        {
+          id: "block_1787393725593_vbgfh",
+          type: "image",
+          editorX: 280,
+          editorY: 6100,
+          editorWidth: 920,
+          editorHeight: 690,
+          frontendX: 23.3333,
+          frontendY: 508.3333,
+          frontendWidth: 76.6667,
+          frontendHeight: 57.5,
+          rotation: 0,
+          zIndex: 12,
+          data: "./files/zine/zine_1772129484355/1787393748455.webp",
+          locked: false,
+          transform: "rotate(0deg)"
+        }
+      ],
+      hideTitle: true,
+      hideSidebar: true,
+      editorSettings: {
+        canvasWidth: 1200,
+        canvasBackground: "#ffffff",
+        showGrid: true,
+        gridSize: 20,
+        snapToGrid: true,
+        snapThreshold: 20,
+        canvasHeight: 7090
+      },
+      seo: {
+        title: "",
+        description: "",
+        keywords: "",
+        noindex: false,
+        noai: false,
+        ogImage: "./files/seo/zine_1772129484355/1785057286517.webp"
+      }
+    }
+  ],
+  styles: {
+    fonts: {
+      body: {
+        family: "Inter",
+        customFamily: "RazerF5",
+        weight: "400",
+        style: "normal",
+        decoration: "none",
+        transform: "none"
+      },
+      headings: {
+        family: "Inter",
+        customFamily: "",
+        weight: "700",
+        style: "normal",
+        decoration: "none",
+        transform: "none"
+      },
+      logo: {
+        family: "Inter",
+        customFamily: "",
+        weight: "700",
+        style: "normal",
+        decoration: "none",
+        transform: "uppercase"
+      }
+    },
+    fontSource: "local",
+    localFonts: [
+      "Inter",
+      "IBM Plex Sans",
+      "IBM Plex Serif",
+      "IBM Plex Mono",
+      "Source Sans 3",
+      "Source Serif 4",
+      "Source Code Pro",
+      "Noto Sans",
+      "Noto Serif",
+      "Work Sans",
+      "Manrope",
+      "Rubik",
+      "Open Sans",
+      "Public Sans",
+      "Red Hat Display",
+      "Playfair Display",
+      "Cormorant Garamond",
+      "Spectral",
+      "Crimson Pro",
+      "EB Garamond",
+      "Merriweather",
+      "Merriweather Sans",
+      "Bitter",
+      "Fraunces",
+      "Literata",
+      "Vollkorn",
+      "Space Grotesk",
+      "Space Mono",
+      "JetBrains Mono",
+      "Exo 2",
+      "Fira Sans",
+      "Fira Mono",
+      "Barlow",
+      "Archivo",
+      "Urbanist",
+      "Karla",
+      "Cabinet Grotesk",
+      "Satoshi"
+    ],
+    googleFonts: [
+      "Inter",
+      "Roboto",
+      "Open Sans",
+      "Lato",
+      "Montserrat",
+      "Raleway",
+      "Ubuntu",
+      "PT Sans",
+      "Noto Sans",
+      "Work Sans",
+      "Manrope",
+      "Rubik",
+      "Public Sans",
+      "Red Hat Display",
+      "Barlow",
+      "Archivo",
+      "Urbanist",
+      "Karla",
+      "Exo 2",
+      "Fira Sans",
+      "IBM Plex Sans",
+      "Source Sans 3",
+      "Space Grotesk",
+      "Satoshi",
+      "Cabin",
+      "Quicksand",
+      "Poppins",
+      "DM Sans",
+      "Jost",
+      "Lexend",
+      "Figtree",
+      "Plus Jakarta Sans",
+      "Outfit",
+      "Readex Pro",
+      "Commissioner",
+      "Anek Latin",
+      "Anek Devanagari",
+      "Anek Telugu",
+      "Anek Gujarati",
+      "Anek Bangla",
+      "Anek Odia",
+      "Anek Malayalam",
+      "Anek Kannada",
+      "Anek Tamil",
+      "Playfair Display",
+      "Merriweather",
+      "Lora",
+      "PT Serif",
+      "Noto Serif",
+      "Source Serif 4",
+      "Crimson Pro",
+      "EB Garamond",
+      "Libre Baskerville",
+      "Cormorant Garamond",
+      "Spectral",
+      "Fraunces",
+      "Literata",
+      "Vollkorn",
+      "IBM Plex Serif",
+      "DM Serif Display",
+      "Zilla Slab",
+      "Newsreader",
+      "Faustina",
+      "Bitter",
+      "Cinzel",
+      "Abril Fatface",
+      "Oswald",
+      "Alegreya",
+      "IBM Plex Mono",
+      "Source Code Pro",
+      "Fira Mono",
+      "JetBrains Mono",
+      "Space Mono",
+      "Roboto Mono",
+      "Inconsolata",
+      "Cousine",
+      "Ubuntu Mono",
+      "Share Tech Mono"
+    ],
+    logoFontSize: "1.5rem",
+    logoMobileFontSize: "1.25rem",
+    textFontSize: "1.125rem",
+    contentMaxWidthClass: " max-w-7xl",
+    sidebarWidth: "300px",
+    accentColor: "#2b647b",
+    darkAccentColor: "#6dd5ed",
+    h1FontSize: "2.25rem",
+    h2FontSize: "1.6rem",
+    h3FontSize: "1.3rem",
+    headingMarginBottom: "1rem",
+    menuItemSpacing: "0.5rem",
+    paragraphLineHeight: "1.7",
+    paragraphMarginBottom: "1.2em",
+    proseLinkUnderline: true,
+    standaloneImageMaxWidth: "100%",
+    videoMaxWidth: "100%",
+    contentAreaPaddingTop: "0rem",
+    horizontalGalleryMaxHeight: "70vh",
+    projectGalleryOverlay: {
+      titleFontSize: "1.5rem",
+      descriptionFontSize: "1rem",
+      titleColor: "white",
+      descriptionColor: "#cfcfcf",
+      linkColor: "white",
+      textColor: "white",
+      alwaysVisibleDesktop: false
+    },
+    defaultTheme: "classic",
+    themes: {
+      classic: {
+        light: {
+          backgroundColor: "#fefefe",
+          textColor: "#333",
+          logoColor: "#000000",
+          accentColor: "#2b647b",
+          hoverAccentColor: "#1a4a58",
+          buttonBg: "#2b647b",
+          buttonText: "#ffffff",
+          buttonHoverBg: "#1a4a58",
+          overlayBg: "rgba(255, 255, 255, 0.95)",
+          overlayInnerBg: "#ffffff",
+          boxShadow: "rgba(0, 0, 0, 0.1)",
+          imageShadow: "rgba(0, 0, 0, 0.05)",
+          backToTopBg: "rgba(255, 255, 255, 0.5)",
+          menuBg: "#fefefe",
+          menuBorder: "#eee",
+          headerBg: "rgba(255, 255, 255, 0.8)",
+          headerShadow: "rgba(0, 0, 0, 0.1)",
+          showcaseTitleColor: "#ffffff",
+          showcaseLinkColor: "#ADD8E6",
+          showcaseBulletsColor: "rgba(43, 100, 123, 0.5)",
+          showcaseActiveBulletColor: "#2b647b"
+        },
+        dark: {
+          backgroundColor: "#191919",
+          textColor: "#e0e0e0",
+          logoColor: "#ffffff",
+          accentColor: "#6fa8dc",
+          hoverAccentColor: "#a0c9e8",
+          buttonBg: "#6fa8dc",
+          buttonText: "#1a1a1a",
+          buttonHoverBg: "#a0c9e8",
+          overlayBg: "rgba(54, 54, 54, 0.95)",
+          overlayInnerBg: "#2a2a2a",
+          boxShadow: "rgba(255, 255, 255, 0.1)",
+          imageShadow: "rgba(255, 255, 255, 0.05)",
+          backToTopBg: "rgba(0, 0, 0, 0.5)",
+          menuBg: "rgba(26, 26, 26, 0.9)",
+          menuBorder: "#333",
+          headerBg: "rgba(26, 26, 26, 0.8)",
+          headerShadow: "rgba(255, 255, 255, 0.1)",
+          showcaseTitleColor: "#ffffff",
+          showcaseLinkColor: "#87CEEB",
+          showcaseBulletsColor: "rgba(111, 168, 220, 0.5)",
+          showcaseActiveBulletColor: "#6fa8dc"
+        }
+      },
+      hase: {
+        light: {
+          backgroundColor: "#f1f0e8",
+          textColor: "#333333",
+          logoColor: "#333333",
+          accentColor: "#9a482d",
+          hoverAccentColor: "#7a3a24",
+          buttonBg: "#9a482d",
+          buttonText: "#fefefe",
+          buttonHoverBg: "#7a3a24",
+          overlayBg: "rgba(241, 240, 232, 0.95)",
+          overlayInnerBg: "#fefefe",
+          boxShadow: "rgba(0, 0, 0, 0.1)",
+          imageShadow: "rgba(0, 0, 0, 0.05)",
+          backToTopBg: "rgba(241, 240, 232, 0.5)",
+          menuBg: "#f1f0e8",
+          menuBorder: "#dddbd4",
+          headerBg: "rgba(241, 240, 232, 0.8)",
+          headerShadow: "rgba(0, 0, 0, 0.1)",
+          showcaseTitleColor: "#ffffff",
+          showcaseLinkColor: "#9a482d",
+          showcaseBulletsColor: "rgba(154, 72, 45, 0.5)",
+          showcaseActiveBulletColor: "#9a482d"
+        },
+        dark: {
+          backgroundColor: "#222529",
+          textColor: "#b8b8b8",
+          logoColor: "#f0f0f0",
+          accentColor: "#d99175",
+          hoverAccentColor: "#e1a58e",
+          buttonBg: "#d99175",
+          buttonText: "#222529",
+          buttonHoverBg: "#e1a58e",
+          overlayBg: "rgba(34, 37, 41, 0.95)",
+          overlayInnerBg: "#2a2a2a",
+          boxShadow: "rgba(255, 255, 255, 0.1)",
+          imageShadow: "rgba(255, 255, 255, 0.05)",
+          backToTopBg: "rgba(0, 0, 0, 0.5)",
+          menuBg: "rgba(34, 37, 41, 0.9)",
+          menuBorder: "#444a50",
+          headerBg: "rgba(34, 37, 41, 0.8)",
+          headerShadow: "rgba(255, 255, 255, 0.1)",
+          showcaseTitleColor: "#ffffff",
+          showcaseLinkColor: "#d99175",
+          showcaseBulletsColor: "rgba(217, 145, 117, 0.5)",
+          showcaseActiveBulletColor: "#d99175"
+        }
+      },
+      ocean: {
+        light: {
+          backgroundColor: "#f3f6ff",
+          textColor: "#1a1d23",
+          logoColor: "#111214",
+          accentColor: "#6366f1",
+          hoverAccentColor: "#4f46e5",
+          buttonBg: "#111214",
+          buttonText: "#fff",
+          buttonHoverBg: "#2d2f36",
+          overlayBg: "rgba(243, 244, 247, 0.95)",
+          overlayInnerBg: "#fff",
+          boxShadow: "rgba(0, 0, 0, 0.05)",
+          imageShadow: "rgba(0, 0, 0, 0.03)",
+          backToTopBg: "rgba(243, 244, 247, 0.5)",
+          menuBg: "#f3f6ff",
+          menuBorder: "#e5e7eb",
+          headerBg: "rgba(243, 246, 255, 0.8)",
+          headerShadow: "rgba(0, 0, 0, 0.03)",
+          showcaseTitleColor: "#111214",
+          showcaseLinkColor: "#6366f1",
+          showcaseBulletsColor: "rgba(0, 150, 136, 0.5)",
+          showcaseActiveBulletColor: "#009688"
+        },
+        dark: {
+          backgroundColor: "#111214",
+          textColor: "#e2e8f0",
+          logoColor: "#fff",
+          accentColor: "#818cf8",
+          hoverAccentColor: "#a5b4fc",
+          buttonBg: "#fff",
+          buttonText: "#111214",
+          buttonHoverBg: "#e2e8f0",
+          overlayBg: "rgba(17, 18, 20, 0.95)",
+          overlayInnerBg: "#1a1d23",
+          boxShadow: "rgba(0, 0, 0, 0.5)",
+          imageShadow: "rgba(0, 0, 0, 0.3)",
+          backToTopBg: "rgba(17, 18, 20, 0.5)",
+          menuBg: "rgba(17, 18, 20, 0.9)",
+          menuBorder: "#2d2f36",
+          headerBg: "rgba(17, 18, 20, 0.8)",
+          headerShadow: "rgba(0, 0, 0, 0.4)",
+          showcaseTitleColor: "white",
+          showcaseLinkColor: "#818cf8",
+          showcaseBulletsColor: "#818cf8",
+          showcaseActiveBulletColor: "#818cf8"
+        }
+      },
+      custom: {
+        light: {
+          backgroundColor: "#fefefe",
+          textColor: "#333",
+          logoColor: "#000",
+          accentColor: "#42cd85",
+          hoverAccentColor: "#1a4a58",
+          buttonBg: "#2b647b",
+          buttonText: "#fff",
+          buttonHoverBg: "#1a4a58",
+          overlayBg: "rgba(255, 255, 255, 0.95)",
+          overlayInnerBg: "#fff",
+          boxShadow: "rgba(0, 0, 0, 0.1)",
+          imageShadow: "rgba(0, 0, 0, 0.05)",
+          backToTopBg: "rgba(255, 255, 255, 0.5)",
+          menuBg: "#fefefe",
+          menuBorder: "#eee",
+          headerBg: "rgba(255, 255, 255, 0.8)",
+          headerShadow: "rgba(0, 0, 0, 0.1)",
+          showcaseTitleColor: "white",
+          showcaseLinkColor: "#ADD8E6",
+          showcaseBulletsColor: "rgba(43, 100, 123, 0.5)",
+          showcaseActiveBulletColor: "#2b647b"
+        },
+        dark: {
+          backgroundColor: "#191919",
+          textColor: "#e0e0e0",
+          logoColor: "#fff",
+          accentColor: "#6fa8dc",
+          hoverAccentColor: "#a0c9e8",
+          buttonBg: "#6fa8dc",
+          buttonText: "#1a1a1a",
+          buttonHoverBg: "#a0c9e8",
+          overlayBg: "rgba(54, 54, 54, 0.95)",
+          overlayInnerBg: "#2a2a2a",
+          boxShadow: "rgba(255, 255, 255, 0.1)",
+          imageShadow: "rgba(255, 255, 255, 0.05)",
+          backToTopBg: "rgba(0, 0, 0, 0.5)",
+          menuBg: "rgba(26, 26, 26, 0.9)",
+          menuBorder: "#333",
+          headerBg: "rgba(26, 26, 26, 0.8)",
+          headerShadow: "rgba(255, 255, 255, 0.1)",
+          showcaseTitleColor: "white",
+          showcaseLinkColor: "#87CEEB",
+          showcaseBulletsColor: "rgba(111, 168, 220, 0.5)",
+          showcaseActiveBulletColor: "#6fa8dc"
+        }
+      }
+    },
+    displayMode: "manual",
+    showcaseTitleFontSize: "2rem"
+  },
+  lightbox: {
+    autoFullscreenOnClick: true,
+    lightboxThemeLight: "dark",
+    lightboxThemeDark: "light",
+    transition: "slide",
+    slideDuration: 800,
+    slideEasing: "ease"
+  },
+  i18n: {
+    enabled: true,
+    defaultLanguage: "en",
+    defaultFrontendLanguage: "en",
+    autoDetectBrowserLanguage: true,
+    currentLanguage: null,
+    available: [
+      "ru"
+    ],
+    fallbackToSource: true,
+    autoTranslate: {
+      lastTimestamp: null
+    }
+  },
+  translations: {
+    custom: {
+      updatedAt: 1784975218832,
+      seo: {
+        title: {
+          value: "Портфолио Ильи Пилипенко",
+          source: "auto"
+        },
+        description: {
+          value: "Портфолио Ильи Пилипенко, документального фотографа.",
+          source: "auto"
+        },
+        keywords: {
+          value: "Ilia Pilipenko, documentary photographer, portfolio, photography, photojournalism, art, photographer",
+          source: "auto"
+        },
+        author: {
+          value: "Ilia Pilipenko",
+          source: "auto"
+        },
+        ogTitle: {
+          value: "Ilia Pilipenko Portfolio",
+          source: "auto"
+        },
+        ogDescription: {
+          value: "Portfolio of Ilia Pilipenko, documentary photographer.",
+          source: "auto"
+        },
+        ogImage: {
+          value: "./files/preview.jpg",
+          source: "auto"
+        },
+        ogUrl: {
+          value: "[https://yourwebsite.com](https://yourwebsite.com)",
+          source: "auto"
+        },
+        ogType: {
+          value: "website",
+          source: "auto"
+        },
+        twitterCard: {
+          value: "summary_large_image",
+          source: "auto"
+        },
+        twitterTitle: {
+          value: "Ilia Pilipenko Portfolio",
+          source: "auto"
+        },
+        twitterDescription: {
+          value: "Portfolio of Ilia Pilipenko, documentary photographer.",
+          source: "auto"
+        },
+        twitterImage: {
+          value: "./files/preview.jpg",
+          source: "auto"
+        },
+        favicon: {
+          value: "./files/favicon.png",
+          source: "auto"
+        }
+      },
+      site: {
+        title: {
+          value: "Илья Пилипенко",
+          source: "auto"
+        }
+      },
+      navigation: {
+        zine_1772129484355: {
+          label: {
+            value: "Новый вебзин",
+            source: "auto"
+          }
+        },
+        galleries_menu: {
+          label: {
+            value: "Галереи",
+            source: "auto"
+          },
+          children: {
+            gallery1: {
+              label: {
+                value: "Галерея 1 (1 колонка)",
+                source: "auto"
+              }
+            },
+            gallery2: {
+              label: {
+                value: "Галерея 2 (2 колонки)",
+                source: "auto"
+              }
+            },
+            gallery3: {
+              label: {
+                value: "Галерея 3 (3 колонки)",
+                source: "auto"
+              }
+            },
+            gallery4: {
+              label: {
+                value: "Галерея 4 (Горизонтальная)",
+                source: "auto"
+              }
+            },
+            gallery5: {
+              label: {
+                value: "Галерея 5 (Masonry 2 колонки)",
+                source: "auto"
+              }
+            },
+            gallery6: {
+              label: {
+                value: "Галерея 6 (Masonry 3 колонки)",
+                source: "auto"
+              }
+            },
+            singleImageGallery: {
+              label: {
+                value: "Галерея (По одной фотографии)",
+                source: "auto"
+              }
+            },
+            showcaseGallery: {
+              label: {
+                value: "Шоукейс (Полноэкранная карусель)",
+                source: "auto"
+              }
+            }
+          }
+        },
+        nav_1784798259489_5jcin: {
+          label: {
+            value: "Новый родительский пункт",
+            source: "auto"
+          },
+          children: {
+            nav_child_1784905498397_peqn2: {
+              label: {
+                value: "Новый подпункт",
+                source: "auto"
+              },
+              children: {
+                nav_gc_1784905505157_038jt: {
+                  label: {
+                    value: "Не найдено",
+                    source: "auto"
+                  }
+                },
+                gallery6: {
+                  label: {
+                    value: "Галерея 6 (Masonry 3 колонки)",
+                    source: "auto"
+                  }
+                }
+              }
+            },
+            zine_1772129484355: {
+              label: {
+                value: "Новый вебзин",
+                source: "auto"
+              }
+            }
+          }
+        },
+        nav_child_1784798304618_jphla: {
+          label: {
+            value: "Новый подпункт",
+            source: "auto"
+          },
+          children: {
+            zine_1772129484355: {
+              label: {
+                value: "Новый вебзин",
+                source: "auto"
+              }
+            },
+            gallery4: {
+              label: {
+                value: "Галерея 4 (Горизонтальная прокрутка)",
+                source: "auto"
+              }
+            }
+          }
+        },
+        nav_1784801088353_skids: {
+          label: {
+            value: "Новый родительский пункт 2",
+            source: "auto"
+          },
+          children: {
+            nav_1784931851669_i6knq: {
+              label: {
+                value: "Новый родительский пункт",
+                source: "auto"
+              },
+              children: {
+                new_gallery_1784930294663: {
+                  label: {
+                    value: "Омск",
+                    source: "auto"
+                  }
+                }
+              }
+            },
+            zine_1772129484355: {
+              label: {
+                value: "Новый вебзин",
+                source: "auto"
+              }
+            },
+            nav_child_1784905900122_4pi83: {
+              label: {
+                value: "Новый подпункт",
+                source: "auto"
+              },
+              children: {
+                gallery5: {
+                  label: {
+                    value: "Галерея 5 (Masonry 2 колонки)",
+                    source: "auto"
+                  }
+                }
+              }
+            }
+          }
+        },
+        text_pages_menu: {
+          label: {
+            value: "Страницы",
+            source: "auto"
+          },
+          children: {
+            bio: {
+              label: {
+                value: "Биография",
+                source: "auto"
+              }
+            },
+            my_text_page: {
+              label: {
+                value: "Моя текстовая страница",
+                source: "auto"
+              }
+            }
+          }
+        },
+        new_text_page_1784970783300: {
+          label: {
+            value: "Новая",
+            source: "auto"
+          }
+        }
+      },
+      footerNavigation: {
+        external_site: {
+          label: {
+            value: "Google",
+            source: "auto"
+          }
+        },
+        contact: {
+          label: {
+            value: "Контакты",
+            source: "auto"
+          }
+        }
+      },
+      galleriesData: {
+        gallery1: {
+          title: {
+            value: "Галерея 1 (1 колонка)",
+            source: "auto"
+          },
+          description: {
+            value: "Это подробное описание для Галереи 1. Здесь вы можете рассказать о проекте, используемых техниках, идеях, которые легли в основу этой серии фотографий. \n\n\n\n\n\nДалее следует дополнительный текст, который изначально скрыт. Он может содержать детали, ссылки или дополнительный контекст, улучшающий понимание представленных работ. Это отличный способ поделиться более глубокой информацией, не перегружая страницу сразу.",
+            source: "auto"
+          },
+          seo: {
+            title: {
+              value: "Галерея 1: Одноколоночный макет",
+              source: "auto"
+            },
+            description: {
+              value: "Портфолио документальных фотографий в одноколоночном макете.",
+              source: "auto"
+            },
+            keywords: {
+              value: "photography, gallery, single-column, portfolio",
+              source: "auto"
+            }
+          },
+          captions: [
+            {
+              value: "",
+              source: "auto"
+            },
+            {
+              value: "",
+              source: "auto"
+            },
+            {
+              value: "",
+              source: "auto"
+            },
+            {
+              value: "",
+              source: "auto"
+            },
+            {
+              value: "",
+              source: "auto"
+            },
+            {
+              value: "",
+              source: "auto"
+            },
+            {
+              value: "",
+              source: "auto"
+            },
+            {
+              value: "",
+              source: "auto"
+            },
+            {
+              value: "",
+              source: "auto"
+            },
+            {
+              value: "",
+              source: "auto"
+            },
+            {
+              value: "",
+              source: "auto"
+            },
+            {
+              value: "",
+              source: "auto"
+            },
+            {
+              value: "",
+              source: "auto"
+            },
+            {
+              value: "",
+              source: "auto"
+            },
+            {
+              value: "",
+              source: "auto"
+            }
+          ],
+          projectData: [
+            {},
+            {},
+            {},
+            {},
+            {},
+            {},
+            {},
+            {},
+            {},
+            {},
+            {},
+            {},
+            {},
+            {},
+            {}
+          ],
+          showcaseData: []
+        },
+        gallery2: {
+          title: {
+            value: "Галерея 2 (2 колонки)",
+            source: "auto"
+          },
+          description: {
+            value: "Краткое описание для Галереи 2. Здесь мы собрали серию работ, посвящённых городским пейзажам и повседневной жизни мегаполиса. Вы найдёте уникальные ракурсы и моменты, запечатлённые с вниманием к деталям и атмосфере. Приятного просмотра!",
+            source: "auto"
+          },
+          seo: {
+            title: {
+              value: "Галерея 2: Двухколоночный макет",
+              source: "auto"
+            },
+            description: {
+              value: "Коллекция городских пейзажей и моментов в двухколоночном портфолио.",
+              source: "auto"
+            },
+            keywords: {
+              value: "city, landscape, two-column, photography",
+              source: "auto"
+            }
+          },
+          captions: [
+            {
+              value: "Проверь меня",
+              source: "auto"
+            },
+            {
+              value: "",
+              source: "auto"
+            },
+            {
+              value: "Подпись",
+              source: "auto"
+            },
+            {
+              value: "",
+              source: "auto"
+            },
+            {
+              value: "",
+              source: "auto"
+            },
+            {
+              value: "",
+              source: "auto"
+            },
+            {
+              value: "",
+              source: "auto"
+            },
+            {
+              value: "",
+              source: "auto"
+            },
+            {
+              value: "",
+              source: "auto"
+            },
+            {
+              value: "",
+              source: "auto"
+            },
+            {
+              value: "",
+              source: "auto"
+            },
+            {
+              value: "",
+              source: "auto"
+            },
+            {
+              value: "",
+              source: "auto"
+            },
+            {
+              value: "",
+              source: "auto"
+            },
+            {
+              value: "",
+              source: "auto"
+            }
+          ],
+          showcaseData: []
+        },
+        gallery3: {
+          title: {
+            value: "Галерея 3 (3 колонки)",
+            source: "auto"
+          },
+          description: {
+            value: "Это описание для Галереи 3. \n\n\n\nЗдесь может быть любой HTML контент, например,\n\nсписки\nили выделенный текст\n",
+            source: "auto"
+          },
+          seo: {
+            title: {
+              value: "Галерея 3: Трёхколоночный макет",
+              source: "auto"
+            },
+            description: {
+              value: "Обширная коллекция фотографий, представленная в трёхколоночном макете.",
+              source: "auto"
+            },
+            keywords: {
+              value: "photo, gallery, three-column, art",
+              source: "auto"
+            }
+          },
+          captions: [
+            {
+              value: "",
+              source: "auto"
+            },
+            {
+              value: "",
+              source: "auto"
+            },
+            {
+              value: "",
+              source: "auto"
+            },
+            {
+              value: "",
+              source: "auto"
+            },
+            {
+              value: "",
+              source: "auto"
+            },
+            {
+              value: "",
+              source: "auto"
+            },
+            {
+              value: "",
+              source: "auto"
+            },
+            {
+              value: "",
+              source: "auto"
+            },
+            {
+              value: "",
+              source: "auto"
+            },
+            {
+              value: "",
+              source: "auto"
+            },
+            {
+              value: "",
+              source: "auto"
+            },
+            {
+              value: "",
+              source: "auto"
+            },
+            {
+              value: "",
+              source: "auto"
+            },
+            {
+              value: "",
+              source: "auto"
+            },
+            {
+              value: "",
+              source: "auto"
+            },
+            {
+              value: "",
+              source: "auto"
+            },
+            {
+              value: "",
+              source: "auto"
+            },
+            {
+              value: "",
+              source: "auto"
+            },
+            {
+              value: "",
+              source: "auto"
+            },
+            {
+              value: "",
+              source: "auto"
+            },
+            {
+              value: "",
+              source: "auto"
+            },
+            {
+              value: "",
+              source: "auto"
+            },
+            {
+              value: "",
+              source: "auto"
+            },
+            {
+              value: "",
+              source: "auto"
+            },
+            {
+              value: "",
+              source: "auto"
+            },
+            {
+              value: "",
+              source: "auto"
+            },
+            {
+              value: "",
+              source: "auto"
+            },
+            {
+              value: "",
+              source: "auto"
+            },
+            {
+              value: "",
+              source: "auto"
+            },
+            {
+              value: "",
+              source: "auto"
+            },
+            {
+              value: "",
+              source: "auto"
+            },
+            {
+              value: "",
+              source: "auto"
+            }
+          ],
+          showcaseData: []
+        },
+        gallery4: {
+          title: {
+            value: "Галерея 4 (Горизонтальная прокрутка)",
+            source: "auto"
+          },
+          description: {
+            value: "В этой галерее представлены работы в формате горизонтальной прокрутки, идеально подходящем для просмотра на широких экранах. Здесь представлены панорамные снимки и серии, которые лучше всего воспринимаются при последовательной прокрутке слева направо. Попробуйте прокручивать мышкой или свайпами!",
+            source: "auto"
+          },
+          seo: {
+            title: {
+              value: "Галерея 4: Горизонтальная прокрутка",
+              source: "auto"
+            },
+            description: {
+              value: "Панорамные и серийные фотографии для горизонтальной прокрутки.",
+              source: "auto"
+            },
+            keywords: {
+              value: "panorama, horizontal, scroll, photo series",
+              source: "auto"
+            }
+          },
+          captions: [
+            {
+              value: "",
+              source: "auto"
+            },
+            {
+              value: "Величественные горы на закате.",
+              source: "auto"
+            },
+            {
+              value: "",
+              source: "auto"
+            },
+            {
+              value: "",
+              source: "auto"
+            },
+            {
+              value: "",
+              source: "auto"
+            },
+            {
+              value: "",
+              source: "auto"
+            },
+            {
+              value: "",
+              source: "auto"
+            },
+            {
+              value: "",
+              source: "auto"
+            },
+            {
+              value: "",
+              source: "auto"
+            },
+            {
+              value: "",
+              source: "auto"
+            },
+            {
+              value: "",
+              source: "auto"
+            },
+            {
+              value: "",
+              source: "auto"
+            },
+            {
+              value: "",
+              source: "auto"
+            },
+            {
+              value: "",
+              source: "auto"
+            },
+            {
+              value: "",
+              source: "auto"
+            },
+            {
+              value: "",
+              source: "auto"
+            },
+            {
+              value: "",
+              source: "auto"
+            },
+            {
+              value: "",
+              source: "auto"
+            },
+            {
+              value: "",
+              source: "auto"
+            },
+            {
+              value: "",
+              source: "auto"
+            }
+          ],
+          showcaseData: []
+        },
+        gallery5: {
+          title: {
+            value: "Галерея 5 (Masonry 2 колонки)",
+            source: "auto"
+          },
+          description: {
+            value: "Эта галерея использует двухколоночный макет Masonry, позволяющий оптимально располагать изображения разной высоты, минимизируя пустое пространство. Идеально подходит для фотографий смешанного формата.",
+            source: "auto"
+          },
+          seo: {
+            title: {
+              value: "Галерея 5: Masonry 2 колонки",
+              source: "auto"
+            },
+            description: {
+              value: "Фотографии в макете Masonry с двумя колонками для оптимального отображения.",
+              source: "auto"
+            },
+            keywords: {
+              value: "masonry, two columns, adaptive, photo",
+              source: "auto"
+            }
+          },
+          captions: [
+            {
+              value: "Величественные горы на закате.",
+              source: "auto"
+            },
+            {
+              value: "",
+              source: "auto"
+            },
+            {
+              value: "",
+              source: "auto"
+            }
+          ],
+          showcaseData: []
+        },
+        gallery6: {
+          title: {
+            value: "Галерея 6 (Masonry 3 колонки)",
+            source: "auto"
+          },
+          description: {
+            value: "Трёхколоночный макет Masonry для более плотного размещения изображений. Идеально подходит для больших коллекций и создания визуально насыщенных страниц.",
+            source: "auto"
+          },
+          seo: {
+            title: {
+              value: "Галерея 6: Masonry 3 колонки",
+              source: "auto"
+            },
+            description: {
+              value: "Плотный макет Masonry с тремя колонками для обширных коллекций фотографий.",
+              source: "auto"
+            },
+            keywords: {
+              value: "masonry, three columns, gallery, portfolio",
+              source: "auto"
+            }
+          },
+          captions: [
+            {
+              value: "",
+              source: "auto"
+            },
+            {
+              value: "",
+              source: "auto"
+            },
+            {
+              value: "",
+              source: "auto"
+            },
+            {
+              value: "",
+              source: "auto"
+            },
+            {
+              value: "",
+              source: "auto"
+            },
+            {
+              value: "",
+              source: "auto"
+            },
+            {
+              value: "",
+              source: "auto"
+            },
+            {
+              value: "",
+              source: "auto"
+            },
+            {
+              value: "",
+              source: "auto"
+            },
+            {
+              value: "",
+              source: "auto"
+            },
+            {
+              value: "",
+              source: "auto"
+            },
+            {
+              value: "",
+              source: "auto"
+            },
+            {
+              value: "",
+              source: "auto"
+            },
+            {
+              value: "",
+              source: "auto"
+            },
+            {
+              value: "",
+              source: "auto"
+            },
+            {
+              value: "",
+              source: "auto"
+            }
+          ],
+          showcaseData: []
+        },
+        singleImageGallery: {
+          title: {
+            value: "Галерея (По одной фотографии)",
+            source: "auto"
+          },
+          description: {
+            value: "Эта галерея отображает изображения по одному, что идеально подходит для детального просмотра. Используйте стрелки навигации или клавиши 'влево'/'вправо' для переключения.",
+            source: "auto"
+          },
+          seo: {
+            title: {
+              value: "Галерея: По одной фотографии",
+              source: "auto"
+            },
+            description: {
+              value: "Галерея с последовательным отображением изображений и подписей.",
+              source: "auto"
+            },
+            keywords: {
+              value: "single image, gallery, captions, carousel",
+              source: "auto"
+            }
+          },
+          captions: [
+            {
+              value: "Величественные горы на закате.",
+              source: "auto"
+            },
+            {
+              value: "Спокойное озеро, отражающее небо.",
+              source: "auto"
+            },
+            {
+              value: "Древний лес, полный тайн.",
+              source: "auto"
+            },
+            {
+              value: "Цветущие поля под летним солнцем.",
+              source: "auto"
+            },
+            {
+              value: "Городской пейзаж ночью.",
+              source: "auto"
+            },
+            {
+              value: "Морской закат с парусником.",
+              source: "auto"
+            },
+            {
+              value: "Улицы старого города.",
+              source: "auto"
+            },
+            {
+              value: "Портрет незнакомца.",
+              source: "auto"
+            },
+            {
+              value: "Архитектурные формы.",
+              source: "auto"
+            },
+            {
+              value: "Модифицировано для лучшей читаемости на светлых изображениях или леттербоксах. Добавлен z-index: 10, чтобы подписи не перекрывались другими элементами (например, стрелками навигации).",
+              source: "auto"
+            },
+            {
+              value: "",
+              source: "auto"
+            },
+            {
+              value: "",
+              source: "auto"
+            },
+            {
+              value: "",
+              source: "auto"
+            },
+            {
+              value: "",
+              source: "auto"
+            },
+            {
+              value: "",
+              source: "auto"
+            },
+            {
+              value: "",
+              source: "auto"
+            },
+            {
+              value: "",
+              source: "auto"
+            }
+          ],
+          showcaseData: []
+        },
+        showcaseGallery: {
+          title: {
+            value: "Шоукейс (Полноэкранная карусель)",
+            source: "auto"
+          },
+          description: {
+            value: "Это демонстрационная галерея с полноэкранными изображениями и интерактивными заголовками.",
+            source: "auto"
+          },
+          seo: {
+            title: {
+              value: "Шоукейс: Полноэкранные изображения",
+              source: "auto"
+            },
+            description: {
+              value: "Полноэкранные изображения с интерактивными заголовками и ссылками.",
+              source: "auto"
+            },
+            keywords: {
+              value: "showcase, full-screen, carousel, titles",
+              source: "auto"
+            }
+          },
+          captions: [
+            {
+              value: "",
+              source: "auto"
+            },
+            {
+              value: "",
+              source: "auto"
+            },
+            {
+              value: "",
+              source: "auto"
+            },
+            {
+              value: "",
+              source: "auto"
+            },
+            {
+              value: "",
+              source: "auto"
+            },
+            {
+              value: "",
+              source: "auto"
+            },
+            {
+              value: "",
+              source: "auto"
+            },
+            {
+              value: "",
+              source: "auto"
+            },
+            {
+              value: "",
+              source: "auto"
+            },
+            {
+              value: "",
+              source: "auto"
+            },
+            {
+              value: "",
+              source: "auto"
+            },
+            {
+              value: "",
+              source: "auto"
+            },
+            {
+              value: "",
+              source: "auto"
+            },
+            {
+              value: "",
+              source: "auto"
+            },
+            {
+              value: "",
+              source: "auto"
+            },
+            {
+              value: "",
+              source: "auto"
+            },
+            {
+              value: "",
+              source: "auto"
+            },
+            {
+              value: "",
+              source: "auto"
+            },
+            {
+              value: "",
+              source: "auto"
+            },
+            {
+              value: "",
+              source: "auto"
+            },
+            {
+              value: "",
+              source: "auto"
+            },
+            {
+              value: "",
+              source: "auto"
+            }
+          ],
+          showcaseData: [
+            {
+              title: {
+                value: "Проект: Уличные зарисовки",
+                source: "auto"
+              },
+              link: {
+                label: {
+                  value: "Посмотреть галерею",
+                  source: "auto"
+                }
+              }
+            },
+            {
+              title: {
+                value: "Проект: Городские пейзажи",
+                source: "auto"
+              },
+              link: {
+                label: {
+                  value: "Подробнее",
+                  source: "auto"
+                }
+              }
+            },
+            {
+              title: {
+                value: "История мегаполиса",
+                source: "auto"
+              }
+            },
+            {
+              title: {
+                value: "Тихие улицы",
+                source: "auto"
+              },
+              link: {
+                label: {
+                  value: "Открыть",
+                  source: "auto"
+                }
+              }
+            },
+            {
+              title: {
+                value: "Отражения",
+                source: "auto"
+              }
+            },
+            {
+              title: {
+                value: "Под небом",
+                source: "auto"
+              }
+            },
+            {
+              title: {
+                value: "Эхо прошлого",
+                source: "auto"
+              }
+            },
+            {
+              title: {
+                value: "Диалоги света",
+                source: "auto"
+              }
+            },
+            {
+              title: {
+                value: "Тени города",
+                source: "auto"
+              }
+            },
+            {
+              title: {
+                value: "В движении",
+                source: "auto"
+              }
+            },
+            {
+              title: {
+                value: "Моменты",
+                source: "auto"
+              }
+            },
+            {
+              title: {
+                value: "Ритмы города",
+                source: "auto"
+              }
+            },
+            {
+              title: {
+                value: "Перекрёстки",
+                source: "auto"
+              }
+            }
+          ]
+        },
+        new_gallery_1784930294663: {
+          title: {
+            value: "Омск",
+            source: "auto"
+          },
+          description: {
+            value: "проверка",
+            source: "auto"
+          },
+          seo: {},
+          captions: [
+            {
+              value: "",
+              source: "auto"
+            },
+            {
+              value: "Тест",
+              source: "auto"
+            },
+            {
+              value: "",
+              source: "auto"
+            },
+            {
+              value: "",
+              source: "auto"
+            }
+          ],
+          projectData: [
+            {
+              title: {
+                value: "ПРОВЕРЬ МЕНЯ",
+                source: "auto"
+              },
+              description: {
+                value: "ojvoifjvjfvj ovkdokopkv dvodskk",
+                source: "auto"
+              }
+            },
+            {},
+            {},
+            {}
+          ],
+          showcaseData: []
+        }
+      },
+      textPagesData: {
+        bio: {
+          title: {
+            value: "Биография",
+            source: "auto"
+          },
+          contentHtml: {
+            value: "Заголовок H1\nЗаголовок H2\nЗаголовок H3\nИлья Пилипенко — фотограф и куратор, чьи работы исследуют взаимодействие человека с окружающей средой и трансформацию городских пейзажей. Родился в 1985 году в Киеве, Илья рано проявил интерес к визуальному искусству и фотографии как способу документирования и интерпретации реальности.\nЕго ранние проекты были сосредоточены на заброшенных промышленных зонах и их скрытой красоте. Со временем его подход изменился, включив в себя более глубокое осмысление социальных процессов и повседневной жизни.\nМаркированный список:\n\nПервый пункт списка\nВторой пункт списка\nТретий пункт списка, который очень длинный и должен переноситься на несколько строк для проверки форматирования и межстрочного интервала.\n\nНумерованный список:\n\nПервый пункт\nВторой пункт\nТретий пункт, также длинный для тестирования.\n\n\n\n\n\n\n\n\n\nИлья — сооснователь и бывший главный редактор проекта «Невидимые города», направленного на документирование жизни в малых и средних городах постсоветского пространства. Этот проект получил признание за свой уникальный взгляд на провинциальную Россию и её жителей.\nПараллельно с фотографической практикой Илья активно занимается кураторской деятельностью. Он является автором популярного Telegram-канала «Photography Experience», где делится аналитическими статьями, обзорами и советами по фотографии, а также курирует выставки молодых талантов.\nВ 2022 году Илья стал сооснователем онлайн-галереи F11 — платформы для демонстрации и продажи работ современных фотографов.\nРаботы Ильи Пилипенко экспонировались в различных галереях и музеях, а также публиковались в международных изданиях. Он продолжает свою творческую и исследовательскую деятельность, постоянно находясь в поиске новых форм выражения и способов взаимодействия со зрителем.\nПо вопросам сотрудничества или приобретения работ, пожалуйста, связывайтесь по электронной почте: ilpilipenko@gmail.com\n\n\n\n-- Новые примеры форматирования --\nЭто моя любимая цитата, которая вдохновляет меня каждый день. Она отлично смотрится в этом новом стиле.\nЗдесь я могу продемонстрировать две свои работы бок о бок.\n[gallery:gallery2]\nА вот как выглядит галерея из трёх изображений.\n[gallery:gallery6]\nНаконец, здесь вы можете посмотреть одно из моих видео.\n\n",
+            source: "auto"
+          },
+          seo: {
+            title: {
+              value: "Биография Ильи Пилипенко",
+              source: "auto"
+            },
+            description: {
+              value: "Подробная биография и творческий путь документального фотографа Ильи Пилипенко.",
+              source: "auto"
+            },
+            keywords: {
+              value: "biography, photographer, curator, Ilia Pilipenko",
+              source: "auto"
+            }
+          }
+        },
+        my_text_page: {
+          title: {
+            value: "Дополнительная текстовая страница",
+            source: "auto"
+          },
+          contentHtml: {
+            value: "Это дополнительная текстовая страница, которую можно использовать для размещения резюме, контактов, списка публикаций или любой другой информации.\nКак и в разделе «Биография», здесь можно использовать HTML-теги для форматирования текста, добавления ссылок и так далее.\nЭкспериментируйте с контентом, чтобы максимально эффективно использовать этот функционал для вашего портфолио!\nКупить на Авито\n[gallery:gallery6]\nТЕСТ \n\n",
+            source: "auto"
+          },
+          seo: {
+            title: {
+              value: "Дополнительная информация",
+              source: "auto"
+            },
+            description: {
+              value: "Дополнительная текстовая страница для резюме, контактов или публикаций.",
+              source: "auto"
+            },
+            keywords: {
+              value: "contacts, CV, publications, information",
+              source: "auto"
+            }
+          }
+        },
+        new_text_page_1784970783300: {
+          title: {
+            value: "Новая текстовая страница 2",
+            source: "auto"
+          },
+          contentHtml: {
+            value: "ffsfl sflslfl; sfsafl",
+            source: "auto"
+          },
+          seo: {}
+        }
+      },
+      zinePagesData: {
+        zine_1772129484355: {
+          title: {
+            value: "Новый вебзин",
+            source: "auto"
+          },
+          seo: {},
+          blocks: {
+            block_1772644860641_pyqfd: {
+              data: {
+                value: "Тыва, республика в Сибири, — это земля без железных дорог и, до недавнего времени, без мобильных телефонов. Место, кажущееся почти мифическим, возникло из-за географической ошибки.Эта ошибка произошла в 1727 году во время подписания Буринского договора (Буринского пограничного трактата). Россия провела свою границу по Саянским горам, в то время как Китай заявил претензии на тему вплоть до хребта Танну-Ола. В результате непреднамеренно возникла нейтральная зона площадью в несколько сотен квадратных километров.Лишь в 1921 году под эгидой СССР войска Красной Армии вошли в Тыву, известную тогда как «ничья земля». Это привело к провозглашению народной республики в самом сердце Азии, ознаменовав рождение первого независимого тувинского государства — Земли Красных Шаманов.Сегодня эта загадочная республика часто упоминается в связи с министром по чрезвычайным ситуациям России — выдающимся уроженцем Тывы, чьё назначение иногда рассматривается как способ укротить разрушительные силы как природы, так и духов. В конце концов, кто мог бы лучше подойти на такую роль, чем человек из земли, где шаманизм до сих пор имеет официальное признание?Шаман Сайлык-оол, религиозный советник президента Тывы, бормочет загадочные фразы, размахивая над моей головой горящими ветками можжевельника. Едкий запах тлеющей травы смешивается с кислым ароматом ферментированных молочных продуктов — основы для араки, местного алкогольного напитка, используемого как для удовольствия, так и для ритуалов. Это сочетание вызывает лёгкое головокружение, отчего разговор кажется странно откровенным.Дом шамана — его «приёмная» — это отдельное впечатление. На одной из стен доминирует массивная картина местного художника «Ритуал шамана, или Обряд огня». Рядом висит портрет Далай-ламы, будто вырванный из китайского календаря. Вдоль стен на деревянных кронштейнах размещена «экспозиция» черепов животных — знакомых и незнакомых — с раскрытыми пастями и пугающе целыми зубами.В центре комнаты стоит величественное деревянное кресло, обтянутое оленьей шкурой, его подлокотники вырезаны в виде оскаленных волчьих голов. С этого похожего на трон сиденья шаман принимает посетителей. Он говорит по-русски.Теперь моя очередь.«Отсутствие веры — это ваша вера, — начинает Сайлык-оол, подбрасывая благовония в курильницу. — Это не атеизм. Атеизм — это тоже вера: вера в безбожие, вера против Бога. Я говорю о другом. Было время, когда Бог присутствовал в ваших церквях, а дух жил в каждом человеке. Теперь вы ни во что не верите.Вы не верите, что самолёт, на котором вы летите, благополучно приземлится, что поезд не сойдёт с рельсов, что машина не сорвётся в пропасть. Вы не верите в духов вещей. И поскольку вы не верите, вы боитесь. Страх — это отсутствие веры. Беда придёт тогда, когда последний из вас перестанет верить, что Луна и Солнце взойдут».Он закатывает глаза кверху, размахивая ладаном, словно обращаясь не ко мне, а к какой-то заблудшей душе.«Самолёт, на котором я прилетел, и машина, на которой ехал, вряд ли внушают доверие — не говоря уже о вере, — отвечаю я. — Горы, которыми восхищался Рерих, прекрасны, да, но не божественны. Силы природы чаще бывают разрушительными, чем священными. В ваших словах может быть доля правды, но только в этой комнате, в окружении черепов и дыма. Неужели нет чего-то другого, во что верят люди — чего-то более осязаемого?»«Человеческие принципы всегда одни и те же: душа, рождение и смерть», — отвечает он.«Человек может потерять свою тень — „серую душу“, которая связывает его с другими духами. Когда это происходит, духи забирают „главную душу“ — сущность. Человек, потерявший свою сущность, может продолжать жить, но недолго.Человек должен жить там, где родился. Там же он должен и умереть. Этот цикл предопределён Природой. Родина даёт силы. Каждые два года я возвращаюсь на Гору Жёлтого Льва — место моего рождения. Она священна. Там я разговариваю с духами и прошу силы. Затем я передаю эту силу другим».Сайлык-оол родился в 1947 году в семье потомственного шамана Саду Паши. Не каждый потомок становится шаманом. Кто-то может быть выбран общиной или признан старейшиной по знакам.Сайлык-оол нёс на себе такой знак: в детстве его череп был покрыт странными шишками и язвами, которые остаются и по сей день. Говорили, что они появились после того, как его дедушка — тоже шаман — коснулся его головы и объявил:",
+                source: "auto"
+              }
+            },
+            block_1772811952631_pmolr: {
+              data: {
+                value: "Привет, чувак!",
+                source: "auto"
+              }
+            },
+            block_1775404370625_qbhet: {
+              text: {
+                value: "Нажми меня",
+                source: "auto"
+              }
+            },
+            block_1784754789311_rgkkj: {
+              data: {
+                value: "Начните вводить текст...",
+                source: "auto"
+              }
+            }
+          }
+        }
+      }
+    },
+    ru: {
+      updatedAt: 1785019334416,
+      seo: {
+        title: {
+          value: "Портфолио Ильи Пилипенко",
+          source: "auto"
+        },
+        description: {
+          value: "Портфолио Ильи Пилипенко, документального фотографа.",
+          source: "auto"
+        },
+        keywords: {
+          value: "Ilia Pilipenko, documentary photographer, portfolio, photography, photojournalism, art, photographer",
+          source: "auto"
+        },
+        author: {
+          value: "Ilia Pilipenko",
+          source: "auto"
+        },
+        ogTitle: {
+          value: "Ilia Pilipenko Portfolio",
+          source: "auto"
+        },
+        ogDescription: {
+          value: "Portfolio of Ilia Pilipenko, documentary photographer.",
+          source: "auto"
+        },
+        ogImage: {
+          value: "./files/preview.jpg",
+          source: "auto"
+        },
+        ogUrl: {
+          value: "https://yourwebsite.com",
+          source: "auto"
+        },
+        ogType: {
+          value: "website",
+          source: "auto"
+        },
+        twitterCard: {
+          value: "summary_large_image",
+          source: "auto"
+        },
+        twitterTitle: {
+          value: "Ilia Pilipenko Portfolio",
+          source: "auto"
+        },
+        twitterDescription: {
+          value: "Portfolio of Ilia Pilipenko, documentary photographer.",
+          source: "auto"
+        },
+        twitterImage: {
+          value: "./files/preview.jpg",
+          source: "auto"
+        },
+        favicon: {
+          value: "./files/favicon.png",
+          source: "auto"
+        }
+      },
+      site: {
+        title: {
+          value: "Илья Пилипенко",
+          source: "auto"
+        }
+      },
+      navigation: {
+        zine_1772129484355: {
+          label: {
+            value: "Новый вебзин",
+            source: "auto"
+          }
+        },
+        galleries_menu: {
+          label: {
+            value: "Галереи",
+            source: "auto"
+          },
+          children: {
+            gallery1: {
+              label: {
+                value: "Галерея 1 (1 колонка)",
+                source: "auto"
+              }
+            },
+            gallery2: {
+              label: {
+                value: "Галерея 2 (2 колонки)",
+                source: "auto"
+              }
+            },
+            gallery3: {
+              label: {
+                value: "Галерея 3 (3 колонки)",
+                source: "auto"
+              }
+            },
+            gallery4: {
+              label: {
+                value: "Галерея 4 (Горизонтальная)",
+                source: "auto"
+              }
+            },
+            gallery5: {
+              label: {
+                value: "Галерея 5 (Masonry 2 колонки)",
+                source: "auto"
+              }
+            },
+            gallery6: {
+              label: {
+                value: "Галерея 6 (Masonry 3 колонки)",
+                source: "auto"
+              }
+            },
+            singleImageGallery: {
+              label: {
+                value: "Галерея (Одно изображение)",
+                source: "auto"
+              }
+            },
+            showcaseGallery: {
+              label: {
+                value: "Витрина (Полноэкранная карусель)",
+                source: "auto"
+              }
+            }
+          }
+        },
+        nav_1784798259489_5jcin: {
+          label: {
+            value: "Новый родительский пункт",
+            source: "auto"
+          },
+          children: {
+            nav_child_1784905498397_peqn2: {
+              label: {
+                value: "Новый подпункт",
+                source: "auto"
+              },
+              children: {
+                gallery6: {
+                  label: {
+                    value: "Галерея 6 (Masonry 3 колонки)",
+                    source: "auto"
+                  }
+                }
+              }
+            },
+            zine_1772129484355: {
+              label: {
+                value: "Новый вебзин",
+                source: "auto"
+              }
+            }
+          }
+        },
+        nav_child_1784798304618_jphla: {
+          label: {
+            value: "Новый подпункт",
+            source: "auto"
+          },
+          children: {
+            zine_1772129484355: {
+              label: {
+                value: "Новый вебзин",
+                source: "auto"
+              }
+            },
+            gallery4: {
+              label: {
+                value: "Галерея 4 (Горизонтальная прокрутка)",
+                source: "auto"
+              }
+            }
+          }
+        },
+        nav_1784801088353_skids: {
+          label: {
+            value: "Новый родительский пункт 2",
+            source: "auto"
+          },
+          children: {
+            nav_1784931851669_i6knq: {
+              label: {
+                value: "Новый родительский пункт",
+                source: "auto"
+              },
+              children: {
+                new_gallery_1784930294663: {
+                  label: {
+                    value: "Омск",
+                    source: "auto"
+                  }
+                }
+              }
+            },
+            zine_1772129484355: {
+              label: {
+                value: "Новый вебзин",
+                source: "auto"
+              }
+            },
+            nav_child_1784905900122_4pi83: {
+              label: {
+                value: "Новый подпункт",
+                source: "auto"
+              },
+              children: {
+                gallery5: {
+                  label: {
+                    value: "Галерея 5 (Masonry 2 колонки)",
+                    source: "auto"
+                  }
+                }
+              }
+            }
+          }
+        },
+        text_pages_menu: {
+          label: {
+            value: "Страницы",
+            source: "auto"
+          },
+          children: {
+            bio: {
+              label: {
+                value: "Био",
+                source: "auto"
+              }
+            },
+            my_text_page: {
+              label: {
+                value: "Моя текстовая страница",
+                source: "auto"
+              }
+            }
+          }
+        },
+        new_text_page_1784970783300: {
+          label: {
+            value: "Новая",
+            source: "auto"
+          }
+        }
+      },
+      footerNavigation: {
+        external_site: {
+          label: {
+            value: "Google",
+            source: "auto"
+          }
+        },
+        contact: {
+          label: {
+            value: "Контакты",
+            source: "auto"
+          }
+        }
+      },
+      galleriesData: {
+        gallery1: {
+          title: {
+            value: "Галерея 1 (1 колонка)",
+            source: "auto"
+          },
+          description: {
+            value: "<p>Это подробное описание для <strong>Галереи 1</strong>. Здесь вы можете рассказать о проекте, использованных техниках, идеях, которые легли в основу этой серии фотографий. <br><br>Далее следует дополнительный текст, который изначально скрыт. Он может содержать детали, ссылки или дополнительный контекст, который углубляет понимание представленных работ. Это отличный способ поделиться более глубокой информацией, не перегружая страницу сразу.</p>",
+            source: "auto"
+          },
+          seo: {
+            title: {
+              value: "Gallery 1: Single-Column Layout",
+              source: "auto"
+            },
+            description: {
+              value: "Portfolio of documentary photographs in a single-column layout.",
+              source: "auto"
+            },
+            keywords: {
+              value: "photography, gallery, single-column, portfolio",
+              source: "auto"
+            }
+          },
+          captions: [
+            {
+              value: "",
+              source: "auto"
+            },
+            {
+              value: "",
+              source: "auto"
+            },
+            {
+              value: "",
+              source: "auto"
+            },
+            {
+              value: "",
+              source: "auto"
+            },
+            {
+              value: "",
+              source: "auto"
+            },
+            {
+              value: "",
+              source: "auto"
+            },
+            {
+              value: "",
+              source: "auto"
+            },
+            {
+              value: "",
+              source: "auto"
+            },
+            {
+              value: "",
+              source: "auto"
+            },
+            {
+              value: "",
+              source: "auto"
+            },
+            {
+              value: "",
+              source: "auto"
+            },
+            {
+              value: "",
+              source: "auto"
+            },
+            {
+              value: "",
+              source: "auto"
+            },
+            {
+              value: "",
+              source: "auto"
+            },
+            {
+              value: "",
+              source: "auto"
+            }
+          ],
+          projectData: [
+            {},
+            {},
+            {},
+            {},
+            {},
+            {},
+            {},
+            {},
+            {},
+            {},
+            {},
+            {},
+            {},
+            {},
+            {}
+          ],
+          showcaseData: []
+        },
+        gallery2: {
+          title: {
+            value: "Галерея 2 (2 колонки)",
+            source: "auto"
+          },
+          description: {
+            value: "<p>Краткое описание для Галереи 2. Здесь собрана серия работ, посвящённых городским пейзажам и повседневной жизни мегаполиса. Вы найдёте уникальные ракурсы и моменты, запечатлённые с вниманием к деталям и атмосфере. Приятного просмотра!</p>",
+            source: "auto"
+          },
+          seo: {
+            title: {
+              value: "Gallery 2: Two-Column Layout",
+              source: "auto"
+            },
+            description: {
+              value: "Collection of urban landscapes and moments in a two-column portfolio.",
+              source: "auto"
+            },
+            keywords: {
+              value: "city, landscape, two-column, photography",
+              source: "auto"
+            }
+          },
+          captions: [
+            {
+              value: "Протестируй меня",
+              source: "auto"
+            },
+            {
+              value: "",
+              source: "auto"
+            },
+            {
+              value: "Подпись",
+              source: "auto"
+            },
+            "Перевод",
+            {
+              value: "",
+              source: "auto"
+            },
+            {
+              value: "",
+              source: "auto"
+            },
+            {
+              value: "",
+              source: "auto"
+            },
+            {
+              value: "",
+              source: "auto"
+            },
+            {
+              value: "",
+              source: "auto"
+            },
+            {
+              value: "",
+              source: "auto"
+            },
+            {
+              value: "",
+              source: "auto"
+            },
+            {
+              value: "",
+              source: "auto"
+            },
+            {
+              value: "",
+              source: "auto"
+            },
+            {
+              value: "",
+              source: "auto"
+            },
+            {
+              value: "",
+              source: "auto"
+            }
+          ],
+          showcaseData: []
+        },
+        gallery3: {
+          title: {
+            value: "Галерея 3 (3 колонки)",
+            source: "auto"
+          },
+          description: {
+            value: "<p>Это описание для Галереи 3. <br>Здесь может быть <strong>любой HTML</strong> контент, например,</p>\n<ul>\n<li>списки</li>\n<li>или <em>выделенный текст</em></li>\n</ul>",
+            source: "auto"
+          },
+          seo: {
+            title: {
+              value: "Gallery 3: Three-Column Layout",
+              source: "auto"
+            },
+            description: {
+              value: "Extensive collection of photographs presented in a three-column layout.",
+              source: "auto"
+            },
+            keywords: {
+              value: "photo, gallery, three-column, art",
+              source: "auto"
+            }
+          },
+          captions: [
+            {
+              value: "",
+              source: "auto"
+            },
+            {
+              value: "",
+              source: "auto"
+            },
+            {
+              value: "",
+              source: "auto"
+            },
+            {
+              value: "",
+              source: "auto"
+            },
+            {
+              value: "",
+              source: "auto"
+            },
+            {
+              value: "",
+              source: "auto"
+            },
+            {
+              value: "",
+              source: "auto"
+            },
+            {
+              value: "",
+              source: "auto"
+            },
+            {
+              value: "",
+              source: "auto"
+            },
+            {
+              value: "",
+              source: "auto"
+            },
+            {
+              value: "",
+              source: "auto"
+            },
+            {
+              value: "",
+              source: "auto"
+            },
+            {
+              value: "",
+              source: "auto"
+            },
+            {
+              value: "",
+              source: "auto"
+            },
+            {
+              value: "",
+              source: "auto"
+            },
+            {
+              value: "",
+              source: "auto"
+            },
+            {
+              value: "",
+              source: "auto"
+            },
+            {
+              value: "",
+              source: "auto"
+            },
+            {
+              value: "",
+              source: "auto"
+            },
+            {
+              value: "",
+              source: "auto"
+            },
+            {
+              value: "",
+              source: "auto"
+            },
+            {
+              value: "",
+              source: "auto"
+            },
+            {
+              value: "",
+              source: "auto"
+            },
+            {
+              value: "",
+              source: "auto"
+            },
+            {
+              value: "",
+              source: "auto"
+            },
+            {
+              value: "",
+              source: "auto"
+            },
+            {
+              value: "",
+              source: "auto"
+            },
+            {
+              value: "",
+              source: "auto"
+            },
+            {
+              value: "",
+              source: "auto"
+            },
+            {
+              value: "",
+              source: "auto"
+            },
+            {
+              value: "",
+              source: "auto"
+            },
+            {
+              value: "",
+              source: "auto"
+            }
+          ],
+          showcaseData: []
+        },
+        gallery4: {
+          title: {
+            value: "Галерея 4 (Горизонтальная прокрутка)",
+            source: "auto"
+          },
+          description: {
+            value: "<p>Эта галерея демонстрирует работы в формате горизонтальной прокрутки, идеально подходящем для просмотра на широких экранах. Здесь представлены панорамные снимки и серии, которые лучше всего воспринимаются при последовательной прокрутке слева направо. Попробуйте прокручивать мышью или свайпами!</p>",
+            source: "auto"
+          },
+          seo: {
+            title: {
+              value: "Gallery 4: Horizontal Scroll",
+              source: "auto"
+            },
+            description: {
+              value: "Panoramic and serial photographs for horizontal scrolling.",
+              source: "auto"
+            },
+            keywords: {
+              value: "panorama, horizontal, scroll, photo series",
+              source: "auto"
+            }
+          },
+          captions: [
+            {
+              value: "",
+              source: "auto"
+            },
+            {
+              value: "Величественные горы на закате.",
+              source: "auto"
+            },
+            {
+              value: "",
+              source: "auto"
+            },
+            {
+              value: "",
+              source: "auto"
+            },
+            {
+              value: "",
+              source: "auto"
+            },
+            {
+              value: "",
+              source: "auto"
+            },
+            {
+              value: "",
+              source: "auto"
+            },
+            {
+              value: "",
+              source: "auto"
+            },
+            {
+              value: "",
+              source: "auto"
+            },
+            {
+              value: "",
+              source: "auto"
+            },
+            {
+              value: "",
+              source: "auto"
+            },
+            {
+              value: "",
+              source: "auto"
+            },
+            {
+              value: "",
+              source: "auto"
+            },
+            {
+              value: "",
+              source: "auto"
+            },
+            {
+              value: "",
+              source: "auto"
+            },
+            {
+              value: "",
+              source: "auto"
+            },
+            {
+              value: "",
+              source: "auto"
+            },
+            {
+              value: "",
+              source: "auto"
+            },
+            {
+              value: "",
+              source: "auto"
+            },
+            {
+              value: "",
+              source: "auto"
+            }
+          ],
+          showcaseData: []
+        },
+        gallery5: {
+          title: {
+            value: "Галерея 5 (Masonry 2 колонки)",
+            source: "auto"
+          },
+          description: {
+            value: "<p>Эта галерея использует двухколоночную раскладку Masonry, позволяющую оптимально располагать изображения разной высоты, минимизируя пустое пространство. Идеально для фотографий смешанных форматов.</p>",
+            source: "auto"
+          },
+          seo: {
+            title: {
+              value: "Gallery 5: Masonry 2 Columns",
+              source: "auto"
+            },
+            description: {
+              value: "Photographs in a Masonry layout with two columns for optimal display.",
+              source: "auto"
+            },
+            keywords: {
+              value: "masonry, two columns, adaptive, photo",
+              source: "auto"
+            }
+          },
+          captions: [
+            {
+              value: "Величественные горы на закате.",
+              source: "auto"
+            },
+            {
+              value: "",
+              source: "auto"
+            },
+            {
+              value: "",
+              source: "auto"
+            }
+          ],
+          showcaseData: []
+        },
+        gallery6: {
+          title: {
+            value: "Галерея 6 (Masonry 3 колонки)",
+            source: "auto"
+          },
+          description: {
+            value: "<p>Трёхколоночная раскладка Masonry для более плотного размещения изображений. Идеально для больших коллекций и создания визуально насыщенных страниц.</p>",
+            source: "auto"
+          },
+          seo: {
+            title: {
+              value: "Gallery 6: Masonry 3 Columns",
+              source: "auto"
+            },
+            description: {
+              value: "Dense Masonry layout with three columns for extensive photo collections.",
+              source: "auto"
+            },
+            keywords: {
+              value: "masonry, three columns, gallery, portfolio",
+              source: "auto"
+            }
+          },
+          captions: [
+            {
+              value: "",
+              source: "auto"
+            },
+            {
+              value: "",
+              source: "auto"
+            },
+            {
+              value: "",
+              source: "auto"
+            },
+            {
+              value: "",
+              source: "auto"
+            },
+            {
+              value: "",
+              source: "auto"
+            },
+            {
+              value: "",
+              source: "auto"
+            },
+            {
+              value: "",
+              source: "auto"
+            },
+            {
+              value: "",
+              source: "auto"
+            },
+            {
+              value: "",
+              source: "auto"
+            },
+            {
+              value: "",
+              source: "auto"
+            },
+            {
+              value: "",
+              source: "auto"
+            },
+            {
+              value: "",
+              source: "auto"
+            },
+            {
+              value: "",
+              source: "auto"
+            },
+            {
+              value: "",
+              source: "auto"
+            },
+            {
+              value: "",
+              source: "auto"
+            },
+            {
+              value: "",
+              source: "auto"
+            }
+          ],
+          showcaseData: []
+        },
+        singleImageGallery: {
+          title: {
+            value: "Галерея (Одно изображение)",
+            source: "auto"
+          },
+          description: {
+            value: "<p>Эта галерея отображает изображения по одному, идеально для детального просмотра. Используйте стрелки навигации или клавиши «влево»/«вправо» для переключения.</p>",
+            source: "auto"
+          },
+          seo: {
+            title: {
+              value: "Gallery: Single Image",
+              source: "auto"
+            },
+            description: {
+              value: "Gallery with sequential display of images and captions.",
+              source: "auto"
+            },
+            keywords: {
+              value: "single image, gallery, captions, carousel",
+              source: "auto"
+            }
+          },
+          captions: [
+            {
+              value: "Величественные горы на закате.",
+              source: "auto"
+            },
+            {
+              value: "Спокойное озеро, отражающее небо.",
+              source: "auto"
+            },
+            {
+              value: "Древний лес, полный тайн.",
+              source: "auto"
+            },
+            {
+              value: "Цветущие поля под летним солнцем.",
+              source: "auto"
+            },
+            {
+              value: "Городской пейзаж ночью.",
+              source: "auto"
+            },
+            {
+              value: "Морской закат с парусником.",
+              source: "auto"
+            },
+            {
+              value: "Улицы старого города.",
+              source: "auto"
+            },
+            {
+              value: "Портрет незнакомца.",
+              source: "auto"
+            },
+            {
+              value: "Архитектурные формы.",
+              source: "auto"
+            },
+            {
+              value: "Изменено для лучшей читаемости на светлых изображениях или letterbox. Добавлен z-index: 10, чтобы подписи не перекрывались другими элементами (например, стрелками навигации).",
+              source: "auto"
+            },
+            {
+              value: "",
+              source: "auto"
+            },
+            {
+              value: "",
+              source: "auto"
+            },
+            "Проверка",
+            "Проверка",
+            {
+              value: "",
+              source: "auto"
+            },
+            {
+              value: "",
+              source: "auto"
+            },
+            {
+              value: "",
+              source: "auto"
+            }
+          ],
+          showcaseData: []
+        },
+        showcaseGallery: {
+          title: {
+            value: "Витрина (Полноэкранная карусель)",
+            source: "auto"
+          },
+          description: {
+            value: "<p>Это витринная галерея с полноэкранными изображениями и интерактивными заголовками.</p>",
+            source: "auto"
+          },
+          seo: {
+            title: {
+              value: "Showcase: Full-Screen Images",
+              source: "auto"
+            },
+            description: {
+              value: "Full-screen images with interactive titles and links.",
+              source: "auto"
+            },
+            keywords: {
+              value: "showcase, full-screen, carousel, titles",
+              source: "auto"
+            }
+          },
+          captions: [
+            {
+              value: "",
+              source: "auto"
+            },
+            {
+              value: "",
+              source: "auto"
+            },
+            {
+              value: "",
+              source: "auto"
+            },
+            {
+              value: "",
+              source: "auto"
+            },
+            {
+              value: "",
+              source: "auto"
+            },
+            {
+              value: "",
+              source: "auto"
+            },
+            {
+              value: "",
+              source: "auto"
+            },
+            {
+              value: "",
+              source: "auto"
+            },
+            {
+              value: "",
+              source: "auto"
+            },
+            {
+              value: "",
+              source: "auto"
+            },
+            {
+              value: "",
+              source: "auto"
+            },
+            {
+              value: "",
+              source: "auto"
+            },
+            {
+              value: "",
+              source: "auto"
+            },
+            {
+              value: "",
+              source: "auto"
+            },
+            {
+              value: "",
+              source: "auto"
+            },
+            {
+              value: "",
+              source: "auto"
+            },
+            {
+              value: "",
+              source: "auto"
+            },
+            {
+              value: "",
+              source: "auto"
+            },
+            {
+              value: "",
+              source: "auto"
+            },
+            {
+              value: "",
+              source: "auto"
+            },
+            {
+              value: "",
+              source: "auto"
+            },
+            {
+              value: "",
+              source: "auto"
+            }
+          ],
+          showcaseData: [
+            {
+              title: {
+                value: "Проект: Уличные зарисовки",
+                source: "auto"
+              },
+              link: {
+                label: {
+                  value: "Смотреть галерею",
+                  source: "auto"
+                }
+              }
+            },
+            {
+              title: {
+                value: "Проект: Городские пейзажи",
+                source: "auto"
+              },
+              link: {
+                label: {
+                  value: "Узнать больше",
+                  source: "auto"
+                }
+              }
+            },
+            {
+              title: {
+                value: "История мегаполиса",
+                source: "auto"
+              }
+            },
+            {
+              title: {
+                value: "Тихие улицы",
+                source: "auto"
+              },
+              link: {
+                label: {
+                  value: "Открыть",
+                  source: "auto"
+                }
+              }
+            },
+            {
+              title: {
+                value: "Отражения",
+                source: "auto"
+              }
+            },
+            {
+              title: {
+                value: "Под небом",
+                source: "auto"
+              }
+            },
+            {
+              title: {
+                value: "Эхо прошлого",
+                source: "auto"
+              }
+            },
+            {
+              title: {
+                value: "Диалоги света",
+                source: "auto"
+              }
+            },
+            {
+              title: {
+                value: "Городские тени",
+                source: "auto"
+              }
+            },
+            {
+              title: {
+                value: "В движении",
+                source: "auto"
+              }
+            },
+            {
+              title: {
+                value: "Моменты",
+                source: "auto"
+              }
+            },
+            {
+              title: {
+                value: "Ритмы города",
+                source: "auto"
+              }
+            },
+            {
+              title: {
+                value: "Перекрёстки",
+                source: "auto"
+              }
+            }
+          ]
+        },
+        new_gallery_1784930294663: {
+          title: {
+            value: "Омск",
+            source: "auto"
+          },
+          description: {
+            value: "<p>проверка</p>",
+            source: "auto"
+          },
+          seo: {},
+          captions: [
+            {
+              value: "",
+              source: "auto"
+            },
+            {
+              value: "Тест",
+              source: "auto"
+            },
+            {
+              value: "",
+              source: "auto"
+            },
+            {
+              value: "",
+              source: "auto"
+            }
+          ],
+          projectData: [
+            {
+              title: {
+                value: "ПРОТЕСТИРУЙ МЕНЯ",
+                source: "auto"
+              },
+              description: {
+                value: "ojvoifjvjfvj ovkdokopkv dvodskk",
+                source: "auto"
+              }
+            },
+            {},
+            {},
+            {}
+          ],
+          showcaseData: []
+        }
+      },
+      textPagesData: {
+        bio: {
+          title: {
+            value: "Био",
+            source: "auto"
+          },
+          contentHtml: {
+            value: "<h1>Заголовок H1</h1>\n<h2>Заголовок H2</h2>\n<h3>Заголовок H3</h3>\n<p><strong>Илья Пилипенко</strong> – фотограф и куратор, чьи работы исследуют взаимодействие человека с окружающей средой и трансформацию городских ландшафтов. Родился в 1985 году в Киеве, Илья рано проявил интерес к визуальным искусствам и фотографии как средству документирования и интерпретации реальности.</p>\n<p>Его ранние проекты были сосредоточены на заброшенных промышленных зонах и их скрытой красоте. Со временем его подход эволюционировал, включив более глубокую рефлексию о социальных динамиках и повседневной жизни.</p>\n<p><strong>Маркированный список:</strong></p>\n<ul>\n<li>Пункт списка один</li>\n<li>Пункт списка два</li>\n<li>Пункт списка три, который очень длинный и должен переноситься на несколько строк, чтобы проверить форматирование и межстрочный интервал.</li>\n</ul>\n<p><strong>Нумерованный список:</strong></p>\n<ol>\n<li>Первый пункт</li>\n<li>Второй пункт</li>\n<li>Третий пункт, также длинный для тестирования.<br><br>\n<div class='video-container'><iframe src='https://www.youtube.com/embed/JyOWiLBVFWg' frameborder='0' allowfullscreen='allowfullscreen' loading='lazy'></iframe></div>\n</li>\n</ol>\n<p>Илья — соучредитель и бывший главный редактор проекта <a href='https://monogoroda.closeuprussia.com/en/' target='_blank' rel='noopener noreferrer'>«Невидимые города»</a>, направленного на документирование жизни в малых и средних городах постсоветского пространства. Этот проект получил признание за уникальный взгляд на провинциальную Россию и её жителей.</p>\n<p>Параллельно с фотографической практикой Илья активно занимается кураторской деятельностью. Он автор популярного Telegram-канала <a href='https://t.me/photoexperience' target='_blank' rel='noopener noreferrer'>«Photography Experience»</a>, где делится аналитическими статьями, обзорами и советами по фотографии, а также курирует выставки молодых талантов.</p>\n<p>В 2022 году Илья стал соучредителем онлайн-галереи <a href='https://galleryf11.com/en/' target='_blank' rel='noopener noreferrer'>F11</a> — платформы для показа и продажи работ современных фотографов.</p>\n<p>Работы Ильи Пилипенко выставлялись в различных галереях и музеях и публиковались в международных изданиях. Он продолжает свою творческую и исследовательскую деятельность, постоянно ища новые формы выражения и способы взаимодействия с аудиторией.</p>\n<p>По вопросам сотрудничества или запросам о работах обращайтесь по электронной почте:&nbsp;<a href='mailto:ilpilipenko@gmail.com'>ilpilipenko@gmail.com</a></p>\n<p><img src='pictures/gallery1_images/02.jpg' alt='Пример изображения в текстовом контенте'></p>\n<p><img src='pictures/gallery1_images/06.jpg' alt='Пример изображения в текстовом контенте'></p>\n<p><video width='300' height='150' controls='controls' src='pictures/text_content_images/example_text_video_1.mp4' alt='Пример видео в текстовом контенте'></video></p>\n<p>-- Новые примеры форматирования --</p>\n<blockquote>Это моя любимая цитата, которая вдохновляет меня каждый день. Она отлично смотрится в этом новом стиле.</blockquote>\n<p>Здесь я могу показать две свои работы рядом.</p>\n[gallery:gallery2]\n<p>А вот как выглядит галерея из трёх изображений.</p>\n[gallery:gallery6]\n<p>Наконец, здесь вы можете посмотреть одно из моих видео.</p>\n<div class='video-container'><iframe width='560' height='315' title='Calamity Cat' src='https://video.lono.space/videos/embed/tLJbQKHsVx5aUHBRz63pdu' frameborder='0' allowfullscreen='allowfullscreen' sandbox='allow-same-origin allow-scripts allow-popups allow-forms'></iframe></div>\n<p><img src='blob:http://localhost:8000/c01d5ef7-f7d2-4ae5-9c19-eb15f11f26a8' width='544' height='286' alt='' style='float: right;'></p>",
+            source: "auto"
+          },
+          seo: {
+            title: {
+              value: "Ilia Pilipenko Biography",
+              source: "auto"
+            },
+            description: {
+              value: "Detailed biography and creative journey of documentary photographer Ilia Pilipenko.",
+              source: "auto"
+            },
+            keywords: {
+              value: "biography, photographer, curator, Ilia Pilipenko",
+              source: "auto"
+            }
+          }
+        },
+        my_text_page: {
+          title: {
+            value: "Дополнительная текстовая страница",
+            source: "auto"
+          },
+          contentHtml: {
+            value: "<p>Это <strong>дополнительная текстовая страница</strong>, которую можно использовать для размещения резюме, контактов, списка публикаций или любой другой информации.</p>\n<p>Как и в разделе «Биография», здесь можно использовать <em>HTML-теги</em> для форматирования текста, добавления <strong>ссылок</strong> и так далее.</p>\n<p>Экспериментируйте с контентом, чтобы максимально эффективно использовать этот функционал для вашего портфолио!</p>\n<p style='text-align: left;'><a href='https://collection.closeuprussia.com/index.php/Detail/objects/cur-202504122209-496' class='button' target='_blank' rel='noopener noreferrer'>Купить на Авито</a></p>\n[gallery:gallery6]\n<p style='text-align: left;'><a href='https://collection.closeuprussia.com/index.php/Detail/objects/cur-202504122209-496' class='button_secondary' target='_blank' rel='noopener noreferrer'>ТЕСТ&nbsp;</a></p>\n<p style='text-align: left;'></p>\n<p style='text-align: left;'></p>",
+            source: "auto"
+          },
+          seo: {
+            title: {
+              value: "Additional Information",
+              source: "auto"
+            },
+            description: {
+              value: "Additional text page for CV, contacts, or publications.",
+              source: "auto"
+            },
+            keywords: {
+              value: "contacts, CV, publications, information",
+              source: "auto"
+            }
+          }
+        },
+        new_text_page_1784970783300: {
+          title: {
+            value: "Новая текстовая страница 2",
+            source: "auto"
+          },
+          contentHtml: {
+            value: "<p>ffsfl sflslfl; sfsafl</p>",
+            source: "auto"
+          },
+          seo: {}
+        }
+      },
+      zinePagesData: {
+        zine_1772129484355: {
+          title: {
+            value: "Новый вебзин",
+            source: "auto"
+          },
+          seo: {},
+          blocks: {
+            block_1772644860641_pyqfd: {
+              data: {
+                value: "<p style='text-align: left;'><b>Тува, республика <font color='#2b647b'><span style='text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial; font-weight: 500;'>в Сибири</span></font>, — земля без железных дорог и до недавнего времени без мобильных телефонов. Место, кажущееся почти мифическим, возникшее из-за географической ошибки.</b></p><p style='text-align: left;'></p><ol><li style='text-align: left;'><span style='background-color: transparent; font-family: inherit;'><strike>Эта ошибка</strike> произошла в <b>1727 </b>году во время <font color='#cc2424'>подписания</font> Буринского договора (Буринский пограничный договор). Россия провела свою границу по Саянским горам, а Китай претендовал на территорию до хребта Танну-Ола.&nbsp;</span></li><li><span style='font-family: inherit; background-color: transparent;'>В результате непреднамеренно была создана нейтральная зона площадью в несколько сотен квадратных километров.</span></li></ol><p></p><p><b><i></i></b><a href='https://www.youtube.com/watch?v=Dz8r1W6vB9A' target='_blank' rel='noopener noreferrer'>Лишь</a><b style=''><i> в 1921 году под советским покровительством войска Красной Армии вошли в Туву — тогда известную как «ничья земля». Это привело к провозглашению народной республики в сердце Азии, </i></b><i>ознаменовав ро</i>ждение первого независимого тувинского государства — Земли Красных Шаманов.</p><p>Сегодня эту загадочную республику часто упоминают в связи с министром по чрезвычайным ситуациям России — выдающимся уроженцем Тувы, — чьё назначение иногда воспринимается как способ усмирить разрушительные силы природы и духов. В конце концов, кто лучше подходит для такой роли, чем человек из земли, где шаманизм до сих пор официально признан?</p><p>Шаман Сайлык-оол, религиозный советник президента Тувы, бормочет загадочные фразы, размахивая горящими ветками можжевельника вокруг моей головы. Резкий запах тлеющей травы смешивается с кислым ароматом кисломолочного продукта — основы араки, местного алкогольного напитка, используемого и для удовольствия, и для ритуалов. Эта комбинация вызывает лёгкое головокружение, делая разговор странно откровенным.</p><p>Дом шамана — его «приёмная» — сам по себе впечатление. Массивная картина местного художника,&nbsp;<i>Ритуал шамана, или Обряд огня</i>, доминирует на одной из стен. Рядом висит портрет Далай-ламы, словно вырванный из китайского календаря. Вдоль стен на деревянных кронштейнах — «экспозиция» черепов животных — знакомых и незнакомых — с открытыми челюстями и пугающе целыми зубами.</p><p>В центре комнаты стоит большое деревянное кресло, покрытое оленьей шкурой, подлокотники которого вырезаны в виде оскаленных волчьих голов. С этого троноподобного сиденья шаман принимает посетителей. Он говорит по-русски.</p><p>Теперь моя очередь.</p><p>«Отсутствие веры — это твоя вера, — начинает Сайлык-оол, подбрасывая благовония в курильницу. — Это не атеизм. Атеизм тоже вера — вера в безбожие, вера против Бога. Я говорю о другом. Было время, когда Бог присутствовал в ваших церквях, а дух жил в каждом человеке. Теперь вы ни во что не верите.</p><p>Вы не верите, что самолёт, на котором летите, благополучно приземлится, что поезд не сойдёт с рельсов, что машина не упадёт в пропасть. Вы не верите в духов вещей. И потому, что не верите, вы боитесь. Страх — это отсутствие веры. Катастрофа наступит, когда последний из вас перестанет верить, что Луна и Солнце взойдут».</p><p>Он закатывает глаза вверх, размахивая благовонием, будто обращается не ко мне, а к какой-то заблудшей душе.</p><p>«Самолёт, на котором я летел, и машина, на которой ехал, едва ли внушают уверенность — не говоря уже о вере, — отвечаю я. — Горы, которыми восхищался Рерих, прекрасны, да — но не божественны. Силы природы чаще разрушительны, чем священны. Ваши слова могут содержать истину, но только в этой комнате, среди черепов и дыма. Разве нет чего-то другого, во что люди верят — чего-то более осязаемого?»</p><p>«Человеческие принципы всегда одни и те же: душа, рождение и смерть», — отвечает он.</p><p>«Человек может потерять свою тень — «серую душу», которая связывает его с другими духами. Когда это происходит, духи забирают «главную душу» — сущность. Человек, потерявший сущность, может продолжать жить, но недолго.</p><p>Человек должен жить там, где родился. Там он должен и умереть. Этот цикл определён Природой. Родина даёт силу. Каждые два года я возвращаюсь к Горе Жёлтого Льва — месту своего рождения. Оно священно. Там я говорю с духами и прошу силы. Затем передаю эту силу другим».</p><p>Сайлык-оол родился<font color='#d31d1d'> в 1947 году в семье потомствен</font>ного шамана Саду Паша. Не каждый потомок становится шаманом. Можно быть выбранным общиной или признанным старцем по знакам.</p><p>Сайлык-оол нёс такой знак: в детстве его череп был покрыт странными шишками и язвами, которые остаются до сих пор. Говорили, что они появились после того, как его дед — тоже шаман — коснулся его головы и объявил:</p>",
+                source: "auto"
+              }
+            },
+            block_1772811952631_pmolr: {
+              data: {
+                value: "<p style='text-align: center;'><b>Привет, чувак!</b></p>",
+                source: "auto"
+              }
+            },
+            block_1775404370625_qbhet: {
+              text: {
+                value: "Нажми меня",
+                source: "auto"
+              }
+            },
+            block_1784754789311_rgkkj: {
+              data: {
+                value: "<p style='font-size: 16px;'>Начните вводить текст...</p>",
+                source: "auto"
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  customCode: {
+    customCSS: "",
+    customJS: "\n "
+  }
+};
+</script>
+<script>
+  if (typeof window.siteConfig === 'undefined') {
+    document.write('<script src="./config.js"><' + '/script>');
+  }
+</script>
+<script src="./src/script.js" defer></script>
+    <script>
+        if (window.siteConfig?.i18n?.enabled) {
+            const script = document.createElement('script');
+            script.src = 'utils/i18n.js';
+            document.head.appendChild(script);
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title id="siteTitlePlaceholder"></title>
+
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <meta name="author" content="">
+
+    <meta property="og:title" content="" id="ogTitlePlaceholder">
+    <meta property="og:description" content="" id="ogDescriptionPlaceholder">
+    <meta property="og:image" content="./files/preview.jpg">
+    <meta property="og:url" content="https://yourwebsite.com">
+    <meta property="og:type" content="website">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="" id="twitterTitlePlaceholder">
+    <meta name="twitter:description" content="" id="twitterDescriptionPlaceholder">
+    <meta name="twitter:image" content="./files/preview.jpg">
+
+    <link rel="icon" href="./files/favicon.png" type="image/png">
+    
+    <script src="utils/fonts.js"></script>
+    
+    <!-- Подключение Tailwind CSS через локальный файл с CDN-резервом -->
+    <script src="./src/tailwind.min.js"></script>
+    <script>
+        (function(){
+            const tw = document.querySelector('script[src="./src/tailwind.min.js"]');
+            if (tw) {
+                tw.onerror = function() {
+                    const cdnScript = document.createElement('script');
+                    cdnScript.src = 'https://cdn.tailwindcss.com';
+                    document.head.appendChild(cdnScript);
+                };
+            } else {
+                // Local script not present — try CDN immediately
+                const cdnScript = document.createElement('script');
+                cdnScript.src = 'https://cdn.tailwindcss.com';
+                document.head.appendChild(cdnScript);
+            }
+        })();
+    </script>
+    
+    <!-- Подключение FontAwesome через локальный файл с CDN-резервом -->
+    <link rel="stylesheet" href="./src/fontawesome/css/all.min.css">
+    <script>
+        (function(){
+            const fa = document.querySelector('link[href="./src/fontawesome/css/all.min.css"]');
+            if (fa) {
+                fa.onerror = function() {
+                    const cdnLink = document.createElement('link');
+                    cdnLink.rel = 'stylesheet';
+                    cdnLink.href = 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css';
+                    document.head.appendChild(cdnLink);
+                };
+            } else {
+                const cdnLink = document.createElement('link');
+                cdnLink.rel = 'stylesheet';
+                cdnLink.href = 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css';
+                document.head.appendChild(cdnLink);
+            }
+        })();
+    </script>
+    
+    <!-- Подключение вашего файла стилей -->
+    <link rel="stylesheet" href="./css/styles.css">
+</head>
+<body class="infscroll index" id="top"> <!-- УДАЛЕН КЛАСС "has-sidebar" -->
+
+    <div id="lightbox">
+        <i class="fas fa-chevron-left lightbox-nav-arrow" id="lightbox-arrow-left"></i>
+        <div id="lightbox_image"></div>
+        <i class="fas fa-chevron-right lightbox-nav-arrow" id="lightbox-arrow-right"></i>
+        <i class="fas fa-expand" id="lightbox_fullscreen_icon"></i>
+    </div>
+
+
+    <div class="page-wrapper">
+        <nav class="main-nav" id="mainNav">
+            <div id="logo_main_header">
+                <a href="index.html" class="no-underline" id="sidebarLogo"></a>
+            </div>
+            <ul id="mainNavList">
+                <!-- Элементы навигации будут динамически вставлены здесь JavaScript -->
+            </ul>
+            <!-- Меню футера теперь внутри main-nav, затем переключатель темы -->
+            <!-- Меню футера теперь внутри main-nav -->
+<div id="footerMenu">
+    <!-- Элементы меню футера будут динамически вставлены здесь -->
+</div>
+
+<!-- Группа переключателей справа -->
+<div class="nav-controls">
+    <div class="dark-mode-toggle" id="darkModeToggle">
+        <i class="fas fa-moon" id="darkModeIcon"></i>
+    </div>
+    <div class="lang-toggle" id="langToggleMain">
+        <span id="currentLangMain">EN</span>
+    </div>
+</div>
+
+        </nav>
+
+        <div class="content-area">
+            <!-- НОВЫЙ ДЕСКТОПНЫЙ ХЕДЕР ДЛЯ СКРЫТОГО САЙДБАРА -->
+            <header class="desktop-header-hidden-sidebar" id="desktopHeaderHiddenSidebar">
+                <div id="desktop_header_logo">
+                    <a href="index.html" class="no-underline" id="desktopHeaderLogo"></a>
+                </div>
+                <div class="desktop-header-controls">
+    <div class="control-group">
+        <div class="dark-mode-toggle" id="darkModeToggleDesktopHeader">
+            <i class="fas fa-moon" id="darkModeIconDesktopHeader"></i>
+        </div>
+        <div class="lang-toggle" id="langToggleDesktop">
+            <span id="currentLangDesktop">EN</span>
+        </div>
+    </div>
+    <button class="menu-toggle" id="menuToggleDesktop" aria-label="Меню">
+        <i class="fas fa-bars"></i>
+    </button>
+</div>
+                
+            </header>
+
+            <header class="mobile-header" id="mobileHeader">
+                <div id="mobile_logo">
+                    <a href="index.html" class="no-underline" id="mobileHeaderLogo"></a>
+                </div>
+                <div class="mobile-controls">
+    <div class="control-group">
+        <div class="dark-mode-toggle" id="darkModeToggleMobile">
+            <i class="fas fa-moon" id="darkModeIconMobile"></i>
+        </div>
+        <div class="lang-toggle" id="langToggleMobile">
+            <span id="currentLangMobile">EN</span>
+        </div>
+    </div>
+    <button class="menu-toggle" id="menuToggle" aria-label="Меню">
+        <i class="fas fa-bars"></i>
+    </button>
+</div>
+
+            </header>
+
+            <div id="dynamicContentContainer"></div>
+            
+            <div id="pagination_index">
+                <div id="back_to_top_wrapper">
+                    <div class="back_to_top"><a href="#" id="backToTopLink">▲</a></div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <script>
+  if (typeof window.siteConfig === 'undefined') {
+    document.write('<script src="./config.js"><\/script>');
+  }
+</script>
+<script src="./src/script.js"></script>
+    <script>
+	  // Подключаем i18n только если включён в конфиге
+	  if (window.siteConfig?.i18n?.enabled) {
+	    const script = document.createElement('script');
+	    script.src = 'utils/i18n.js';
+	    document.head.appendChild(script);
+	  }
+	</script>
+
+</body>
+</html>
