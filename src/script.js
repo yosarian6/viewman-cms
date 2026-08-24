@@ -1556,17 +1556,23 @@ if (activeShowcaseGallery && showcaseClickHandler) {
         }
 
         // --- Синхронизация с контентом ---
-        if (lightboxOpenedFromCarousel && activeCarouselGallery) {
-            const newCarouselIndex = currentImageIndex;
-            if (newCarouselIndex >= 0 && newCarouselIndex < carouselImagesData.length) {
-                carouselCurrentIndex = newCarouselIndex;
-                _loadSingleCarouselImage(carouselImagesData[carouselCurrentIndex]);
-                const section = activeCarouselGallery.closest('.content-section');
-                if (section && section.id && !isPopstateNavigation) {
-                    history.replaceState(null, '', `#${section.id}/carousel-${carouselCurrentIndex + 1}`);
-                }
-            }
-        }
+              if (lightboxOpenedFromCarousel && activeCarouselGallery) {
+          const newCarouselIndex = currentImageIndex;
+          const oldCarouselIndex = carouselCurrentIndex; // Сохраняем старый индекс ДО обновления
+          if (newCarouselIndex >= 0 && newCarouselIndex < carouselImagesData.length) {
+              carouselCurrentIndex = newCarouselIndex;
+              // Перезагружаем картинку ТОЛЬКО если индекс изменился
+              // (пользователь листал в лайтбоксе). Если тот же — картинка
+              // уже показана, и перезагрузка вызвала бы двойное мигание.
+              if (newCarouselIndex !== oldCarouselIndex) {
+                  _loadSingleCarouselImage(carouselImagesData[carouselCurrentIndex]);
+              }
+              const section = activeCarouselGallery.closest('.content-section');
+              if (section && section.id && !isPopstateNavigation) {
+                  history.replaceState(null, '', `#${section.id}/carousel-${carouselCurrentIndex + 1}`);
+              }
+          }
+      }
         else if (isGalleryContext && allVisibleImages[currentImageIndex]) {
             const thumb = allVisibleImages[currentImageIndex].img;
             if (thumb) {
@@ -1765,12 +1771,13 @@ function _loadSingleCarouselImage(imageData) {
         }
         currentPostDiv.classList.remove('loaded'); // Remove loaded to re-trigger spinner if needed for next image
 
-        // Add delay for fade-out effect of old image
-        setTimeout(() => {
-            // Clear src here AFTER fade-out starts
-            imgElement.src = 'data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs='; // Placeholder
+  // === isFirstLoad: если нет активного слайда — без задержки ===
+  const isFirstLoad = !currentPostDiv.classList.contains('active') && !imgElement.classList.contains('image-visible');
 
-            imgElement.alt = imageData.alt;
+  const loadContent = () => {
+      // Clear src here AFTER fade-out starts
+      imgElement.src = 'data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs='; // Placeholder
+      imgElement.alt = imageData.alt;
 
             if (captionElement) {
                 if (!hideCaptionForCarousel) {
@@ -1839,8 +1846,14 @@ if (nextData && nextData.potentialUrls?.[0]) {
                     resolve(false);
                 }
             }, true); // !!! Indicate true for isCarouselImage !!!
-        }, 500); // Delay for 500ms (matches CSS transition)
-    });
+  };
+
+  if (isFirstLoad) {
+      loadContent(); // Первая загрузка — без задержки
+  } else {
+      setTimeout(loadContent, 500); // Переключение — с fade-out
+  }
+});
 }
 
 // Manages carousel index and calls _loadSingleCarouselImage
@@ -2045,12 +2058,14 @@ const linkColor = modeColors.showcaseLinkColor || (isDarkBodyTheme ? '#87CEEB' :
         // Determine if titles should be shown for the current showcase gallery
         const shouldShowTitlesGlobally = currentShowcaseConfig.showTitles ?? true; // Default to true if not specified
         
-        setTimeout(() => {
-            // Clear src here AFTER fade-out starts
-            imgElement.src = 'data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs='; // Placeholder
+              // === isFirstLoad: если нет активного слайда — без задержки ===
+      const isFirstLoad = !currentPostDiv.classList.contains('active') && !imgElement.classList.contains('image-visible');
 
-            imgElement.alt = imageData.alt;
-            titleElement.style.fontSize = showcaseTitleFontSize; // Apply font size from config
+      const loadContent = () => {
+          // Clear src here AFTER fade-out starts
+          imgElement.src = 'data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs='; // Placeholder
+          imgElement.alt = imageData.alt;
+          titleElement.style.fontSize = showcaseTitleFontSize; // Apply font size from config
             titleElement.style.color = titleColor; // Apply title color
 
             // Render title only if shouldShowTitlesGlobally is true AND imageData.title is present
@@ -2108,8 +2123,14 @@ if (nextData && nextData.potentialUrls?.[0]) {
                     resolve(false);
                 }
             }, true); // !!! Indicate true for isCarouselImage !!!
-        }, 500); // Delay for 500ms (matches CSS transition)
-    });
+      };
+
+      if (isFirstLoad) {
+          loadContent(); // Первая загрузка — без задержки
+      } else {
+          setTimeout(loadContent, 500); // Переключение — с fade-out
+      }
+});
 }
 
 function handleShowcaseLinkClick(event) {
@@ -3114,9 +3135,10 @@ const currentContentHasHeader = hasVisibleHeader(contentId);
                     showFullscreenButton: currentGalleryData.carouselConfig?.showFullscreenButton ?? true
                 };
 
-                if (currentCarouselConfig.randomOrder) shuffleArray(carouselImagesData);
-                carouselCurrentIndex = 0;
-                await _loadSingleCarouselImage(carouselImagesData[carouselCurrentIndex]);
+                            if (currentCarouselConfig.randomOrder) shuffleArray(carouselImagesData);
+            // Используем imageIndex из хеша, если передан; иначе 0
+            carouselCurrentIndex = (imageIndex >= 0 && imageIndex < carouselImagesData.length) ? imageIndex : 0;
+            await _loadSingleCarouselImage(carouselImagesData[carouselCurrentIndex]);
                 updateCarouselHeight();
                 if (currentCarouselConfig.autoPlay) startCarouselAutoplay();
 
@@ -3159,9 +3181,10 @@ const currentContentHasHeader = hasVisibleHeader(contentId);
         showArrows: currentGalleryData.carouselConfig?.showArrows ?? true, 
         showFullscreenButton: false
     };
-                if (currentShowcaseConfig.randomOrder) shuffleArray(showcaseImagesData);
-                showcaseCurrentIndex = 0;
-                await showShowcaseImage(showcaseCurrentIndex);
+                             if (currentShowcaseConfig.randomOrder) shuffleArray(showcaseImagesData);
+             // Используем imageIndex из хеша, если передан; иначе 0
+             showcaseCurrentIndex = (imageIndex >= 0 && imageIndex < showcaseImagesData.length) ? imageIndex : 0;
+             await showShowcaseImage(showcaseCurrentIndex);
 updateShowcaseBulletsColor();
 updateShowcaseTitleAndLinkColors();
 if (currentShowcaseConfig.autoPlay) startShowcaseAutoplay();
@@ -3332,30 +3355,12 @@ if (currentShowcaseConfig.autoPlay) startShowcaseAutoplay();
         const targetSection = document.getElementById(contentId);
         if (!targetSection) return Promise.resolve();
 
-        // CASE 1: Carousel
-        if (targetSection.classList.contains('single-image-carousel-parent')) {
-            const checkCarouselReady = () => {
-                if (carouselImagesData.length > 0) {
-                    const validIndex = Math.max(0, Math.min(imageIndex, carouselImagesData.length - 1));
-                    showCarouselImage(validIndex);
-                } else {
-                    setTimeout(checkCarouselReady, 50);
-                }
-            };
-            checkCarouselReady();
-        }
-        // CASE 2: Showcase
-        else if (targetSection.classList.contains('showcase-gallery-parent')) {
-            const checkShowcaseReady = () => {
-                if (showcaseImagesData.length > 0) {
-                    const validIndex = Math.max(0, Math.min(imageIndex, showcaseImagesData.length - 1));
-                    showShowcaseImage(validIndex);
-                } else {
-                    setTimeout(checkShowcaseReady, 50);
-                }
-            };
-            checkShowcaseReady();
-        }
+             // CASE 1: Carousel и Showcase уже обработаны выше через imageIndex
+     // Оставляем только лайтбокс и текстовые галереи
+     if (targetSection.classList.contains('single-image-carousel-parent') || 
+         targetSection.classList.contains('showcase-gallery-parent')) {
+         // Ничего не делаем — индекс уже применён при первичной загрузке
+     }
         // CASE 3: Zine Section
 else if (targetSection.classList.contains('zine-section')) {
     const tryOpenZineLightbox = (attempt = 0) => {

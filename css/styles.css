@@ -1835,12 +1835,22 @@ body.dark-theme .text-content-section .prose a.button_secondary {
 body.dark-theme .text-content-section .prose img {
     box-shadow: none; /* Removed shadow */
 }
-.text-content-section .prose video {
+.text-content-section .video-wrapper {
     max-width: var(--video-max-width);
+    width: 100%;
+    margin: 1.5rem auto;
+    box-sizing: border-box;
+    overflow: hidden;
+}
+
+.text-content-section .prose video,
+.text-content-section .video-wrapper video {
+    max-width: 100%;
+    width: 100%;
     height: auto;
-    display: block; /* Center video */
-    margin: 1.5rem auto; /* Add vertical spacing and center */
-    background-color: #000; /* Dark background for video container */
+    display: block;
+    margin: 0 auto;
+    background-color: #000;
 }
 /* List styles */
 .text-content-section .prose ul,
@@ -2358,23 +2368,29 @@ body.dark-theme .text-content-section .prose blockquote {
     }
 }
 /* Styles for video container (iframe) */
-.text-content-section .video-container {
+.text-content-section .video-container,
+.text-content-section .video-wrapper .video-container {
     position: relative;
-    padding-bottom: 56.25%; /* 16:9 Aspect Ratio (9/16 = 0.5625) */
+    padding-bottom: 56.25%;
     height: 0;
     overflow: hidden;
-    max-width: 100%; /* Используем 100%, чтобы затем ограничить через --page-content-max-width */
+    max-width: 100%;
+    width: 100%;
     background: #000;
-    margin: 0rem auto; /* Отступы и центрирование */
-    border-radius: 0; /* Без закруглений */
+    margin: 0 auto;
+    border-radius: 0;
 }
-.text-content-section .video-container iframe {
+
+.text-content-section .video-container iframe,
+.text-content-section .video-wrapper .video-container iframe,
+.text-content-section .video-container video,
+.text-content-section .video-wrapper .video-container video {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    border: 0; /* Убираем рамку у iframe */
+    border: 0;
 }
 /* Dynamic content width for text sections */
 /* NEW: Apply max-width to the prose container, if contentMaxWidth is set for the page */
