@@ -3548,6 +3548,22 @@ function createContentSection(type, data) {
     section.style.marginLeft = "auto";
     section.style.marginRight = "auto";
 
+    // === Viewman Block Editor pages (Desktop-authored) — rendered by the
+    //     SAME shared renderer used for the admin preview, per architecture:
+    //     JSON -> Renderer -> {Editor Preview, Published HTML}. Pages not
+    //     explicitly switched to the block editor keep contentFormat==='html'
+    //     and fall through to the untouched logic below exactly as before. ===
+    if (data.contentFormat === 'blocks') {
+        contentInnerHtml = `
+            <div class="container mx-auto p-4">
+                ${titleHtml}
+                <div class="vb-blocks-container">
+                    ${window.ViewmanBlockRenderer ? window.ViewmanBlockRenderer.renderBlocks(data.blocks || [], { mode: 'site', galleriesData: window.siteConfig.galleriesData || [] }) : '<p>⚠ Модуль блочного редактора (utils/block-renderer.js) не загружен.</p>'}
+                </div>
+            </div>
+        `;
+    } else {
+
     // === ОПРЕДЕЛЕНИЕ КОНТЕНТА: contentHtml ИЛИ paragraphs ===
     let blocks = [];
     if (data.contentHtml !== undefined && data.contentHtml !== null) {
@@ -3699,6 +3715,7 @@ if (result.includes('<iframe')) {
             </div>
         </div>
     `;
+    }
 }
 
     dynamicContentContainer.appendChild(section); // Append section first

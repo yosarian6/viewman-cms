@@ -116,6 +116,48 @@ return result;
         };
     }
 
+    // Field lists mirror admin/js/block-editor/block-editor.js's
+    // TRANSLATABLE_FIELDS registry (duplicated intentionally — this file
+    // ships to the published site and must not depend on the admin-only
+    // block editor engine; same precedent as this file's own hardcoded
+    // zine block-type handling in getTranslatedZinePage() below).
+    const BLOCK_TRANSLATABLE_FIELDS = {
+        text: ['html'],
+        image: ['alt', 'caption'],
+        button: ['text'],
+        'image-text': ['html', 'imageAlt'],
+        'text-image': ['html', 'imageAlt'],
+        'image-card': ['title', 'html', 'buttonText'],
+        feature: ['title', 'html'],
+        callout: ['title', 'html'],
+        quote: ['quote', 'author']
+    };
+    const BLOCK_FIELD_DATA_PATH = { imageAlt: 'image.alt', buttonText: 'button.text' };
+    function getNestedValue(obj, path) {
+        return path.split('.').reduce((o, k) => (o && o[k] !== undefined) ? o[k] : undefined, obj);
+    }
+    function setNestedValue(obj, path, value) {
+        const keys = path.split('.');
+        const last = keys.pop();
+        const parent = keys.reduce((o, k) => { o[k] = o[k] || {}; return o[k]; }, obj);
+        parent[last] = value;
+    }
+    function getTranslatedBlocks(pageId, blocks) {
+        if (!Array.isArray(blocks)) return blocks;
+        return blocks.map(block => {
+            const fields = BLOCK_TRANSLATABLE_FIELDS[block.type];
+            if (!fields || !fields.length) return block;
+            const translatedData = JSON.parse(JSON.stringify(block.data || {}));
+            fields.forEach(field => {
+                const dataPath = BLOCK_FIELD_DATA_PATH[field] || field;
+                const original = getNestedValue(block.data, dataPath);
+                const translated = getTranslatedValue(`textPagesData.${pageId}.blocks.${block.id}.${field}`, original);
+                setNestedValue(translatedData, dataPath, translated);
+            });
+            return { ...block, data: translatedData };
+        });
+    }
+
     function getTranslatedTextPage(pageId) {
         const original = config.textPagesData.find(t => t.id === pageId);
         if (!original) return null;
@@ -124,6 +166,7 @@ return result;
             ...original,
             title: getTranslatedValue(`textPagesData.${pageId}.title`, original.title),
             contentHtml: getTranslatedValue(`textPagesData.${pageId}.contentHtml`, original.contentHtml),
+            blocks: original.contentFormat === 'blocks' ? getTranslatedBlocks(pageId, original.blocks) : original.blocks,
             seo: original.seo ? {
                 ...original.seo,
                 title: getTranslatedValue(`textPagesData.${pageId}.seo.title`, original.seo.title),
@@ -586,6 +629,22 @@ if (activeSection.classList.contains('zine-section')) {
             const titleEl = activeSection.querySelector('h2');
             if (titleEl && !translatedPage.hideTitle) {
                 titleEl.textContent = translatedPage.title;
+            }
+
+            // Viewman Block Editor pages: re-render the whole block list with
+            // translated field values via the same shared renderer used for
+            // the initial render (script.js) and the admin preview — no
+            // separate DOM-patching logic to keep in sync.
+            if (translatedPage.contentFormat === 'blocks') {
+                const blocksContainer = activeSection.querySelector('.vb-blocks-container');
+                if (blocksContainer && typeof window.ViewmanBlockRenderer !== 'undefined') {
+                    blocksContainer.innerHTML = window.ViewmanBlockRenderer.renderBlocks(translatedPage.blocks || [], {
+                        mode: 'site',
+                        galleriesData: config.galleriesData || []
+                    });
+                    window.ViewmanBlockRenderer.wireGalleries(blocksContainer, config.galleriesData || []);
+                }
+                return;
             }
 
             const prose = activeSection.querySelector('.prose');
