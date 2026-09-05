@@ -465,7 +465,12 @@ body.dark-theme .menu-toggle:hover {
         top: var(--mobile-header-height); /* Start below the mobile header */
         left: 0;
         width: 100%;
-        height: calc(100vh - var(--mobile-header-height)); /* Adjust height to fill remaining viewport */
+        /* FIX 2 — dvh instead of vh so the menu never extends behind the
+           browser's bottom UI bar (Brave / iOS Safari). The menu is always
+           exactly as tall as the *visible* area below the header, and its
+           own content scrolls inside. */
+        height: calc(100dvh - var(--mobile-header-height));
+        max-height: calc(100dvh - var(--mobile-header-height));
         padding: 1rem;
         box-shadow: none;
         border-right: none;
@@ -477,7 +482,9 @@ body.dark-theme .menu-toggle:hover {
         flex-direction: column;
         align-items: flex-start; /* Align left on mobile */
         justify-content: flex-start; /* Align top on mobile */
-        overflow-y: auto; /* Make menu scrollable */
+        overflow-y: auto; /* Make menu scrollable (FIX 2) */
+        -webkit-overflow-scrolling: touch; /* iOS momentum scrolling */
+        overscroll-behavior: contain; /* don't propagate scroll to body */
     }
     .main-nav.active { transform: translateX(0); } /* Slides in */
     #logo_main_header { display: none; } /* Hide sidebar logo on small screens */
@@ -689,8 +696,14 @@ body:not(.dark-theme) .showcase-nav-arrow:hover {
         top: 0; /* Aligns to top of screen */
         left: 0;
         width: var(--sidebar-width); /* Retains sidebar width as slide-out menu width */
-        height: 100vh;
+        /* FIX 2 — dvh + scrollable on desktop slide-out too, so very long
+           menus never overflow the viewport. */
+        height: 100dvh;
+        max-height: 100dvh;
         padding-top: var(--desktop-header-height); /* Top padding for menu to slide out below header */
+        overflow-y: auto;
+        -webkit-overflow-scrolling: touch;
+        overscroll-behavior: contain;
         /* rest inherited from .main-nav */
     }
     body.sidebar-hidden .main-nav.active {
@@ -1205,7 +1218,10 @@ body.dark-theme .posts-wrap.gallery-horizontal-scroll .post img {
     align-items: stretch; /* Stretch content vertically */
     justify-content: center; /* Center the grid horizontally */
     width: 100%; /* Take full width of parent section */
-    height: calc(100vh - var(--desktop-header-height, 0px) - var(--mobile-header-height, 0px) - (var(--carousel-section-padding-y) * 2) - var(--carousel-caption-h));
+    /* FIX 3 — dvh (dynamic viewport height) so the carousel always matches the
+       visible viewport on every browser (desktop + mobile). `dvh` shrinks when
+       the browser's bottom UI bar is visible and grows when it hides. */
+    height: calc(100dvh - var(--desktop-header-height, 0px) - var(--mobile-header-height, 0px) - (var(--carousel-section-padding-y) * 2) - var(--carousel-caption-h));
     overflow: hidden;
     position: relative; /* Crucial for absolute positioning of fullscreen icon */
     padding: 0;
@@ -1397,6 +1413,7 @@ body.dark-theme .image-caption {
     cursor: pointer;
     opacity: 0; /* Start hidden for transition */
     visibility: hidden; /* Start hidden for transition */
+    will-change: opacity;
     transition: opacity 0.5s ease-in-out, visibility 0.5s ease-in-out; /* Changed to 0.5s ease-in-out */
 }
 #lightbox.active {
@@ -1415,13 +1432,25 @@ body.dark-theme .image-caption {
     max-width: 90%;
     max-height: 90vh;
     box-shadow: none; /* Removed shadow */
-    opacity: 0; /* Start hidden for transition */
-    transition: opacity 0.5s ease-in-out; /* Changed to 0.5s ease-in-out */
     border-radius: 0; /* NO ROUNDED CORNERS! */
+    /* opacity/transform/transition для этого селектора теперь заданы ниже,
+       в блоке "Slide режим" (там же и актуальный transform-центрирование) —
+       чтобы не было двух конфликтующих объявлений с разным поведением. */
 }
-#lightbox_image img.visible {
-    opacity: 1;
+/* Zoom cursor on lightbox image when zoomOnImageClick is enabled */
+#lightbox_image img.lb-zoom-cursor {
+    cursor: zoom-in; /* зум доступен — картинка ещё не увеличена */
 }
+#lightbox_image img.lb-zoomed {
+    cursor: zoom-out; /* картинка увеличена, клик — уменьшить; drag меняет курсор на grabbing через JS */
+    transform-origin: 0 0;
+    user-select: none;
+    -webkit-user-drag: none;
+}
+#lightbox_image.lb-zoom-active {
+    overflow: hidden;
+}
+
 /* Fullscreen icon for lightbox */
 #lightbox_fullscreen_icon {
     position: absolute;
@@ -1493,19 +1522,22 @@ body.dark-theme .lightbox-nav-arrow:hover {
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%); /* ЦЕНТРИРОВАНИЕ ПО УМОЛЧАНИЮ */
+  /* Стартовое состояние ДО появления: чуть уменьшено и прозрачно —
+     плавный fade+scale выглядит гораздо мягче, чем голый opacity. */
+  transform: translate(-50%, -50%) scale(0.94);
   max-width: 90%;
   max-height: 90vh;
   box-shadow: none;
   border-radius: 0;
   pointer-events: none;
-  opacity: 1;
-  /* Убрать transition из базовых стилей */
+  opacity: 0;
+  will-change: transform, opacity;
+  transition: opacity 0.35s ease-out, transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
 }
 /* Fade режим (старый, без slide-классов) */
 #lightbox_image img.visible {
+  transform: translate(-50%, -50%) scale(1);
   opacity: 1;
-  transition: opacity 0.6s ease-in-out;
   pointer-events: auto;
 }
 /* Slide режим - активное изображение в центре */
@@ -1578,21 +1610,25 @@ body.dark-theme .lightbox-nav-arrow:hover {
     .gallery-section.single-image-carousel-parent {
         /* On mobile, remove specific top padding as header is always present */
         padding-top: var(--carousel-section-padding-y);
-        /* Ensure it occupies available height */
-        height: auto; /* Allow content to dictate height */
-        min-height: calc(100vh - var(--mobile-header-height) - (var(--carousel-section-padding-y) * 2));
+        /* FIX 3 — Use dvh (dynamic viewport height) instead of vh so the
+           section always matches the *visible* viewport (Brave / iOS Safari
+           bottom UI bar is subtracted automatically). Fixed height + overflow
+           hidden guarantees no phantom vertical scroll on mobile. */
+        height: calc(100dvh - var(--mobile-header-height) - (var(--carousel-section-padding-y) * 2));
+        min-height: 0; /* allow flex shrink, avoid extra scroll */
+        overflow: hidden; /* never let the section itself create a scroll */
     }
     .posts-wrap.gallery-single-image-carousel {
         grid-template-columns: 1fr; /* Single column on mobile */
         width: 100%; /* Take full width on mobile */
         margin: 0; /* Remove side gutters on mobile */
-        /* Dynamic height for carousel on mobile */
-        height: calc(100vh - var(--mobile-header-height) - (var(--carousel-section-padding-y) * 2) - var(--carousel-caption-h));
+        /* FIX 3 — dvh-based dynamic height for carousel on mobile */
+        height: calc(100dvh - var(--mobile-header-height) - (var(--carousel-section-padding-y) * 2) - var(--carousel-caption-h));
     }
-	.posts-wrap.gallery-single-image-carousel .post img {
+        .posts-wrap.gallery-single-image-carousel .post img {
         max-width: 100%;
         max-height: 100%;
-	}
+        }
     /* NEW: Hide carousel navigation arrows on mobile */
     .carousel-nav-arrow {
         display: none !important;
@@ -2196,9 +2232,9 @@ body.dark-theme .showcase-bullet.active {
         grid-template-columns: 1fr;
         column-count: 1;
     }
-	#lightbox_image img {
-		max-width: 100%;
-	}
+        #lightbox_image img {
+                max-width: 100%;
+        }
     /* NEW: Hide carousel navigation arrows on mobile */
     .carousel-nav-arrow {
         display: none !important;
@@ -2368,29 +2404,29 @@ body.dark-theme .text-content-section .prose blockquote {
     }
 }
 /* Styles for video container (iframe) */
+/* Соотношение сторон задаётся per-instance через инлайновую переменную
+   --video-aspect (её выставляет диалог "Пропорции видео" в TinyMCE) —
+   16/9 здесь только запасное значение для видео, где это не настраивалось. */
 .text-content-section .video-container,
 .text-content-section .video-wrapper .video-container {
     position: relative;
-    padding-bottom: 56.25%;
-    height: 0;
     overflow: hidden;
     max-width: 100%;
     width: 100%;
     background: #000;
     margin: 0 auto;
     border-radius: 0;
+    aspect-ratio: var(--video-aspect, 16 / 9);
 }
 
 .text-content-section .video-container iframe,
 .text-content-section .video-wrapper .video-container iframe,
 .text-content-section .video-container video,
 .text-content-section .video-wrapper .video-container video {
-    position: absolute;
-    top: 0;
-    left: 0;
     width: 100%;
     height: 100%;
     border: 0;
+    display: block;
 }
 /* Dynamic content width for text sections */
 /* NEW: Apply max-width to the prose container, if contentMaxWidth is set for the page */

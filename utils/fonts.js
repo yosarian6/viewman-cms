@@ -6,7 +6,7 @@
 
   // ─── Настройки кэша ───
   const LS_KEY = 'vm_font_cache_v3';
-  const LS_TTL = 24 * 60 * 60 * 1000; // 24 часа — страховочный срок жизни
+  const LS_TTL = 60 * 60 * 1000; // 1 час — страховочный срок жизни
 
   let memoryCache = new Map();   // кэш в памяти на текущую сессию
   let persistentCache = {};      // кэш из localStorage

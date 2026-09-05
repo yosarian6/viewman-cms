@@ -127,7 +127,7 @@ return result;
         button: ['text'],
         'image-text': ['html', 'imageAlt'],
         'text-image': ['html', 'imageAlt'],
-        'image-card': ['title', 'html', 'buttonText'],
+        'image-card': ['title', 'html', 'buttonText', 'imageAlt'],
         feature: ['title', 'html'],
         callout: ['title', 'html'],
         quote: ['quote', 'author']
@@ -193,6 +193,24 @@ return result;
             } else if (block.type === 'button') {
                 tb.data = { ...(block.data || {}) };
                 tb.data.text = getTranslatedValue(`zinePagesData.${zineId}.blocks.${block.id}.text`, block.data?.text) || block.data?.text || 'Кнопка';
+            } else if (block.type === 'image') {
+                // Изображения вебзина: alt + caption переводимы через ту же систему,
+                // что и изображения блочного редактора (поля blocks.<id>.alt / .caption).
+                // link/openInNewWindow/align/URL не переводятся. block.data (путь) не трогаем.
+                const s = (block.imageSettings) ? { ...block.imageSettings } : {};
+                const tAlt = getTranslatedValue(`zinePagesData.${zineId}.blocks.${block.id}.alt`, s.alt || '');
+                const tCaption = getTranslatedValue(`zinePagesData.${zineId}.blocks.${block.id}.caption`, s.caption || '');
+                tb.imageSettings = {
+                    alt: s.alt || '',
+                    caption: s.caption || '',
+                    align: s.align || 'center',
+                    link: s.link || '',
+                    openInNewWindow: !!s.openInNewWindow
+                };
+                // Применяем перевод только если он непустой — иначе fallback на оригинал
+                // (стандартное поведение Viewman для отсутствующего перевода).
+                if (tAlt && String(tAlt).trim()) tb.imageSettings.alt = tAlt;
+                if (tCaption && String(tCaption).trim()) tb.imageSettings.caption = tCaption;
             }
             return tb;
         });
@@ -612,6 +630,18 @@ if (activeSection.classList.contains('zine-section')) {
                     // 🔥 FIX: fallback на 'Кнопка' если текст пустой
                     if (btnEl) {
                         btnEl.textContent = block.data?.text || 'Кнопка';
+                    }
+                } else if (block.type === 'image') {
+                    // Изображения вебзина: применяем переведённые alt и caption к DOM.
+                    // alt — на сам <img>; caption — на элемент подписи, если фронтенд
+                    // его рендерит (класс .zine-image-caption, как в блочном редакторе).
+                    const s = block.imageSettings || {};
+                    const imgEl = el.querySelector('img');
+                    if (imgEl && s.alt) imgEl.setAttribute('alt', s.alt);
+                    const capEl = el.querySelector('.zine-image-caption');
+                    if (capEl) {
+                        capEl.textContent = s.caption || '';
+                        capEl.style.display = s.caption ? '' : 'none';
                     }
                 }
             });

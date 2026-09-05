@@ -154,13 +154,15 @@ function validateSiteConfig(config) {
     // Site
     if (!config.site || typeof config.site !== 'object') errors.push("siteConfig.site is undefined or not an object.");
     if (config.site && typeof config.site.title !== 'string') errors.push("siteConfig.site.title must be a string.");
-    if (config.site && typeof config.site.email !== 'string') errors.push("siteConfig.site.email must be a string.");
+    // Email больше не используется на фронте и удалён из админки;
+    // проверяем тип только если поле ещё присутствует в старых конфигах.
+    if (config.site && config.site.email !== undefined && typeof config.site.email !== 'string') errors.push("siteConfig.site.email must be a string.");
     if (config.site && config.site.homepageId && typeof config.site.homepageId !== 'string') errors.push("siteConfig.site.homepageId must be a string.");
     if (config.site && typeof config.site.imageRootPath !== 'string') errors.push("siteConfig.site.imageRootPath must be a string."); // Validation for new field
     if (config.site && !['text', 'image'].includes(config.site.logoType)) errors.push("siteConfig.site.logoType must be 'text' or 'image'.");
     if (config.site && config.site.logoType === 'image' && typeof config.site.logoImagePath !== 'string') errors.push("siteConfig.site.logoImagePath must be a string if logoType is 'image'.");
     if (typeof config.site.robotsTxtGlobal !== 'string') errors.push("siteConfig.site.robotsTxtGlobal must be a string.");
-	if (typeof config.site.noaiGlobal !== 'boolean') errors.push("siteConfig.site.noaiGlobal must be a boolean.");
+        if (typeof config.site.noaiGlobal !== 'boolean') errors.push("siteConfig.site.noaiGlobal must be a boolean.");
     if (typeof config.site.protectImages !== 'boolean') errors.push("siteConfig.site.protectImages must be a boolean.");
     // NEW: Sidebar config validation
     if (config.site && config.site.sidebar && typeof config.site.sidebar !== 'object') errors.push("siteConfig.site.sidebar must be an object.");
@@ -253,7 +255,7 @@ function validateSiteConfig(config) {
             if (typeof item.hideTitle !== 'boolean') errors.push(`galleriesData[${index}].hideTitle must be a boolean.`);
             if (typeof item.hideSidebar !== 'boolean' && item.hideSidebar !== undefined) errors.push(`galleriesData[${index}].hideSidebar must be a boolean.`); // NEW VALIDATION
             if (typeof item.noindex !== 'boolean') errors.push(`galleriesData[${index}].noindex must be a boolean.`);
-			if (typeof item.noai !== 'boolean') errors.push(`galleriesData[${index}].noai must be a boolean.`);
+                        if (typeof item.noai !== 'boolean') errors.push(`galleriesData[${index}].noai must be a boolean.`);
 
             // Validation for description (NEW)
             if (item.description) {
@@ -331,7 +333,7 @@ if (item.isProjectGallery) {
             if (typeof item.hideTitle !== 'boolean') errors.push(`textPagesData[${index}].hideTitle must be a boolean.`);
             if (typeof item.hideSidebar !== 'boolean' && item.hideSidebar !== undefined) errors.push(`textPagesData[${index}].hideSidebar must be a boolean.`); // NEW VALIDATION
             if (typeof item.noindex !== 'boolean') errors.push(`textPagesData[${index}].noindex must be a boolean.`);
-			if (typeof item.noai !== 'boolean') errors.push(`textPagesData[${index}].noai must be a boolean.`);
+                        if (typeof item.noai !== 'boolean') errors.push(`textPagesData[${index}].noai must be a boolean.`);
         });
     }
 
@@ -346,8 +348,8 @@ if (item.isProjectGallery) {
     if (config.styles && config.styles.contentMaxWidthClass && typeof config.styles.contentMaxWidthClass !== 'string') errors.push("siteConfig.styles.contentMaxWidthClass must be a string.");
     
     
-	// Project Gallery overley
-	if (config.styles.projectGalleryOverlay) {
+        // Project Gallery overley
+        if (config.styles.projectGalleryOverlay) {
     const pg = config.styles.projectGalleryOverlay;
     if (typeof pg.titleFontSize !== 'string') errors.push("styles.projectGalleryOverlay.titleFontSize must be a string.");
     if (typeof pg.descriptionFontSize !== 'string') errors.push("styles.projectGalleryOverlay.descriptionFontSize must be a string.");
@@ -356,10 +358,11 @@ if (item.isProjectGallery) {
     if (typeof pg.linkColor !== 'string') errors.push("styles.projectGalleryOverlay.linkColor must be a string.");
     if (typeof pg.textColor !== 'string') errors.push("styles.projectGalleryOverlay.textColor must be a string.");
     if (typeof pg.alwaysVisibleDesktop !== 'boolean') errors.push("styles.projectGalleryOverlay.alwaysVisibleDesktop must be a boolean.");
-	}
+        }
     // Lightbox
     if (!config.lightbox || typeof config.lightbox !== 'object') errors.push("siteConfig.lightbox is undefined or not an object.");
     if (config.lightbox && typeof config.lightbox.autoFullscreenOnClick !== 'boolean') errors.push("siteConfig.lightbox.autoFullscreenOnClick must be a boolean.");
+    if (config.lightbox && config.lightbox.zoomOnImageClick !== undefined && typeof config.lightbox.zoomOnImageClick !== 'boolean') errors.push("siteConfig.lightbox.zoomOnImageClick must be a boolean.");
     if (config.lightbox && config.lightbox.lightboxThemeLight && !['light', 'dark'].includes(config.lightbox.lightboxThemeLight)) errors.push("siteConfig.lightbox.lightboxThemeLight must be 'light' or 'dark'.");
     if (config.lightbox && config.lightbox.lightboxThemeDark && !['light', 'dark'].includes(config.lightbox.lightboxThemeDark)) errors.push("siteConfig.lightbox.lightboxThemeDark must be 'light' or 'dark'.");
 
@@ -597,11 +600,10 @@ function toggleDarkMode() {
         currentBaseTheme = currentBaseThemeClass.substring(6); // 'theme-'.length = 6
     }
     // Проверка на случай, если в классе указано что-то неожиданное
-    const validBaseThemes = ['classic', 'hase', 'ocean', 'custom'];
-    if (!validBaseThemes.includes(currentBaseTheme)) {
-         console.warn(`Неизвестная базовая тема в классе body: ${currentBaseThemeClass}. Используется 'classic'.`);
-         currentBaseTheme = 'classic';
-    }
+    const validBaseThemes = Object.keys(window.siteConfig.styles?.themes || {});
+if (!validBaseThemes.includes(currentBaseTheme)) {
+    currentBaseTheme = validBaseThemes.includes('classic') ? 'classic' : validBaseThemes[0];
+}
     // --- КОНЕЦ ИСПРАВЛЕНИЯ ---
     // Применяем цвета CSS-переменных для текущей базовой темы и нового режима
     applyColors(currentBaseTheme, newIsDark);
@@ -627,14 +629,22 @@ function applyInitialThemeOnLoad() {
     // selectedTheme хранит имя базовой темы (например, 'hase'), установленной через админку или по умолчанию
     const currentBaseTheme = localStorage.getItem('selectedTheme') || configDefaultBaseTheme;
     // Убедимся, что используемая базовая тема допустима
-    const validBaseThemes = ['classic', 'hase', 'ocean', 'custom'];
-    const safeCurrentBaseTheme = validBaseThemes.includes(currentBaseTheme) ? currentBaseTheme : 'classic';
+     const validBaseThemes = Object.keys(window.siteConfig.styles?.themes || {});
+ const safeCurrentBaseTheme = validBaseThemes.includes(currentBaseTheme)
+     ? currentBaseTheme
+     : (validBaseThemes.includes('classic') ? 'classic' : validBaseThemes[0]);
 
     // --- 2. Определяем, какой цветовой режим использовать (светлый/тёмный) ---
     const savedUserMode = localStorage.getItem('theme'); // 'light' или 'dark'
     const configDefaultMode = window.siteConfig.site?.colorTheme?.default || 'light';
-    // const configManualToggle = window.siteConfig.site?.colorTheme?.manualToggle || false;
-    // manualToggle влияет на UI, но не на начальное состояние по умолчанию
+    // manualToggle управляет видимостью переключателей темы на сайте:
+    // если опция выключена в админке — все переключатели темы скрываются.
+    // Для старых конфигов без этого ключа переключатель остаётся видимым (прежнее поведение).
+    const manualToggleEnabled = window.siteConfig.site?.colorTheme?.manualToggle !== false;
+    ['darkModeToggle', 'darkModeToggleDesktopHeader', 'darkModeToggleMobile'].forEach(toggleId => {
+        const toggleEl = document.getElementById(toggleId);
+        if (toggleEl) toggleEl.style.display = manualToggleEnabled ? '' : 'none';
+    });
 
     let isDarkMode;
     if (savedUserMode) {
@@ -774,7 +784,7 @@ function validateSiteConfig(config) {
     const errors = [];
     if (config.styles) {
         // Разрешаем пользовательские темы (classic, hase, ocean, custom) вместо только light/dark
-        const validThemes = ['classic', 'hase', 'ocean', 'custom', 'light', 'dark'];
+        const validThemes = [...Object.keys(config.styles?.themes || {}), 'light', 'dark'];
         if (config.styles.defaultTheme && !validThemes.includes(config.styles.defaultTheme)) {
             errors.push(`siteConfig.styles.defaultTheme must be one of ${validThemes.join(', ')}.`);
         }
@@ -791,7 +801,10 @@ function validateSiteConfig(config) {
 
 // Function to apply colors based on theme and mode
 function applyColors(theme, isDark) {
-    const themeColors = window.siteConfig.styles.themes[theme] || window.siteConfig.styles.themes['classic']; // Fallback на classic
+const themes = window.siteConfig.styles.themes || {};
+// Фолбэк: запрашиваемая тема → classic → первая доступная
+const themeColors = themes[theme] || themes['classic'] || Object.values(themes)[0];
+if (!themeColors) return; // тем нет вообще — выходим, чтобы не упасть
     const mode = isDark ? 'dark' : 'light';
     const colors = themeColors[mode];
 // 🔥 Обновляем showcase-цвета для CSS (переменные без суффикса light/dark)
@@ -843,7 +856,8 @@ document.documentElement.style.setProperty('--showcase-active-bullet-color', col
 
 // Функция для изменения темы (например, при выборе в админке)
 function changeTheme(newTheme) {
-    document.body.classList.remove('theme-classic', 'theme-hase', 'theme-ocean', 'theme-custom');
+// Удаляем ВСЕ классы theme-* без перечисления имён
+document.body.className = document.body.className.replace(/\btheme-\S+/g, '').trim();
     document.body.classList.add(`theme-${newTheme}`);
     localStorage.setItem('selectedTheme', newTheme);
     applyColors(newTheme, document.body.classList.contains('dark-theme'));
@@ -1059,6 +1073,41 @@ function updateLightboxHash() {
     history.replaceState(null, '', newHash);
 }
 
+// ── Lightbox zoom state (глобальный, т.к. используется в displayLightboxImage и closeLightbox) ──
+const lbZoomState = {
+    scale: 1,
+    translateX: 0,
+    translateY: 0,
+    dragging: false,
+    startX: 0,
+    startY: 0,
+    lastTranslateX: 0,
+    lastTranslateY: 0,
+    hasDragged: false,
+    rect: null,
+    containerRect: null,
+    width: null,
+    height: null,
+};
+
+// Можно ли зумить изображение (реальный размер файла больше отображаемого)
+function lbCanZoom(img) {
+    if (!img || !img.naturalWidth || !img.naturalHeight) return false;
+    const scaleX = img.naturalWidth / img.offsetWidth;
+    const scaleY = img.naturalHeight / img.offsetHeight;
+    return Math.min(scaleX, scaleY) > 1.02;
+}
+
+// Зумирована ли сейчас картинка в лайтбоксе (используется, чтобы отключить
+// свайп-навигацию между изображениями, пока идёт панорамирование зума)
+function lbIsZoomed() {
+    return !!(lightboxImageContainer && lightboxImageContainer.querySelector('img.lb-zoomed'));
+}
+
+// Touch-устройство — на них зум по одиночному тапу отключён (только двойной тап),
+// чтобы не конфликтовать со свайп-навигацией и закрытием по тапу мимо картинки.
+const lbIsTouchDevice = ('ontouchstart' in window) || (navigator.maxTouchPoints > 0);
+
 /**
  * displayLightboxImage(src, alt, direction)
  * direction: 'next' | 'prev' (опционально)
@@ -1070,6 +1119,20 @@ function displayLightboxImage(src, alt, direction = 'next') {
     // КРИТИЧНО: Всегда сначала полностью очищаем контейнер от ВСЕХ изображений
     const allOldImages = lightboxImageContainer.querySelectorAll('img');
     
+    // Сбрасываем зум при переключении изображения
+    lightboxImageContainer.classList.remove('lb-zoom-active');
+    lbZoomState.scale = 1;
+    lbZoomState.translateX = 0;
+    lbZoomState.translateY = 0;
+    lbZoomState.lastTranslateX = 0;
+    lbZoomState.lastTranslateY = 0;
+    lbZoomState.dragging = false;
+    lbZoomState.hasDragged = false;
+    lbZoomState.rect = null;
+    lbZoomState.containerRect = null;
+    lbZoomState.width = null;
+    lbZoomState.height = null;
+
     if (transitionType === 'fade') {
         // Fade: просто удаляем все старые и добавляем новое
         allOldImages.forEach(img => img.remove());
@@ -1079,6 +1142,12 @@ function displayLightboxImage(src, alt, direction = 'next') {
         newImgElement.alt = alt;
         newImgElement.style.opacity = '0';
         newImgElement.className = 'visible';
+        if (window.siteConfig.lightbox.zoomOnImageClick !== false) {
+            newImgElement.onload = () => {
+                if (lbCanZoom(newImgElement)) newImgElement.classList.add('lb-zoom-cursor');
+            };
+            if (newImgElement.complete && newImgElement.naturalWidth) newImgElement.onload();
+        }
         
         lightboxImageContainer.appendChild(newImgElement);
         
@@ -1106,6 +1175,12 @@ function displayLightboxImage(src, alt, direction = 'next') {
         firstImg.src = src;
         firstImg.alt = alt;
         firstImg.className = 'slide-active';
+        if (window.siteConfig.lightbox.zoomOnImageClick !== false) {
+            firstImg.onload = () => {
+                if (lbCanZoom(firstImg)) firstImg.classList.add('lb-zoom-cursor');
+            };
+            if (firstImg.complete && firstImg.naturalWidth) firstImg.onload();
+        }
         
         // УБЕДИТЕСЬ, что начальные стили правильные
         firstImg.style.transform = 'translateX(0)';
@@ -1132,6 +1207,16 @@ function displayLightboxImage(src, alt, direction = 'next') {
     const nextImg = document.createElement('img');
     nextImg.src = src;
     nextImg.alt = alt;
+    if (window.siteConfig.lightbox.zoomOnImageClick !== false) {
+        const nextImgZoomCheck = () => {
+            if (lbCanZoom(nextImg)) nextImg.classList.add('lb-zoom-cursor');
+        };
+        if (nextImg.complete && nextImg.naturalWidth) {
+            nextImgZoomCheck();
+        } else {
+            nextImg.addEventListener('load', nextImgZoomCheck);
+        }
+    }
     
     lightboxImageContainer.appendChild(nextImg);
     
@@ -1222,7 +1307,7 @@ function getSortedZineImages(section) {
  * @param {HTMLElement} [originalImgElement=null] The original <img> element that was clicked.
  */
 function openLightbox(src, altText = "Lightbox image", originalImgElement = null, index = null) {
-	lightboxOpenedFromCarousel = false;
+        lightboxOpenedFromCarousel = false;
     console.log("openLightbox called with src:", src, "alt:", altText, "originalImgElement:", originalImgElement, "index:", index);
     
     sidebarStateBeforeLightbox = {
@@ -1285,8 +1370,16 @@ function openLightbox(src, altText = "Lightbox image", originalImgElement = null
 
             imgElement.onload = () => {
                 const transitionType = getLightboxTransition();
-                imgElement.className = (transitionType === 'slide') ? 'slide-active' : 'visible';
-                
+                // Гарантируем, что браузер зафиксировал начальное состояние (opacity:0)
+                // до переключения класса — иначе переход может "проскочить" без анимации.
+                requestAnimationFrame(() => {
+                    requestAnimationFrame(() => {
+                        imgElement.className = (transitionType === 'slide') ? 'slide-active' : 'visible';
+                    });
+                });
+                if (window.siteConfig.lightbox.zoomOnImageClick !== false && lbCanZoom(imgElement)) {
+                    imgElement.classList.add('lb-zoom-cursor');
+                }
                 if (window.siteConfig.lightbox.autoFullscreenOnClick) {
                     toggleFullscreen(); 
                 } else {
@@ -1382,7 +1475,7 @@ function openLightbox(src, altText = "Lightbox image", originalImgElement = null
         }
         // Case 2: carousel
         else if (containingSection.classList.contains('single-image-carousel-parent')) {
-			lightboxOpenedFromCarousel = true;
+                        lightboxOpenedFromCarousel = true;
             allVisibleImages = carouselImagesData.map(img => ({ src: img.loadedSrc, alt: img.alt }));
             
             if (typeof index === "number" && index >= 0 && index < allVisibleImages.length) {
@@ -1472,8 +1565,16 @@ function openLightbox(src, altText = "Lightbox image", originalImgElement = null
 
     imgElement.onload = () => {
         const transitionType = getLightboxTransition();
-        imgElement.className = (transitionType === 'slide') ? 'slide-active' : 'visible';
-        
+        // Гарантируем, что браузер зафиксировал начальное состояние (opacity:0)
+        // до переключения класса — иначе переход может "проскочить" без анимации.
+        requestAnimationFrame(() => {
+            requestAnimationFrame(() => {
+                imgElement.className = (transitionType === 'slide') ? 'slide-active' : 'visible';
+            });
+        });
+        if (window.siteConfig.lightbox.zoomOnImageClick !== false && lbCanZoom(imgElement)) {
+            imgElement.classList.add('lb-zoom-cursor');
+        }
         if (window.siteConfig.lightbox.autoFullscreenOnClick) {
             toggleFullscreen(); 
         } else {
@@ -1503,20 +1604,67 @@ function openLightbox(src, altText = "Lightbox image", originalImgElement = null
  * Closes the lightbox.
  */
 function closeLightbox() {
-	// Сброс обработчика клика для showcase
+        // Сброс обработчика клика для showcase
 if (activeShowcaseGallery && showcaseClickHandler) {
     activeShowcaseGallery.removeEventListener('click', showcaseClickHandler);
     showcaseClickHandler = null;
 }
-    // Немедленно разрешаем прокрутку
-    document.body.style.overflow = 'auto';
 
-    // Сбрасываем все inline-стили у изображений
+    // ИСПРАВЛЕНИЕ (устранение мигания): синхронизируем карусель с тем, что было
+    // пролистано в лайтбоксе, ПОКА лайтбокс ещё полностью непрозрачен (до начала
+    // fade-out анимации). Раньше это делалось внутри setTimeout(…, 500) НИЖЕ —
+    // то есть уже во время анимации закрытия, из-за чего пользователь на 500мс
+    // видел старую (исходную) картинку карусели, и лишь потом — правильную.
+    if (lightboxOpenedFromCarousel && activeCarouselGallery) {
+        const newCarouselIndex = currentImageIndex;
+        const oldCarouselIndex = carouselCurrentIndex;
+        if (newCarouselIndex >= 0 && newCarouselIndex < carouselImagesData.length) {
+            carouselCurrentIndex = newCarouselIndex;
+            // Перезагружаем картинку ТОЛЬКО если индекс изменился (пользователь
+            // листал в лайтбоксе). Если тот же — картинка уже показана.
+            if (newCarouselIndex !== oldCarouselIndex) {
+                _loadSingleCarouselImage(carouselImagesData[carouselCurrentIndex]);
+            }
+            const section = activeCarouselGallery.closest('.content-section');
+            if (section && section.id && !isPopstateNavigation) {
+                history.replaceState(null, '', `#${section.id}/carousel-${carouselCurrentIndex + 1}`);
+            }
+        }
+    }
+
+    // Прокрутку страницы возвращаем ПОСЛЕ завершения fade-out (см. setTimeout ниже),
+    // иначе контент под лайтбоксом может дёрнуться (появление скроллбара/reflow)
+    // прямо во время анимации закрытия — это и вызывало ощущение "рывка".
+
+    // Сбрасываем зум
+    lightboxImageContainer.classList.remove('lb-zoom-active');
+    lbZoomState.scale = 1;
+    lbZoomState.translateX = 0;
+    lbZoomState.translateY = 0;
+    lbZoomState.lastTranslateX = 0;
+    lbZoomState.lastTranslateY = 0;
+    lbZoomState.dragging = false;
+    lbZoomState.hasDragged = false;
+    lbZoomState.rect = null;
+    lbZoomState.containerRect = null;
+    lbZoomState.width = null;
+    lbZoomState.height = null;
+
+    // Сбрасываем все inline-стили у изображений и запускаем обратную анимацию
+    // (fade+scale назад к скрытому состоянию), синхронно с затуханием фона —
+    // без этого картинка просто "проваливалась" вместе с фоном без своей анимации.
     const allLightboxImages = lightboxImageContainer.querySelectorAll('img');
     allLightboxImages.forEach(img => {
         img.style.transform = '';
         img.style.opacity = '';
         img.style.transition = '';
+        img.style.cursor = '';
+        img.style.transformOrigin = '';
+        img.style.width = '';
+        img.style.height = '';
+        img.style.maxWidth = '';
+        img.style.maxHeight = '';
+        img.classList.remove('lb-zoomed', 'lb-zoom-cursor', 'visible', 'slide-active', 'slide-next', 'slide-prev');
     });
 
     lightbox.classList.remove('active'); // Начинаем анимацию закрытия
@@ -1530,6 +1678,7 @@ if (activeShowcaseGallery && showcaseClickHandler) {
     // Ждём завершения анимации
     setTimeout(() => {
         lightboxImageContainer.innerHTML = '';
+        document.body.style.overflow = 'auto'; // возвращаем прокрутку только сейчас, когда лайтбокс уже невидим
 
         // --- ВОССТАНОВЛЕНИЕ состояния сайдбара ---
         if (window.innerWidth > 768) { // Только для десктопа
@@ -1555,25 +1704,10 @@ if (activeShowcaseGallery && showcaseClickHandler) {
             }
         }
 
-        // --- Синхронизация с контентом ---
-              if (lightboxOpenedFromCarousel && activeCarouselGallery) {
-          const newCarouselIndex = currentImageIndex;
-          const oldCarouselIndex = carouselCurrentIndex; // Сохраняем старый индекс ДО обновления
-          if (newCarouselIndex >= 0 && newCarouselIndex < carouselImagesData.length) {
-              carouselCurrentIndex = newCarouselIndex;
-              // Перезагружаем картинку ТОЛЬКО если индекс изменился
-              // (пользователь листал в лайтбоксе). Если тот же — картинка
-              // уже показана, и перезагрузка вызвала бы двойное мигание.
-              if (newCarouselIndex !== oldCarouselIndex) {
-                  _loadSingleCarouselImage(carouselImagesData[carouselCurrentIndex]);
-              }
-              const section = activeCarouselGallery.closest('.content-section');
-              if (section && section.id && !isPopstateNavigation) {
-                  history.replaceState(null, '', `#${section.id}/carousel-${carouselCurrentIndex + 1}`);
-              }
-          }
-      }
-        else if (isGalleryContext && allVisibleImages[currentImageIndex]) {
+        // --- Синхронизация с контентом (обычная галерея: скролл к нужному тумбнейлу) ---
+        // Синхронизация карусели теперь выполняется выше, ДО начала fade-анимации,
+        // чтобы не было мигания старой картинки — см. начало функции closeLightbox().
+        if (!lightboxOpenedFromCarousel && isGalleryContext && allVisibleImages[currentImageIndex]) {
             const thumb = allVisibleImages[currentImageIndex].img;
             if (thumb) {
                 const section = thumb.closest('.content-section');
@@ -2787,7 +2921,7 @@ containerElement.addEventListener('click', showcaseClickHandler);
             imgElement.alt = `Image ${i}`;
             imgElement.className = `wp-image-${i} notPhotoset`;
             imgElement.loading = (i <= 2) ? 'eager' : 'lazy'; 
-			imgElement.fetchPriority = (i <= 2) ? 'high' : 'low'; 
+                        imgElement.fetchPriority = (i <= 2) ? 'high' : 'low'; 
             imgElement.src = 'data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=';
 
             const potentialUrls = generatePotentialUrls(imgNumber, imgNumberPadded);
@@ -2937,7 +3071,7 @@ function hasVisibleHeader(contentId) {
 
 // --- Content Switching Logic (galleries/pages) ---
 // --- Content Switching Logic (galleries/pages/zines) ---
-async function showContent(contentId, imageIndex = -1) {
+async function showContent(contentId, imageIndex = -1, mode = null) {
     // Сброс прокрутки
     body.style.overflow = 'auto';
 
@@ -3141,6 +3275,18 @@ const currentContentHasHeader = hasVisibleHeader(contentId);
             await _loadSingleCarouselImage(carouselImagesData[carouselCurrentIndex]);
                 updateCarouselHeight();
                 if (currentCarouselConfig.autoPlay) startCarouselAutoplay();
+
+                // Если хеш явно указывал режим "lightbox" (#id/lightbox-N), открываем лайтбокс
+                // поверх карусели ПРЯМО СЕЙЧАС. Src/alt намеренно НЕ передаём (undefined) —
+                // openLightbox сам возьмёт нужный кадр по индексу из carouselImagesData,
+                // это надёжнее, чем читать .src у DOM-элемента, которое может быть ещё не
+                // синхронизировано в момент вызова.
+                if (mode === 'lightbox') {
+                    const carouselImgEl = activeCarouselGallery?.querySelector('#carouselImage img');
+                    if (carouselImgEl) {
+                        openLightbox(undefined, undefined, carouselImgEl, carouselCurrentIndex);
+                    }
+                }
 
                 if (activeCarouselGallery) {
                     activeCarouselGallery.addEventListener('touchstart', handleTouchStart, { passive: false });
@@ -3355,11 +3501,13 @@ if (currentShowcaseConfig.autoPlay) startShowcaseAutoplay();
         const targetSection = document.getElementById(contentId);
         if (!targetSection) return Promise.resolve();
 
-             // CASE 1: Carousel и Showcase уже обработаны выше через imageIndex
-     // Оставляем только лайтбокс и текстовые галереи
-     if (targetSection.classList.contains('single-image-carousel-parent') || 
+             // CASE 1: Carousel и Showcase — позиция слайда уже применена выше через imageIndex,
+     // и если mode === 'lightbox', лайтбокс для карусели уже открыт там же (см. блок
+     // загрузки карусели выше) — сразу после того, как нужный кадр гарантированно загрузился.
+     // Здесь дополнительных действий не требуется.
+     if (targetSection.classList.contains('single-image-carousel-parent') ||
          targetSection.classList.contains('showcase-gallery-parent')) {
-         // Ничего не делаем — индекс уже применён при первичной загрузке
+         // Ничего не делаем
      }
         // CASE 3: Zine Section
 else if (targetSection.classList.contains('zine-section')) {
@@ -3846,24 +3994,68 @@ function renderZine(section, data) {
         if (block.type === 'image') {
             const imgContainer = document.createElement('div');
             imgContainer.className = 'zine-image-container';
-            
+
+            // === Настройки изображения в вебзине (Desktop-only feature) ===
+            // block.imageSettings — опциональный объект (старые блоки без него рендерятся как раньше).
+            // Поля: alt, caption, align, link, openInNewWindow — соответствуют модели image-блока
+            // блочного редактора. Переводы alt/caption применяются i18n.js (патчит img alt и .zine-image-caption).
+            const imgSettings = block.imageSettings || null;
+            const sAlt = (imgSettings && imgSettings.alt) || block.alt || '';
+            const sCaption = (imgSettings && imgSettings.caption) || '';
+            const sAlign = (imgSettings && imgSettings.align) || 'center';
+            const sLink = (imgSettings && imgSettings.link) || '';
+            const sOpenInNewWindow = !!(imgSettings && imgSettings.openInNewWindow);
+
+            // Выравнивание контейнера (left/center/right) — та же модель, что в блочном редакторе.
+            imgContainer.classList.add('zine-image-align-' + sAlign);
+            imgContainer.style.textAlign = sAlign;
+
             const img = document.createElement('img');
             const imgSrc = block.data || block.url || '';
             img.src = imgSrc;
-            img.alt = block.alt || '';
-            img.loading = "lazy"; 
+            img.alt = sAlt;
+            img.loading = "lazy";
 
-            img.style.cursor = 'pointer';
-            img.onclick = (e) => {
-                e.stopPropagation();
-                if (typeof openLightbox === 'function') {
-                    openLightbox(img.src, img.alt, img);
+            // Если задана ссылка — оборачиваем img в <a>, lightbox НЕ открываем (ссылка имеет приоритет).
+            // Старые блоки без link → lightbox по клику, как раньше.
+            if (sLink) {
+                const a = document.createElement('a');
+                a.href = sLink;
+                if (sOpenInNewWindow) {
+                    a.target = '_blank';
+                    a.rel = 'noopener noreferrer';
                 }
-            };
-            
-            imgContainer.appendChild(img);
+                // Внутренние ссылки (#page-id) открываются в том же окне через showContent.
+                if (sLink.charAt(0) === '#' && typeof window.showContent === 'function') {
+                    a.addEventListener('click', function (ev) {
+                        ev.preventDefault();
+                        window.showContent(sLink.substring(1), -1);
+                    });
+                }
+                a.appendChild(img);
+                imgContainer.appendChild(a);
+            } else {
+                img.style.cursor = 'pointer';
+                img.onclick = (e) => {
+                    e.stopPropagation();
+                    if (typeof openLightbox === 'function') {
+                        openLightbox(img.src, img.alt, img);
+                    }
+                };
+                imgContainer.appendChild(img);
+            }
+
+            // Видимое описание/подпись (caption) — отображается под изображением.
+            // i18n.js патчит содержимое .zine-image-caption при смене языка.
+            if (sCaption) {
+                const figcaption = document.createElement('figcaption');
+                figcaption.className = 'zine-image-caption';
+                figcaption.textContent = sCaption;
+                imgContainer.appendChild(figcaption);
+            }
+
             el.appendChild(imgContainer);
-        } 
+        }
         // 🔥 ИСПРАВЛЕНО: ТЕКСТОВЫЙ БЛОК С ПРЯМОЙ УСТАНОВКОЙ FONT-SIZE
 else if (block.type === 'text') {
     const textWrapper = document.createElement('div');
@@ -3913,49 +4105,115 @@ else if (block.type === 'text') {
             el.appendChild(paraWrapper);
         }
         
-        // 🔥 КНОПКА — используем CSS-переменные темы сайта
-        else if (block.type === 'button') {
-            const data = block.data || {};
-            const wrapper = document.createElement('div');
-            wrapper.className = 'zine-button-wrapper';
-            wrapper.style.width = '100%';
-            wrapper.style.height = '100%';
-            wrapper.style.display = 'flex';
-            wrapper.style.alignItems = 'center';
-            wrapper.style.justifyContent = 'center';
-
-            const a = document.createElement('a');
-            a.className = data.style || 'button';
-            a.textContent = data.text || 'Кнопка';
-
-            if (data.url) {
-                a.href = data.url;
-                // Внутренние ссылки (#page-id) — навигация через showContent
-                if (data.url.startsWith('#')) {
-                    a.addEventListener('click', (e) => {
-                        e.preventDefault();
-                        const targetId = data.url.substring(1);
-                        if (typeof showContent === 'function') showContent(targetId);
-                    });
-                } else {
-                    // Внешние ссылки
-                    if (data.target === '_blank') {
-                        a.target = '_blank';
-                        a.rel = 'noopener noreferrer';
-                    }
-                }
+            // 🔥 КНОПКА
+    else if (block.type === 'button') {
+        const data = block.data || {};
+        const wrapper = document.createElement('div');
+        wrapper.className = 'zine-button-wrapper';
+        wrapper.style.width = '100%';
+        wrapper.style.height = '100%';
+        wrapper.style.display = 'flex';
+        wrapper.style.alignItems = 'center';
+        wrapper.style.justifyContent = 'center';
+        const a = document.createElement('a');
+        a.className = data.style || 'button';
+        a.textContent = data.text || 'Кнопка';
+        if (data.url) {
+            a.href = data.url;
+            if (data.url.startsWith('#')) {
+                a.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const targetId = data.url.substring(1);
+                    if (typeof showContent === 'function') showContent(targetId);
+                });
             } else {
-                a.href = '#';
-                a.addEventListener('click', e => e.preventDefault());
+                if (data.target === '_blank') {
+                    a.target = '_blank';
+                    a.rel = 'noopener noreferrer';
+                }
             }
-
-            wrapper.appendChild(a);
-            el.appendChild(wrapper);
-            el.classList.add('zine-block-button');
+        } else {
+            a.href = '#';
+            a.addEventListener('click', e => e.preventDefault());
+        }
+        wrapper.appendChild(a);
+        el.appendChild(wrapper);
+        el.classList.add('zine-block-button');
+    }
+    
+    // 🔥 НОВОЕ: ВИДЕО (добавьте этот блок сразу после кнопки)
+    else if (block.type === 'video') {
+        const wrapper = document.createElement('div');
+        wrapper.className = 'zine-video-wrapper';
+        wrapper.style.width = '100%';
+        wrapper.style.height = '100%';
+        wrapper.style.overflow = 'hidden';
+        
+        const d = block.data || {};
+        let videoHtml = '';
+        
+        if (d.source === 'youtube' && d.videoId) {
+            const ytParams = [];
+            if (d.autoplay) ytParams.push('autoplay=1', 'mute=1');
+            if (d.loop) ytParams.push('loop=1', 'playlist=' + encodeURIComponent(d.videoId));
+            const ytQuery = ytParams.length ? '?' + ytParams.join('&') : '';
+            videoHtml = `<iframe src="https://www.youtube.com/embed/${d.videoId}${ytQuery}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen referrerpolicy="strict-origin-when-cross-origin" style="width:100%;height:100%;border:0;"></iframe>`;
+        } else if (d.source === 'vimeo' && d.videoId) {
+            const vParams = [];
+            if (d.autoplay) vParams.push('autoplay=1', 'muted=1');
+            if (d.loop) vParams.push('loop=1');
+            const vQuery = vParams.length ? '?' + vParams.join('&') : '';
+            videoHtml = `<iframe src="https://player.vimeo.com/video/${d.videoId}${vQuery}" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen referrerpolicy="strict-origin-when-cross-origin" style="width:100%;height:100%;border:0;"></iframe>`;
+        } else if (d.source === 'peertube' && d.peertubeHost && d.videoId) {
+            let host = String(d.peertubeHost).replace(/\/+$/, '');
+            if (!/^https?:\/\//i.test(host)) host = 'https://' + host;
+            const ptParams = [];
+            if (d.autoplay) ptParams.push('autoplay=1', 'muted=1');
+            if (d.loop) ptParams.push('loop=1');
+            const ptQuery = ptParams.length ? '?' + ptParams.join('&') : '';
+            videoHtml = `<iframe src="${host}/videos/embed/${d.videoId}${ptQuery}" frameborder="0" allowfullscreen sandbox="allow-same-origin allow-scripts allow-popups allow-forms" style="width:100%;height:100%;border:0;"></iframe>`;
+        } else if (d.source === 'url' && d.directUrl) {
+            // См. пояснение в admin.js: ссылка могла быть сохранена ещё до того,
+            // как детектор научился понимать /shorts/ и т.п. — на лету подставляем
+            // настоящий embed-адрес, если это на самом деле youtube/vimeo/peertube.
+            const ytMatch = d.directUrl.match(/(?:youtube\.com\/(?:watch\?v=|shorts\/)|youtu\.be\/)([a-zA-Z0-9_-]{6,})/);
+            const vimMatch = !ytMatch && d.directUrl.match(/vimeo\.com\/(\d+)/);
+            const ptMatch = !ytMatch && !vimMatch && d.directUrl.match(/^(https?:\/\/[^\/]+)\/(?:videos\/watch|w)\/([a-zA-Z0-9_-]+)/);
+            if (ytMatch) {
+                videoHtml = `<iframe src="https://www.youtube.com/embed/${ytMatch[1]}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen referrerpolicy="strict-origin-when-cross-origin" style="width:100%;height:100%;border:0;"></iframe>`;
+            } else if (vimMatch) {
+                videoHtml = `<iframe src="https://player.vimeo.com/video/${vimMatch[1]}" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen referrerpolicy="strict-origin-when-cross-origin" style="width:100%;height:100%;border:0;"></iframe>`;
+            } else if (ptMatch) {
+                videoHtml = `<iframe src="${ptMatch[1]}/videos/embed/${ptMatch[2]}" frameborder="0" allowfullscreen sandbox="allow-same-origin allow-scripts allow-popups allow-forms" style="width:100%;height:100%;border:0;"></iframe>`;
+            } else {
+                videoHtml = `<iframe src="${d.directUrl}" frameborder="0" allowfullscreen style="width:100%;height:100%;border:0;"></iframe>`;
+            }
+        } else if (d.source === 'local' && d.localSrc) {
+            const attrs = [];
+            if (d.controls) attrs.push('controls');
+            if (d.autoplay) attrs.push('autoplay');
+            // Браузеры блокируют autoplay со звуком — без muted атрибут autoplay
+            // просто молча игнорируется, поэтому форсируем muted, как и в
+            // блочном редакторе (см. block-renderer.js buildVideoEmbed).
+            if (d.muted || d.autoplay) attrs.push('muted');
+            if (d.loop) attrs.push('loop');
+            if (d.playsinline) attrs.push('playsinline');
+            if (d.poster) attrs.push(`poster="${d.poster}"`);
+            // ВАЖНО: на фронте pointer-events должен быть auto (по умолчанию), 
+            // чтобы пользователь мог кликнуть Play, включить звук и т.д.
+            videoHtml = `<video src="${d.localSrc}" ${attrs.join(' ')} style="width:100%;height:100%;object-fit:cover;"></video>`;
+        } else {
+            videoHtml = `<div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;background:#f0f0f0;color:#666;font-size:14px;">Видео не настроено</div>`;
         }
         
-        container.appendChild(el);
-    });
+        wrapper.innerHTML = videoHtml;
+        el.appendChild(wrapper);
+        el.classList.add('zine-block-video');
+    }
+    // 🔥 КОНЕЦ БЛОКА ВИДЕО
+
+    container.appendChild(el);
+});
     
     // 🔥 КРИТИЧНО: После рендера всех блоков — рассчитываем фактический масштаб
     // 🔥 ИСПРАВЛЕНО: Ждём реального layout перед расчётом шрифта
@@ -4127,6 +4385,7 @@ function handleCarouselWheel(event) {
 
 // --- NEW: Обработчики событий свайпов для сенсорных устройств ---
 function handleTouchStart(e) {
+    if (lbIsZoomed()) return; // во время зума свайп-навигация отключена — работает панорамирование
     touchStartX = e.touches[0].clientX;
     touchStartY = e.touches[0].clientY;
     touchEndX = 0;
@@ -4134,11 +4393,13 @@ function handleTouchStart(e) {
 }
 
 function handleTouchMove(e) {
+    if (lbIsZoomed()) return;
     touchEndX = e.touches[0].clientX;
     touchEndY = e.touches[0].clientY;
 }
 
 function handleTouchEndLightbox() {
+    if (lbIsZoomed()) return;
     if (touchStartX === 0 || touchStartY === 0) {
         touchStartX = 0;
         touchStartY = 0;
@@ -4220,7 +4481,7 @@ function handleTouchEndShowcase() {
 
 
 document.addEventListener('DOMContentLoaded', () => {
-	
+        
     // Получение элементов DOM внутри DOMContentLoaded
     body = document.body;
     lightbox = document.getElementById('lightbox');
@@ -4293,7 +4554,41 @@ if (!window.siteConfig?.i18n?.enabled) {
     } else {
         console.error('Desktop menu toggle (menuToggleDesktop) or navigation element (mainNav) not found!');
     }
-    
+
+    // =========================================================================
+    // FIX 1 — Close the slide-out menu when clicking OUTSIDE of it.
+    //
+    // Applies to BOTH:
+    //   • desktop "sidebar-hidden" mode (slide-out sidebar)  -> width > 768
+    //   • mobile mode                                        -> width <= 768
+    //
+    // We attach a single `pointerdown` listener to `document`. When the menu
+    // is open and the pointer goes down somewhere that is NOT inside the menu
+    // (#mainNav) and NOT on either hamburger toggle button, the menu closes
+    // and body scroll is restored. `pointerdown` fires before `click`, so we
+    // close before any inner action can be triggered.
+    // =========================================================================
+    const _vmMenuToggles = [menuToggleMobile, menuToggleDesktop].filter(Boolean);
+    document.addEventListener('pointerdown', (e) => {
+        if (!mainNav || !mainNav.classList.contains('active')) return;
+        const target = e.target;
+        // ignore clicks that start inside the menu
+        if (mainNav.contains(target)) return;
+        // ignore clicks on the hamburger toggle(s) themselves (they toggle on their own)
+        if (_vmMenuToggles.some((btn) => btn.contains(target))) return;
+        // otherwise: this is a click "on the body" -> close the menu
+        mainNav.classList.remove('active');
+        body.style.overflow = 'auto';
+    });
+
+    // Close on Escape as well (a11y nicety, free win).
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && mainNav && mainNav.classList.contains('active')) {
+            mainNav.classList.remove('active');
+            body.style.overflow = 'auto';
+        }
+    });
+    // =========================================================================
 
 
     const validationErrors = validateSiteConfig(window.siteConfig);
@@ -4880,6 +5175,283 @@ if (!initialContentId) {
 
     
 
+    // ── Lightbox zoom helpers ──────────────────────────────────────────────
+
+    function lbApplyTransform(img) {
+        // ВАЖНО: базовое центрирование картинки в лайтбоксе задаётся через
+        // CSS transform: translate(-50%, -50%) (position:absolute; left/top:50%).
+        // Его нужно сохранить как базу, иначе картинка "улетает" в угол контейнера.
+        // Масштаб теперь НЕ через scale() — см. lbZoomIn: вместо CSS-скейла реально
+        // меняются width/height картинки, иначе браузер растягивает уже отрисованный
+        // по дисплей-размеру растровый слой и картинка выглядит размытой.
+        img.style.transform = `translate(-50%, -50%) translate(${lbZoomState.translateX}px, ${lbZoomState.translateY}px)`;
+    }
+
+    function lbZoomIn(img, event) {
+        // Прямоугольники ДО увеличения (текущее отображение)
+        const rect = img.getBoundingClientRect();
+        const containerRect = lightboxImageContainer.getBoundingClientRect();
+
+        // Относительная точка клика внутри текущей (маленькой) картинки — 0..1
+        const relX = (event.clientX - rect.left) / rect.width;
+        const relY = (event.clientY - rect.top) / rect.height;
+
+        // Целевой размер — РЕАЛЬНОЕ разрешение файла (не CSS-скейл!),
+        // чтобы браузер перерисовал картинку в истинном разрешении без размытия.
+        const targetWidth = img.naturalWidth;
+        const targetHeight = img.naturalHeight;
+
+        // Шаг 1: явно фиксируем ТЕКУЩИЙ (маленький) размер инлайн-стилем,
+        // чтобы браузеру было от чего анимировать переход (иначе transition
+        // может "проскочить" без анимации, т.к. до этого размер задавался
+        // неявно через max-width/max-height, а не свойством width/height).
+        img.style.transition = 'none';
+        img.style.maxWidth = 'none';
+        img.style.maxHeight = 'none';
+        img.style.width = rect.width + 'px';
+        img.style.height = rect.height + 'px';
+        img.style.transformOrigin = '0 0';
+        lbZoomState.scale = 1; // масштаб больше не используется (реальный resize вместо transform:scale)
+        lbZoomState.translateX = 0;
+        lbZoomState.translateY = 0;
+        lbApplyTransform(img);
+        void img.offsetWidth; // форсируем reflow — фиксируем стартовое состояние перед анимацией
+
+        // Центр контейнера — именно туда картинка "центрируется" через translate(-50%,-50%)
+        const containerCenterX = containerRect.left + containerRect.width / 2;
+        const containerCenterY = containerRect.top + containerRect.height / 2;
+        const baseLeft = containerCenterX - targetWidth / 2; // позиция картинки БЕЗ доп. translate
+        const baseTop = containerCenterY - targetHeight / 2;
+
+        // translate нужен, чтобы точка клика (та же относительная позиция relX/relY
+        // внутри уже большой картинки) осталась под курсором после увеличения.
+        const translateX = event.clientX - baseLeft - relX * targetWidth;
+        const translateY = event.clientY - baseTop - relY * targetHeight;
+
+        lbZoomState.rect = rect; // пригодится для анимации обратно при zoom-out
+        lbZoomState.width = targetWidth;
+        lbZoomState.height = targetHeight;
+        lbZoomState.containerRect = containerRect;
+
+        const clamped = lbClampTranslate(translateX, translateY);
+        lbZoomState.translateX = clamped.x;
+        lbZoomState.translateY = clamped.y;
+        lbZoomState.lastTranslateX = clamped.x;
+        lbZoomState.lastTranslateY = clamped.y;
+
+        img.style.transition = 'transform 0.3s ease, width 0.3s ease, height 0.3s ease';
+        img.style.width = targetWidth + 'px';
+        img.style.height = targetHeight + 'px';
+        img.style.cursor = ''; // сбрасываем возможный inline-курсор от прошлого drag — CSS класс отдаст zoom-out
+        lbApplyTransform(img);
+
+        img.classList.add('lb-zoomed');
+        img.classList.remove('lb-zoom-cursor');
+        lightboxImageContainer.classList.add('lb-zoom-active');
+    }
+
+    // Ограничивает translate так, чтобы увеличенная картинка не "убегала" за пределы контейнера
+    function lbClampTranslate(tx, ty) {
+        const { width, height, containerRect } = lbZoomState;
+        if (!width || !height || !containerRect) return { x: tx, y: ty };
+
+        const containerCenterX = containerRect.left + containerRect.width / 2;
+        const containerCenterY = containerRect.top + containerRect.height / 2;
+        const baseLeft = containerCenterX - width / 2; // позиция картинки без доп. translate
+        const baseTop = containerCenterY - height / 2;
+
+        let minX, maxX, minY, maxY;
+
+        if (width <= containerRect.width) {
+            minX = maxX = 0; // картинка уже вписывается по ширине — панорамирование по X не нужно
+        } else {
+            maxX = containerRect.left - baseLeft; // левый край не заходит правее левой границы контейнера
+            minX = containerRect.right - baseLeft - width; // правый край не заходит левее правой границы
+        }
+
+        if (height <= containerRect.height) {
+            minY = maxY = 0;
+        } else {
+            maxY = containerRect.top - baseTop;
+            minY = containerRect.bottom - baseTop - height;
+        }
+
+        return {
+            x: Math.min(Math.max(tx, minX), maxX),
+            y: Math.min(Math.max(ty, minY), maxY),
+        };
+    }
+
+    function lbZoomReset(img) {
+        const startRect = lbZoomState.rect; // размер ДО зума — именно к нему анимируем обратно
+
+        lbZoomState.scale = 1;
+        lbZoomState.translateX = 0;
+        lbZoomState.translateY = 0;
+        lbZoomState.lastTranslateX = 0;
+        lbZoomState.lastTranslateY = 0;
+        lbZoomState.dragging = false;
+        lbZoomState.hasDragged = false;
+        lbZoomState.width = null;
+        lbZoomState.height = null;
+        lbZoomState.rect = null;
+        lbZoomState.containerRect = null;
+
+        // ВАЖНО: transform-origin держим неизменным ('0 0'), а max-width/max-height
+        // остаются отключены (none) до самого конца анимации — иначе браузер обрежет
+        // картинку обратно раньше времени и переход "прыгнет", а не проанимируется.
+        img.style.transition = 'transform 0.3s ease, width 0.3s ease, height 0.3s ease';
+        img.style.transformOrigin = '0 0';
+        lbApplyTransform(img); // translate уже сброшен в 0/0 выше — анимирует плавно к исходной позиции
+        if (startRect) {
+            img.style.width = startRect.width + 'px';
+            img.style.height = startRect.height + 'px';
+        }
+        img.style.cursor = ''; // сбрасываем inline-курсор — CSS класс .lb-zoom-cursor отдаст zoom-in
+        img.classList.remove('lb-zoomed');
+        img.classList.add('lb-zoom-cursor');
+        lightboxImageContainer.classList.remove('lb-zoom-active');
+
+        // Финальные значения (translate(-50%,-50%) без сдвига, исходный width/height)
+        // уже идентичны тому, что задаст CSS (max-width:90%/max-height:90vh), поэтому
+        // очистка инлайн-стилей после завершения анимации проходит без скачка.
+        const cleanupZoomOutStyles = () => {
+            img.style.transform = '';
+            img.style.transformOrigin = '';
+            img.style.width = '';
+            img.style.height = '';
+            img.style.maxWidth = '';
+            img.style.maxHeight = '';
+            img.removeEventListener('transitionend', cleanupZoomOutStyles);
+        };
+        img.addEventListener('transitionend', cleanupZoomOutStyles);
+        setTimeout(cleanupZoomOutStyles, 350); // подстраховка, если transitionend не сработает
+    }
+
+    // Drag (pan) для зумированного изображения
+    function lbGetEventXY(e) {
+        if (e.touches && e.touches.length > 0) {
+            return { x: e.touches[0].clientX, y: e.touches[0].clientY };
+        }
+        return { x: e.clientX, y: e.clientY };
+    }
+
+    function lbOnDragStart(e) {
+        const img = lightboxImageContainer.querySelector('img.lb-zoomed');
+        if (!img) return;
+        e.preventDefault();
+        e.stopImmediatePropagation(); // блокируем свайп-навигацию, висящую на тех же событиях
+        const { x, y } = lbGetEventXY(e);
+        lbZoomState.dragging = true;
+        lbZoomState.hasDragged = false;
+        lbZoomState.startX = x;
+        lbZoomState.startY = y;
+        img.style.transition = 'none';
+        img.style.cursor = 'grabbing';
+    }
+
+    function lbOnDragMove(e) {
+        if (!lbZoomState.dragging) return;
+        e.preventDefault();
+        e.stopImmediatePropagation();
+        const img = lightboxImageContainer.querySelector('img.lb-zoomed');
+        if (!img) return;
+        const { x, y } = lbGetEventXY(e);
+        const dx = x - lbZoomState.startX;
+        const dy = y - lbZoomState.startY;
+        if (Math.abs(dx) > 3 || Math.abs(dy) > 3) lbZoomState.hasDragged = true;
+        const rawX = lbZoomState.lastTranslateX + dx;
+        const rawY = lbZoomState.lastTranslateY + dy;
+        const clamped = lbClampTranslate(rawX, rawY);
+        lbZoomState.translateX = clamped.x;
+        lbZoomState.translateY = clamped.y;
+        lbApplyTransform(img);
+    }
+
+    function lbOnDragEnd(e) {
+        if (!lbZoomState.dragging) return;
+        lbZoomState.dragging = false;
+        lbZoomState.lastTranslateX = lbZoomState.translateX;
+        lbZoomState.lastTranslateY = lbZoomState.translateY;
+        const img = lightboxImageContainer.querySelector('img.lb-zoomed');
+        if (img) img.style.cursor = 'zoom-out';
+    }
+
+    // Вешаем drag-обработчики на lightbox (а не на img — чтобы не терять drag за пределами)
+    if (lightbox) {
+        lightbox.addEventListener('mousedown', lbOnDragStart);
+        lightbox.addEventListener('mousemove', lbOnDragMove);
+        lightbox.addEventListener('mouseup', lbOnDragEnd);
+        lightbox.addEventListener('mouseleave', lbOnDragEnd);
+        lightbox.addEventListener('touchstart', lbOnDragStart, { passive: false });
+        lightbox.addEventListener('touchmove', lbOnDragMove, { passive: false });
+        lightbox.addEventListener('touchend', lbOnDragEnd);
+    }
+
+    // ── Двойной тап для зума на touch-устройствах ──────────────────────────
+    // Одиночный тап на мобильном зарезервирован под обычную логику (закрытие/навигацию),
+    // поэтому вход/выход из зума там работает только по двойному тапу.
+    let lbLastTapTime = 0;
+    let lbLastTapX = 0;
+    let lbLastTapY = 0;
+    const LB_DOUBLE_TAP_DELAY = 300; // мс между тапами
+    const LB_TAP_MAX_MOVE = 10; // px — порог, после которого это уже не «тап», а свайп/пан
+    const LB_DOUBLE_TAP_MAX_DIST = 40; // px — максимальное расстояние между двумя тапами
+
+    function handleLightboxImageTouchEnd(e) {
+        if (!lbIsTouchDevice) return;
+        const zoomEnabled = window.siteConfig.lightbox.zoomOnImageClick !== false;
+        if (!zoomEnabled) return;
+
+        const img = lightboxImageContainer.querySelector('img');
+        if (!img || e.target !== img) return;
+
+        const touch = e.changedTouches && e.changedTouches[0];
+        if (!touch) return;
+
+        // Был ли это «тап» (без значимого движения) или свайп/панорамирование
+        let wasTap;
+        if (img.classList.contains('lb-zoomed')) {
+            wasTap = !lbZoomState.hasDragged; // во время зума движение отслеживает lbZoomState
+        } else {
+            // ВАЖНО: сравниваем с координатами именно этого touchend (touch.clientX/Y),
+            // а не с глобальными touchEndX/Y — при быстром тапе touchmove может вообще
+            // не успеть сработать, и touchEndX/Y останутся равны 0, что ломает расчёт.
+            const movedX = Math.abs(touch.clientX - touchStartX);
+            const movedY = Math.abs(touch.clientY - touchStartY);
+            wasTap = (touchStartX === 0 && touchStartY === 0) || (movedX < LB_TAP_MAX_MOVE && movedY < LB_TAP_MAX_MOVE);
+        }
+        if (!wasTap) {
+            lbLastTapTime = 0;
+            return;
+        }
+
+        const now = Date.now();
+        const dx = Math.abs(touch.clientX - lbLastTapX);
+        const dy = Math.abs(touch.clientY - lbLastTapY);
+
+        if (lbLastTapTime && (now - lbLastTapTime) < LB_DOUBLE_TAP_DELAY && dx < LB_DOUBLE_TAP_MAX_DIST && dy < LB_DOUBLE_TAP_MAX_DIST) {
+            // Двойной тап — переключаем зум
+            e.preventDefault();
+            lbLastTapTime = 0;
+
+            if (img.classList.contains('lb-zoomed')) {
+                lbZoomReset(img);
+            } else if (lbCanZoom(img)) {
+                lbZoomIn(img, { clientX: touch.clientX, clientY: touch.clientY });
+            }
+        } else {
+            lbLastTapTime = now;
+            lbLastTapX = touch.clientX;
+            lbLastTapY = touch.clientY;
+        }
+    }
+
+    if (lightboxImageContainer) {
+        lightboxImageContainer.addEventListener('touchend', handleLightboxImageTouchEnd);
+    }
+    // ── end zoom helpers ───────────────────────────────────────────────────
+
     // Lightbox fullscreen functionality setup
     if (lightbox) {
         lightbox.addEventListener('click', (event) => {
@@ -4899,10 +5471,44 @@ if (!initialContentId) {
                 return;
             }
 
-            // If click on lightbox background or image itself, close it.
-            // This handles both auto-fullscreen mode and non-auto mode.
+            // If click on lightbox background or image itself, close it or zoom.
             const clickedImage = lightboxImageContainer.querySelector('img');
-            if (event.target === lightbox || event.target === clickedImage || event.target === lightboxImageContainer) {
+            const zoomEnabled = window.siteConfig.lightbox.zoomOnImageClick !== false; // default true
+
+            // Если был drag (зум-панорамирование или свайп между картинками) — не обрабатываем клик как zoom/close
+            if (lbZoomState.hasDragged || lightboxSlideDragHappened) {
+                lbZoomState.hasDragged = false;
+                lightboxSlideDragHappened = false;
+                return;
+            }
+
+            if (event.target === clickedImage && zoomEnabled) {
+                if (lbIsTouchDevice) {
+                    // На touch-устройствах зум по одиночному тапу отключён —
+                    // работает только двойной тап (см. handleLightboxImageTouchEnd).
+                    // Одиночный тап по незумируемой картинке по-прежнему закрывает лайтбокс.
+                    if (!clickedImage.classList.contains('lb-zoomed') && !lbCanZoom(clickedImage)) {
+                        closeLightbox();
+                    }
+                    return;
+                }
+                if (clickedImage.classList.contains('lb-zoomed')) {
+                    // Zoom out — сброс
+                    lbZoomReset(clickedImage);
+                } else if (lbCanZoom(clickedImage)) {
+                    // Zoom in — по точке клика
+                    lbZoomIn(clickedImage, event);
+                } else {
+                    // Увеличивать нечего — файл не больше отображаемого размера
+                    closeLightbox();
+                }
+            } else if (event.target === lightbox || event.target === lightboxImageContainer) {
+                if (clickedImage && clickedImage.classList.contains('lb-zoomed')) {
+                    lbZoomReset(clickedImage);
+                } else {
+                    closeLightbox();
+                }
+            } else if (event.target === clickedImage && !zoomEnabled) {
                 closeLightbox();
             }
         });
@@ -5049,62 +5655,109 @@ document.addEventListener('keydown', (event) => {
         lightbox.addEventListener('touchmove', handleTouchMove, { passive: false });
         lightbox.addEventListener('touchend', handleTouchEndLightbox);
     }
-	// === DRAG & SWIPE FOR LIGHTBOX (SLIDE MODE ONLY) ===
+        // === DRAG & SWIPE FOR LIGHTBOX (SLIDE MODE ONLY) ===
 let isDraggingLightbox = false;
 let dragStartX = 0;
 let currentX = 0;
 const dragThreshold = 25;
+let lightboxSlideDragHappened = false; // подавляет случайный клик-зум/закрытие сразу после свайпа
+let lightboxDragEngaged = false; // true только после реального движения — отличает drag от обычного клика
+const LIGHTBOX_DRAG_ENGAGE_THRESHOLD = 6; // px — минимальное смещение, чтобы считать это перетаскиванием, а не дребезгом клика
 
 function isLightboxSlideMode() {
     return getLightboxTransition() === 'slide';
 }
 
 function handleLightboxDragStart(e) {
-    if (!isLightboxSlideMode() || !isGalleryContext || allVisibleImages.length <= 1) return;
-    const activeImg = lightboxImageContainer.querySelector('img.slide-active');
+    if (lbIsZoomed()) return; // во время зума работает панорамирование, а не свайп-навигация
+    if (!isGalleryContext || allVisibleImages.length <= 1) return;
+
+    const activeImg = isLightboxSlideMode()
+        ? lightboxImageContainer.querySelector('img.slide-active')
+        : lightboxImageContainer.querySelector('img.visible');
     if (!activeImg) return;
 
     isDraggingLightbox = true;
+    lightboxDragEngaged = false;
     dragStartX = e.clientX || e.touches?.[0].clientX || 0;
     currentX = dragStartX;
 
-    // Отключаем transition на время drag
-    activeImg.style.transition = 'none';
-    e.preventDefault();
+    // ВАЖНО: transition/transform картинки трогаем только когда движение реально
+    // превысит порог (см. handleLightboxDragMove) — иначе обычный клик (например,
+    // для зума) может задеваться минимальным дребезгом координат мыши.
+    e.preventDefault(); // предотвращаем нативный drag-призрак картинки браузером
 }
 
 function handleLightboxDragMove(e) {
     if (!isDraggingLightbox) return;
-    const activeImg = lightboxImageContainer.querySelector('img.slide-active');
-    if (!activeImg) return;
-
     currentX = e.clientX || e.touches?.[0].clientX || 0;
     const deltaX = currentX - dragStartX;
 
-    // Применяем сдвиг только к активному изображению
-    activeImg.style.transform = `translateX(${deltaX}px)`;
-    // Опционально: слегка затемнять при сдвиге
-    const opacity = 1 - Math.abs(deltaX) / (window.innerWidth * 0.5);
-    activeImg.style.opacity = Math.max(0.7, opacity);
+    if (!lightboxDragEngaged) {
+        if (Math.abs(deltaX) < LIGHTBOX_DRAG_ENGAGE_THRESHOLD) return; // ещё не drag, а дребезг клика
+        lightboxDragEngaged = true;
+        const activeImg = isLightboxSlideMode()
+            ? lightboxImageContainer.querySelector('img.slide-active')
+            : lightboxImageContainer.querySelector('img.visible');
+        if (activeImg) activeImg.style.transition = 'none';
+    }
+
+    if (isLightboxSlideMode()) {
+        const activeImg = lightboxImageContainer.querySelector('img.slide-active');
+        if (!activeImg) return;
+        // ВАЖНО: сохраняем базовое центрирование translate(-50%, -50%) (см. CSS #lightbox_image img),
+        // иначе картинка "улетает" в угол контейнера — та же причина, что была у бага с зумом.
+        activeImg.style.transform = `translate(-50%, -50%) translateX(${deltaX}px)`;
+        const opacity = 1 - Math.abs(deltaX) / (window.innerWidth * 0.5);
+        activeImg.style.opacity = Math.max(0.7, opacity);
+    } else {
+        // Fade-режим: соседней картинки нет, поэтому даём лёгкую (приглушённую и
+        // ограниченную) обратную связь — сама навигация всё равно решается по
+        // порогу на mouseup, картинка сюда лишь слегка "тянется" за курсором.
+        const activeImg = lightboxImageContainer.querySelector('img.visible');
+        if (!activeImg) return;
+        const damped = Math.max(-80, Math.min(80, deltaX * 0.3));
+        activeImg.style.transform = `translate(-50%, -50%) translateX(${damped}px)`;
+        const opacity = 1 - Math.abs(deltaX) / (window.innerWidth * 0.6);
+        activeImg.style.opacity = Math.max(0.55, opacity);
+    }
 }
 
 function handleLightboxDragEnd() {
     if (!isDraggingLightbox) return;
-    const activeImg = lightboxImageContainer.querySelector('img.slide-active');
-    if (!activeImg) {
-        isDraggingLightbox = false;
-        return;
-    }
+    isDraggingLightbox = false;
+
+    if (!lightboxDragEngaged) return; // движения не было — это был обычный клик, не трогаем стили/навигацию
+    lightboxDragEngaged = false;
+
+    const slideMode = isLightboxSlideMode();
+    const activeImg = slideMode
+        ? lightboxImageContainer.querySelector('img.slide-active')
+        : lightboxImageContainer.querySelector('img.visible');
 
     const deltaX = currentX - dragStartX;
     const absDelta = Math.abs(deltaX);
 
-    // Возвращаем изображение в исходное положение
-    activeImg.style.transition = ''; // включаем transition
-    activeImg.style.transform = 'translateX(0)';
-    activeImg.style.opacity = '';
+    if (activeImg) {
+        // Возвращаем изображение в исходное положение: сбрасываем инлайн-transform целиком,
+        // чтобы центрирование снова управлялось CSS-классом, а не жёстко прописанным
+        // translateX, который стирал базовое translate(-50%, -50%).
+        activeImg.style.transition = slideMode ? '' : 'transform 0.25s ease, opacity 0.25s ease';
+        activeImg.style.transform = '';
+        activeImg.style.opacity = '';
+    }
 
     if (absDelta > dragThreshold) {
+        lightboxSlideDragHappened = true; // подавляем случайный клик-зум/закрытие сразу после свайпа
+        // ВАЖНО: после настоящего drag (мышь ушла далеко от точки mousedown) браузер
+        // обычно НЕ генерирует событие click вообще — а значит клик-хендлер (там, где
+        // флаг обычно сбрасывается) может никогда не сработать, и флаг "залипает" в true,
+        // из-за чего СЛЕДУЮЩИЙ уже обычный клик пользователя (например, для зума)
+        // ошибочно гасится этим флагом. Подстраховываемся таймером: если click всё же
+        // придёт в этот же тик — он увидит флаг true и сам его сбросит (это нормально,
+        // такой клик — «хвост» от drag и должен быть проигнорирован); если click не
+        // придёт вовсе — сбрасываем флаг сами почти сразу.
+        setTimeout(() => { lightboxSlideDragHappened = false; }, 0);
         if (deltaX > 0) {
             showImage(currentImageIndex - 1); // вправо → назад
         } else {
@@ -5112,8 +5765,6 @@ function handleLightboxDragEnd() {
         }
         showLightboxNavControls();
     }
-
-    isDraggingLightbox = false;
 }
 
 // Привязка событий
@@ -5205,16 +5856,33 @@ window.addEventListener('popstate', async () => {
             if (needContentSwitch) {
                 // Нужно переключить контент И открыть lightbox
                 console.log('📂 Switching content + opening lightbox');
-                await showContent(parsed.contentId, parsed.index);
+                await showContent(parsed.contentId, parsed.index, 'lightbox');
             } else if (!isLightboxOpen) {
                 // Контент уже активен, но lightbox закрыт - открываем
                 console.log('🖼️ Opening lightbox on current content');
-                const allPosts = Array.from(targetSection.querySelectorAll('.post'));
-                if (parsed.index >= 0 && parsed.index < allPosts.length) {
-                    const targetPost = allPosts[parsed.index];
-                    const targetImg = targetPost.querySelector('img');
-                    if (targetImg) {
-                        openLightbox(targetImg.src, targetImg.alt, targetImg, parsed.index);
+
+                if (targetSection.classList.contains('single-image-carousel-parent')) {
+                    // Карусель: в DOM всегда только ОДИН '.post' (текущий показанный кадр),
+                    // поэтому нельзя индексировать allPosts[parsed.index], как для обычной
+                    // галереи — раньше это всегда молча проваливалось.
+                    // Не нужно физически перематывать карусель (это ещё и означало бы ждать
+                    // её fade-анимацию ~500мс) — openLightbox сам возьмёт нужный кадр по
+                    // индексу из carouselImagesData, а при закрытии лайтбокса карусель
+                    // досинхронизируется автоматически (см. closeLightbox()).
+                    if (activeCarouselGallery && carouselImagesData.length > 0) {
+                        const carouselImgEl = activeCarouselGallery.querySelector('#carouselImage img');
+                        if (carouselImgEl) {
+                            openLightbox(undefined, undefined, carouselImgEl, parsed.index);
+                        }
+                    }
+                } else {
+                    const allPosts = Array.from(targetSection.querySelectorAll('.post'));
+                    if (parsed.index >= 0 && parsed.index < allPosts.length) {
+                        const targetPost = allPosts[parsed.index];
+                        const targetImg = targetPost.querySelector('img');
+                        if (targetImg) {
+                            openLightbox(targetImg.src, targetImg.alt, targetImg, parsed.index);
+                        }
                     }
                 }
             } else {
@@ -5228,15 +5896,23 @@ window.addEventListener('popstate', async () => {
         // CASE 2: Hash указывает на carousel
         else if (parsed.mode === 'carousel' && parsed.index >= 0) {
             if (needContentSwitch) {
-                await showContent(parsed.contentId, parsed.index);
-            } else if (activeCarouselGallery && carouselCurrentIndex !== parsed.index) {
-                showCarouselImage(parsed.index);
+                await showContent(parsed.contentId, parsed.index, 'carousel');
+            } else {
+                // Если лайтбокс был открыт поверх карусели, а "назад/вперёд" привёл на
+                // обычный хеш карусели (без /lightbox-), нужно закрыть лайтбокс — иначе
+                // он оставался бы визуально открытым, хотя URL уже не lightbox.
+                if (isLightboxOpen) {
+                    closeLightbox();
+                }
+                if (activeCarouselGallery && carouselCurrentIndex !== parsed.index) {
+                    showCarouselImage(parsed.index);
+                }
             }
         }
         // CASE 3: Hash указывает на showcase
         else if (parsed.mode === 'showcase' && parsed.index >= 0) {
             if (needContentSwitch) {
-                await showContent(parsed.contentId, parsed.index);
+                await showContent(parsed.contentId, parsed.index, 'showcase');
             } else if (activeShowcaseGallery && showcaseCurrentIndex !== parsed.index) {
                 showShowcaseImage(parsed.index);
             }
@@ -5287,7 +5963,7 @@ document.addEventListener('click', (e) => {
 function showInitialContent() {
     const parsedInitial = parseHashString(window.location.hash.substring(1));
     if (parsedInitial.contentId) {
-        showContent(parsedInitial.contentId, parsedInitial.index >= 0 ? parsedInitial.index : -1);
+        showContent(parsedInitial.contentId, parsedInitial.index >= 0 ? parsedInitial.index : -1, parsedInitial.mode);
     } else {
         showContent(initialContentId, -1);
     }
